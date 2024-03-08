@@ -2,6 +2,7 @@
 * @IMT-TAF-UE-H/global-owner
 
 # source code reviewers
+/src/ @IMT-TAF-UE-H/source-code-owner
 .h @IMT-TAF-UE-H/source-code-owner
 .cpp @IMT-TAF-UE-H/source-code-owner
 
@@ -9,4 +10,5 @@
 Makefile @IMT-TAF-UE-H/system-owner
 
 # documentation reviewers
+/docs/ @IMT-TAF-UE-H/doc-owner
 *.md @IMT-TAF-UE-H/doc-owner
