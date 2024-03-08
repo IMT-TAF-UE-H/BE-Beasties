@@ -1,0 +1,22 @@
+# other files
+.DS_Store
+._*
+*.tmp
+
+# IDE files
+.vs/
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+
+# build and exe
+*.slo
+*.lo
+*.o
+*.obj
+*.exe
+*.out
+*.app
+out/
+target/
