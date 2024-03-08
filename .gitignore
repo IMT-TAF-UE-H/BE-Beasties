@@ -18,5 +18,6 @@
 *.exe
 *.out
 *.app
+main
 out/
 target/
