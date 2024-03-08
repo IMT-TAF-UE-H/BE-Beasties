@@ -1,20 +1,28 @@
+MAC_FLAGS = -I/opt/X11/include
+
+SRC_DIR = src
+OBJ_DIR = .
+
 # build
 build: main
-	rm -rf *.o
+	rm -rf $(OBJ_DIR)/*.o
 
-main : src/main.cpp Aquarium.o Bestiole.o Milieu.o
-	g++ -Wall -std=c++11 -o main src/main.cpp Aquarium.o Bestiole.o Milieu.o -I ./src -lX11 -lpthread
+main : $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o
+	g++ -Wall -std=c++11 -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
-Aquarium.o : src/Aquarium.h src/Aquarium.cpp
-	g++ -Wall -std=c++11  -c src/Aquarium.cpp -I ./src
+$(OBJ_DIR)/main.o : $(SRC_DIR)/main.cpp $(SRC_DIR)/Aquarium.h $(SRC_DIR)/Bestiole.h $(SRC_DIR)/Milieu.h
+	g++ -Wall -std=c++11 -c $< -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
-Bestiole.o : src/Bestiole.h src/Bestiole.cpp
-	g++ -Wall -std=c++11  -c src/Bestiole.cpp -I ./src
+$(OBJ_DIR)/Aquarium.o : $(SRC_DIR)/Aquarium.h $(SRC_DIR)/Aquarium.cpp
+	g++ -Wall -std=c++11 -c $(SRC_DIR)/Aquarium.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
-Milieu.o : src/Milieu.h src/Milieu.cpp
-	g++ -Wall -std=c++11  -c src/Milieu.cpp -I ./src
+$(OBJ_DIR)/Bestiole.o : $(SRC_DIR)/Bestiole.h $(SRC_DIR)/Bestiole.cpp
+	g++ -Wall -std=c++11 -c $(SRC_DIR)/Bestiole.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
+$(OBJ_DIR)/Milieu.o : $(SRC_DIR)/Milieu.h $(SRC_DIR)/Milieu.cpp
+	g++ -Wall -std=c++11 -c $(SRC_DIR)/Milieu.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 # clean
 .PHONY: clean
 clean:
-	rm -rf main *.o
+	rm -rf $(OBJ_DIR)/*.o main
