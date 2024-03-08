@@ -4,9 +4,6 @@ SRC_DIR = src
 OBJ_DIR = .
 
 # build
-build: main
-	rm -rf $(OBJ_DIR)/*.o
-
 main : $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o
 	g++ -Wall -std=c++11 -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
