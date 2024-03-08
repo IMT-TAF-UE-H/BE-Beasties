@@ -1,0 +1,12 @@
+# default reviewers for everything
+* @IMT-TAF-UE-H/global-owner
+
+# source code reviewers
+.h @IMT-TAF-UE-H/source-code-owner
+.cpp @IMT-TAF-UE-H/source-code-owner
+
+# system files reviewers
+Makefile @IMT-TAF-UE-H/system-owner
+
+# documentation reviewers
+*.md @IMT-TAF-UE-H/doc-owner
