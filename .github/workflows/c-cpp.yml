@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on:
+#  push:
+#    branches:
+#      - "**"
+  pull_request:
+    branches: [ "main", "integration" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set execute permission on configure
+      run: chmod +x ./configure
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
