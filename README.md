@@ -20,7 +20,7 @@ in the [documentation](./docs) section.
 - **Current Version**: 0.1.0
 - **Supported Platforms**: Linux / Windows WSL
 - **Programming languages**:
-    - C++ 17
+    - C++ 11
 - **Libraries / Frameworks / Platforms**:
     - C++ STL
 - **Compatibility Issues** : None known at this time
