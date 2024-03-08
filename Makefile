@@ -1,20 +1,17 @@
-# build
-build: main
-	rm -rf *.o
+MAC_FLAGS = -I/opt/X11/include 
 
-main : src/main.cpp Aquarium.o Bestiole.o Milieu.o
-	g++ -Wall -std=c++11 -o main src/main.cpp Aquarium.o Bestiole.o Milieu.o -I ./src -lX11 -lpthread
+main : main.cpp Aquarium.o Bestiole.o Milieu.o
+	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Bestiole.o Milieu.o -I . -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
-Aquarium.o : src/Aquarium.h src/Aquarium.cpp
-	g++ -Wall -std=c++11  -c src/Aquarium.cpp -I ./src
+Aquarium.o : Aquarium.h Aquarium.cpp
+	g++ -Wall -std=c++11  -c Aquarium.cpp -I . $(MAC_FLAGS)
 
-Bestiole.o : src/Bestiole.h src/Bestiole.cpp
-	g++ -Wall -std=c++11  -c src/Bestiole.cpp -I ./src
+Bestiole.o : Bestiole.h Bestiole.cpp
+	g++ -Wall -std=c++11  -c Bestiole.cpp -I . $(MAC_FLAGS)
 
-Milieu.o : src/Milieu.h src/Milieu.cpp
-	g++ -Wall -std=c++11  -c src/Milieu.cpp -I ./src
+Milieu.o : Milieu.h Milieu.cpp
+	g++ -Wall -std=c++11  -c Milieu.cpp -I . $(MAC_FLAGS)
 
-# clean
-.PHONY: clean
 clean:
-	rm -rf main *.o
+	rm -rf *.o main
+
