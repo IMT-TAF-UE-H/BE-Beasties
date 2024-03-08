@@ -17,7 +17,7 @@ in the [documentation](./docs) section.
 - **Timestamp**: 2024-03-08
 - **Last update**: 2024-03-08
 - **Status**: In development
-- **Current Version**: 0.1.0
+- **Current Version**: 0.1.1
 - **Supported Platforms**: Linux / Windows WSL
 - **Programming languages**:
     - C++ 11
@@ -35,7 +35,10 @@ BE-Beasties/                     This repository
 ├── .gitattributes                     Used to adjust how Git handles changes to certain files, ensuring consistent behavior for all contributors
 ├── .gitignore                         Text file that tells Git which files or directories to ignore in a project
 ├── .github/                           Used by GitHub review management and CI/CD workflows when available
-│   └── CODEOWNERS                     Detail which team-member has to review which changes
+│   ├── configure
+│   ├── CODEOWNERS                     Detail which team-member has to review which changes
+│   └── workflows/                     All GitHub CI/CD workflows performed my GitHub Actions
+│       └── c-cpp.yml                  GitHub Action workflow that checks that code can compile correctly before approving pull requests
 ├── docs/                              All GitHub and project documentation
 │   ├── assignment.pdf                 Project global assignment
 │   ├── CONTRIBUTING.md                Explains how to contribute to the project, by respecting some rules
