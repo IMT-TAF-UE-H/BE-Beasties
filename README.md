@@ -62,7 +62,7 @@ Many thanks to the different contributors for their contribution to the project.
 Find their names and missions in [Contributors](#contributors) section.
 
 ## Contributors
-- BOPS
+- BOPS38IMT
 - Jovillios
 - GabrielDum
 - Ellafnz
