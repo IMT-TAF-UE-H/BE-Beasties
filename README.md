@@ -35,7 +35,7 @@ BE-Beasties/                     This repository
 ├── .gitattributes                     Used to adjust how Git handles changes to certain files, ensuring consistent behavior for all contributors
 ├── .gitignore                         Text file that tells Git which files or directories to ignore in a project
 ├── .github/                           Used by GitHub review management and CI/CD workflows when available
-│   ├── configure
+│   ├── configure                      File to configure GitHub Action environment settings
 │   ├── CODEOWNERS                     Detail which team-member has to review which changes
 │   └── workflows/                     All GitHub CI/CD workflows performed my GitHub Actions
 │       └── c-cpp.yml                  GitHub Action workflow that checks that code can compile correctly before approving pull requests
