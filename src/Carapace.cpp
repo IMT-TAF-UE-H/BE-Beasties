@@ -1,9 +1,26 @@
 #include "Carapace.h"
+#include <iostream>
 
 Carapace::Carapace(shared_ptr<IBestiole> b) {
     bestiole = b;
     eta = (ETA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
     omega = (OMEGA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
+    cout << "const Carapace par defaut sur bestiole " << bestiole << endl;
+}
+
+Carapace::Carapace(Carapace &c) {
+    bestiole = c.bestiole->clone();
+    eta = c.eta;
+    omega = c.omega;
+    cout << "const Carapace par copie sur bestiole " << bestiole << endl;
+}
+
+Carapace::~Carapace() {
+    cout << "dest Carapace" << endl;
+}
+
+shared_ptr<IBestiole> Carapace::clone() {
+    return make_shared<Carapace>(this);
 }
 
 bool Carapace::updatePos() {

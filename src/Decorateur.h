@@ -13,7 +13,7 @@ protected:
     std::shared_ptr<IBestiole> bestiole;
 
 public:
-    virtual ~Decorateur() = 0;
+    virtual shared_ptr<IBestiole> clone() override = 0;
     virtual bool updatePos() override {
         return bestiole->updatePos();
     }
