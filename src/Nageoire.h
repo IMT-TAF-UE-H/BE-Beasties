@@ -20,6 +20,9 @@ private:
 
 public:
     Nageoire(shared_ptr<IBestiole> b);
+    Nageoire(Nageoire &n);
+    ~Nageoire();
+    virtual shared_ptr<IBestiole> clone() override;
     virtual bool updatePos() override;
 };
 

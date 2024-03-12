@@ -35,6 +35,9 @@ private:
 
 public:
     Yeux(shared_ptr<IBestiole> b);
+    Yeux(Yeux &y);
+    ~Yeux();
+    virtual shared_ptr<IBestiole> clone() override;
     virtual bool detecter(shared_ptr<IBestiole> b) override;
 };
 

@@ -21,6 +21,9 @@ private:
 
 public:
     Camouflage(shared_ptr<IBestiole> b);
+    Camouflage(Camouflage &c);
+    ~Camouflage();
+    virtual shared_ptr<IBestiole> clone() override;
     virtual bool detectable() override;
 };
 

@@ -28,6 +28,9 @@ private:
 
 public:
     Oreilles(shared_ptr<IBestiole> b);
+    Oreilles(Oreilles &o);
+    ~Oreilles();
+    virtual shared_ptr<IBestiole> clone() override;
     virtual bool detecter(shared_ptr<IBestiole> b) override;
 };
 

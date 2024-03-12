@@ -1,11 +1,27 @@
 #include "Camouflage.h"
 #include "IBestiole.h"
+#include <iostream>
 
 using namespace std;
 
 Camouflage::Camouflage(shared_ptr<IBestiole> b) {
     bestiole = b;
     psi = (PSI_MAX - PSI_MIN) * ((double)rand() / (double)RAND_MAX) + PSI_MIN;
+    cout << "const Camouflage par defaut sur bestiole " << bestiole << endl;
+}
+
+Camouflage::Camouflage(Camouflage &c) {
+    bestiole = c.bestiole->clone();
+    psi = c.psi;
+    cout << "const Camouflage par copie sur bestiole " << bestiole << endl;
+}
+
+Camouflage::~Camouflage() {
+    cout << "dest Camouflage" << endl;
+}
+
+shared_ptr<IBestiole> Camouflage::clone() {
+    return make_shared<Camouflage>(this);
 }
 
 bool Camouflage::detectable() {

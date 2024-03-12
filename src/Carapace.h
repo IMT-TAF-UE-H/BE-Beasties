@@ -27,6 +27,9 @@ private:
 
 public:
     Carapace(shared_ptr<IBestiole> b);
+    Carapace(Carapace &c);
+    ~Carapace();
+    virtual shared_ptr<IBestiole> clone() override;
     virtual bool updatePos() override;
     virtual bool collision(shared_ptr<IBestiole> b) override;
 };
