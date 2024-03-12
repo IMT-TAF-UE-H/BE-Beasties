@@ -16,7 +16,7 @@ private:
      * 1 < nu < NU_MAX
      */
     double nu;
-    static const double NU_MAX;
+    static double NU_MAX;
 
 public:
     Nageoire(shared_ptr<IBestiole> b);

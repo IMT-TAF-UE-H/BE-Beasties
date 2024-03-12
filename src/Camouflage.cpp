@@ -4,6 +4,9 @@
 
 using namespace std;
 
+double Camouflage::PSI_MIN = 0;
+double Camouflage::PSI_MAX = 1;
+
 Camouflage::Camouflage(shared_ptr<IBestiole> b) {
     bestiole = b;
     psi = (PSI_MAX - PSI_MIN) * ((double)rand() / (double)RAND_MAX) + PSI_MIN;
@@ -21,7 +24,7 @@ Camouflage::~Camouflage() {
 }
 
 shared_ptr<IBestiole> Camouflage::clone() {
-    return make_shared<Camouflage>(this);
+    return make_shared<Camouflage>(*this);
 }
 
 bool Camouflage::detectable() {

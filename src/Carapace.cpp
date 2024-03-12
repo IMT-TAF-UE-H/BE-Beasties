@@ -1,6 +1,9 @@
 #include "Carapace.h"
 #include <iostream>
 
+double Carapace::ETA_MAX = 100.;
+double Carapace::OMEGA_MAX = 100.;
+
 Carapace::Carapace(shared_ptr<IBestiole> b) {
     bestiole = b;
     eta = (ETA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
@@ -20,7 +23,7 @@ Carapace::~Carapace() {
 }
 
 shared_ptr<IBestiole> Carapace::clone() {
-    return make_shared<Carapace>(this);
+    return make_shared<Carapace>(*this);
 }
 
 bool Carapace::updatePos() {

@@ -2,6 +2,13 @@
 #include <math.h>
 #include <iostream>
 
+double Yeux::ALPHA_MIN = 0.;
+double Yeux::ALPHA_MAX = 2.*M_PI;
+double Yeux::DELTA_Y_MIN = 0.;
+double Yeux::DELTA_Y_MAX = INFINITY;
+double Yeux::GAMMA_Y_MIN = 0;
+double Yeux::GAMMA_Y_MAX = 1;
+
 Yeux::Yeux(shared_ptr<IBestiole> b) {
     bestiole = b;
     alpha = (ALPHA_MAX - ALPHA_MIN) * ((double)rand() / (double)RAND_MAX) + ALPHA_MIN;
@@ -23,7 +30,7 @@ Yeux::~Yeux() {
 }
 
 shared_ptr<IBestiole> Yeux::clone() {
-    return make_shared<Yeux>(this);
+    return make_shared<Yeux>(*this);
 }
 
 bool Yeux::detecter(shared_ptr<IBestiole> b) {

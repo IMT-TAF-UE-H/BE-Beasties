@@ -2,6 +2,11 @@
 #include <math.h>
 #include <iostream>
 
+double Oreilles::DELTA_O_MIN = 0;
+double Oreilles::DELTA_O_MAX = INFINITY;
+double Oreilles::GAMMA_O_MIN = 0;
+double Oreilles::GAMMA_O_MAX = 1;
+
 Oreilles::Oreilles(shared_ptr<IBestiole> b) {
     bestiole = b;
     deltaO = (DELTA_O_MAX - DELTA_O_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_O_MIN;
@@ -21,7 +26,7 @@ Oreilles::~Oreilles() {
 }
 
 shared_ptr<IBestiole> Oreilles::clone() {
-    return make_shared<Oreilles>(this);
+    return make_shared<Oreilles>(*this);
 }
 
 bool Oreilles::detecter(shared_ptr<IBestiole> b) {

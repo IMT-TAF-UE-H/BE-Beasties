@@ -22,8 +22,8 @@ private:
      * 1 < eta < ETA_MAX
     */
     double eta;
-    static const double OMEGA_MAX;
-    static const double ETA_MAX;
+    static double OMEGA_MAX;
+    static double ETA_MAX;
 
 public:
     Carapace(shared_ptr<IBestiole> b);

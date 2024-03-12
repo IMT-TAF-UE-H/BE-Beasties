@@ -21,10 +21,10 @@ private:
      * 0 < GAMMA_O_MIN < gammaO < GAMMA_O_MAX < 1
      */
     double gammaO;
-    static const double DELTA_O_MIN;
-    static const double DELTA_O_MAX;
-    static const double GAMMA_O_MIN;
-    static const double GAMMA_O_MAX;
+    static double DELTA_O_MIN;
+    static double DELTA_O_MAX;
+    static double GAMMA_O_MIN;
+    static double GAMMA_O_MAX;
 
 public:
     Oreilles(shared_ptr<IBestiole> b);
