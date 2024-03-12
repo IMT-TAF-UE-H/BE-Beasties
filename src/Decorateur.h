@@ -44,6 +44,13 @@ public:
     virtual void setDiscretion(double psi) override {
         return bestiole->setDiscretion(psi);
     }
+    friend ostream& operator<<(ostream& os, const Decorateur& dt);
 };
+
+ostream& operator<<(ostream& os, const Decorateur& dt)
+{
+    os << dt.bestiole;
+    return os;
+}
 
 #endif
