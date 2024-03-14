@@ -1,4 +1,5 @@
 #include "Carapace.h"
+#include <cassert>
 #include <iostream>
 
 double Carapace::ETA_MAX = 100.;
@@ -20,6 +21,13 @@ Carapace::Carapace(Carapace &c) {
 
 Carapace::~Carapace() {
     cout << "dest Carapace" << endl;
+}
+
+void Carapace::setLimites(double _OMEGA_MAX, double _ETA_MAX) {
+    assert(_OMEGA_MAX > 1);
+    assert(_ETA_MAX > 1);
+    OMEGA_MAX = _OMEGA_MAX;
+    ETA_MAX = _ETA_MAX;
 }
 
 shared_ptr<IBestiole> Carapace::clone() {

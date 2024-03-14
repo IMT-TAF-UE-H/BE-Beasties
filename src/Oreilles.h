@@ -30,6 +30,10 @@ public:
     Oreilles(shared_ptr<IBestiole> b);
     Oreilles(Oreilles &o);
     ~Oreilles();
+    static void setLimites(double _DELTA_O_MIN,
+                           double _DELTA_O_MAX,
+                           double _GAMMA_O_MIN,
+                           double _GAMMA_O_MAX);
     virtual shared_ptr<IBestiole> clone() override;
     virtual bool detecter(shared_ptr<IBestiole> b) override;
 };

@@ -1,6 +1,7 @@
 #include "Nageoire.h"
 #include "IBestiole.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -19,6 +20,11 @@ Nageoire::Nageoire(Nageoire &n) {
 
 Nageoire::~Nageoire() {
     cout << "dest Nageoire" << endl;
+}
+
+void Nageoire::setLimites(double _NU_MAX) {
+    assert(_NU_MAX > 1);
+    NU_MAX = _NU_MAX;
 }
 
 shared_ptr<IBestiole> Nageoire::clone() {

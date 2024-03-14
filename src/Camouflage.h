@@ -23,6 +23,7 @@ public:
     Camouflage(shared_ptr<IBestiole> b);
     Camouflage(Camouflage &c);
     ~Camouflage();
+    static void setLimites(double _PSI_MIN, double _PSI_MAX);
     virtual shared_ptr<IBestiole> clone() override;
     virtual bool detectable() override;
 };

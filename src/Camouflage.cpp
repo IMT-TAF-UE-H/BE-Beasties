@@ -1,6 +1,7 @@
 #include "Camouflage.h"
 #include "IBestiole.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -21,6 +22,12 @@ Camouflage::Camouflage(Camouflage &c) {
 
 Camouflage::~Camouflage() {
     cout << "dest Camouflage" << endl;
+}
+
+void Camouflage::setLimites(double _PSI_MIN, double _PSI_MAX) {
+    assert(_PSI_MIN > 0 && _PSI_MAX > _PSI_MIN && 1 > _PSI_MAX);
+    PSI_MIN = _PSI_MIN;
+    PSI_MAX = _PSI_MAX;
 }
 
 shared_ptr<IBestiole> Camouflage::clone() {
