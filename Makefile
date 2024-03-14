@@ -1,6 +1,7 @@
 MAC_FLAGS = -I/opt/X11/include
 
 SRC_DIR = src
+TEST_DIR = tests
 OBJ_DIR = .
 DECORATEURS = $(OBJ_DIR)/Camouflage.o $(OBJ_DIR)/Carapace.o $(OBJ_DIR)/Nageoire.o $(OBJ_DIR)/Oreilles.o $(OBJ_DIR)/Yeux.o
 
@@ -37,6 +38,16 @@ $(OBJ_DIR)/Oreilles.o : $(SRC_DIR)/Oreilles.h $(SRC_DIR)/Oreilles.cpp $(SRC_DIR)
 
 $(OBJ_DIR)/Yeux.o : $(SRC_DIR)/Yeux.h $(SRC_DIR)/Yeux.cpp $(SRC_DIR)/Decorateur.h $(SRC_DIR)/IBestiole.h
 	g++ -Wall -std=c++11 -c $(SRC_DIR)/Yeux.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
+# test
+test: testDecorateurs
+
+testDecorateurs: $(OBJ_DIR)/testDecorateurs.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(DECORATEURS)
+	g++ -Wall -std=c++11 -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
+
+$(OBJ_DIR)/testDecorateurs.o : $(TEST_DIR)/testDecorateurs.cpp $(SRC_DIR)/Aquarium.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
+	g++ -Wall -std=c++11 -c $< -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
 
 # clean
 .PHONY: clean

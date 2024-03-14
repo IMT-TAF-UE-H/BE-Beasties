@@ -19,5 +19,6 @@
 *.out
 *.app
 main
+testDecorateurs
 out/
 target/
