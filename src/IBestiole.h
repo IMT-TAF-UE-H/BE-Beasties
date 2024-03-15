@@ -24,7 +24,7 @@ public:
      */
     virtual bool detectable() = 0;
     /**
-     * Détermine si cette bestiole peut être détectée.
+     * Détermine si une autre bestiole voisine peut être détectée.
      */
     virtual bool detecter(shared_ptr<IBestiole> b) = 0;
     /**
