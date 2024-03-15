@@ -5,11 +5,12 @@
 
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
+double Milieu::width = 640.;
+double Milieu::height = 480.;
 
-
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
-                                            width(_width), height(_height)
+Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 )
 {
+   width, height = _width, _height;
 
    cout << "const Milieu" << endl;
 
@@ -30,27 +31,38 @@ void Milieu::step( void )
 {
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
+      it->updatePos();
+   }
+   auto vaMourir = getVaMourir();
 
-      it->action( *this );
+   for ( int id = vaMourir.begin() ; id != vaMourir.end() ; ++id )
+   {
+      tuer(id);
+   }
+
+   for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   {
       it->draw( *this );
-
-   } // for
+   }
 
 }
 
+void Milieu::tuer(int idBestiole) {
+   for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+   {
+      if (it->getId() == idBestiole) {
+         // TODO tuer la bibitte
+         break;
+      }
+   }
+}
 
-int Milieu::nbVoisins( const Bestiole & b )
-{
-
-   int         nb = 0;
-
-
-   for ( std::vector<Bestiole>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b == *it) && b.jeTeVois(*it) )
-         ++nb;
-
-   return nb;
-
+std::vector<IBestiole> Milieu::getVoisins(const IBestiole& b) {
+   std::vector<IBestiole> voisins;
+   for ( std::vector<IBestiole>::const_iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+      if ( !(b.getId() == it->getId()) && b.detecter(*it) )
+         voisins.push_back(*it);
+   return voisins;
 }

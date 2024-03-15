@@ -1,54 +1,78 @@
 #ifndef _BESTIOLES_H_
 #define _BESTIOLES_H_
 
-
 #include "UImg.h"
 
+#include <IBestiole.h>
 #include <iostream>
+#include "IComportement.h"
 
 using namespace std;
 
-
 class Milieu;
 
+class Bestiole : public IBestiole {
 
-class Bestiole
-{
+private:
+    static int next;
+    int identite;
 
-private :
-   static const double     AFF_SIZE;
-   static const double     MAX_VITESSE;
-   static const double     LIMITE_VUE;
+    Milieu *milieu;
+    IComportement *comportement;
 
-   static int              next;
+    int vieRestante;
 
-private :
-   int               identite;
-   int               x, y;
-   double            cumulX, cumulY;
-   double            orientation;
-   double            vitesse;
+    double x, y;
+    double direction;
+    /**
+     * doit être inférieure à la longueur et à la largeur du milieu
+     */
+    double vitesse;
+    /**
+     * Détermine la probabilité pour la bestiole de passer inaperçue
+     * lorsque elle est dans le champ de vision d'une autre bestiole.
+     * 0 < discretion < 1
+     */
+    double discretion;
+    /**
+     * Capacité de la bestiole à survivre à une collision.
+     * 1 < resistance
+    */
+    double resistance;
 
-   T               * couleur;
+    double taille;
+    T *couleur;
 
-private :
-   void bouge( int xLim, int yLim );
+    static const double MAX_VITESSE;
 
-public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu );
-   void draw( UImg & support );
+private:
+    void bouge(int xLim, int yLim);
 
-   bool jeTeVois( const Bestiole & b ) const;
+public:
+    Bestiole(Milieu *milieu);
+    Bestiole(const Bestiole &b);
+    ~Bestiole(void);
+    shared_ptr<IBestiole> clone() override;
+    void updatePos() override;
+    bool detectable() override;
+    bool detecter(shared_ptr<IBestiole> b) override;
+    bool collision(shared_ptr<IBestiole> b) override;
+    double getVitesse() override;
+    void setVitesse(double vitesse) override;
+    double getResistance() override;
+    void setResistance(double omega) override;
+    double getDiscretion() override;
+    void setDiscretion(double psi) override;
+    double getX() const override;
+    double getY() const override;
+    double getDistance(shared_ptr<IBestiole> b) const override;
+    double getDirection() const override;
+    double getDirectionTo(shared_ptr<IBestiole> b) const override;
+    int getId() const override;
 
-   void initCoords( int xLim, int yLim );
+    void draw(UImg &support);
 
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
-
+    friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 };
-
 
 #endif

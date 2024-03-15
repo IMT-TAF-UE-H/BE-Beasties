@@ -34,15 +34,14 @@ shared_ptr<IBestiole> Carapace::clone() {
     return make_shared<Carapace>(*this);
 }
 
-bool Carapace::updatePos() {
+void Carapace::updatePos() {
     double vitesse = bestiole->getVitesse();
     // Modification de la vitesse
     bestiole->setVitesse(vitesse / eta);
     // Comportement normal de la bestiole composée
-    bool mort = bestiole->updatePos();
+    bestiole->updatePos();
     // Restauration de la vitesse
     bestiole->setVitesse(vitesse);
-    return mort;
 }
 
 bool Carapace::collision(shared_ptr<IBestiole> b) {

@@ -32,13 +32,12 @@ shared_ptr<IBestiole> Nageoire::clone() {
     cout << "const Nageoire par copie sur bestiole " << bestiole << endl;
 }
 
-bool Nageoire::updatePos() {
+void Nageoire::updatePos() {
     double vitesse = bestiole->getVitesse();
     // Modification de la vitesse
     bestiole->setVitesse(nu * vitesse);
     // Comportement normal de la bestiole composée
-    bool mort = bestiole->updatePos();
+    bestiole->updatePos();
     // Restauration de la vitesse
     bestiole->setVitesse(vitesse);
-    return mort;
 }

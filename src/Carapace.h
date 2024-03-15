@@ -32,7 +32,7 @@ public:
     static void setLimites(double _OMEGA_MAX,
                            double _ETA_MAX);
     virtual shared_ptr<IBestiole> clone() override;
-    virtual bool updatePos() override;
+    virtual void updatePos() override;
     virtual bool collision(shared_ptr<IBestiole> b) override;
 };
 

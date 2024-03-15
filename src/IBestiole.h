@@ -18,7 +18,7 @@ public:
      * Calcule la nouvelle position, et la modifie en place.
      * Renvoie l'état de décès de la bestiole (true=mort).
      */
-    virtual bool updatePos() = 0;
+    virtual void updatePos() = 0;
     /**
      * Détermine si la bestiole peut être détectée à cette itération.
      */
@@ -31,12 +31,19 @@ public:
      * Détermine si une collision avec une autre bestiole voisine est mortelle.
      */
     virtual bool collision(shared_ptr<IBestiole> b) = 0;
+    virtual void draw(UImg &support) = 0;
     virtual double getVitesse() = 0;
     virtual void setVitesse(double vitesse) = 0;
     virtual double getResistance() = 0;
     virtual void setResistance(double omega) = 0;
     virtual double getDiscretion() = 0;
     virtual void setDiscretion(double psi) = 0;
+    virtual double getX() const = 0;
+    virtual double getY() const = 0;
+    virtual double getDistance(shared_ptr<IBestiole> b) const = 0;
+    virtual double getDirection() const = 0;
+    virtual double getDirectionTo(shared_ptr<IBestiole> b) const = 0;
+    virtual int getId() const = 0;
 };
 
 #endif

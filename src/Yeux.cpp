@@ -52,7 +52,15 @@ shared_ptr<IBestiole> Yeux::clone() {
 }
 
 bool Yeux::detecter(shared_ptr<IBestiole> b) {
-    bool detection; // TODO : y mettre le résultat de la détection
-    // TODO ...
-    return detection || bestiole->detecter(b);
+    bool detection; 
+    double distance = bestiole->getDistance(b);
+    double directionTo = bestiole->getDirectionTo(b);
+    double direction = bestiole->getDirection();
+    double angle = directionTo - direction;
+    bool inField = (angle > alpha - M_PI / 2 && angle < alpha + M_PI / 2);
+    bool inDistance = (distance < deltaY);
+    bool inVision = (inField && inDistance);
+    // détection si dans le champ de vision et dans la distance
+    detection = inVision && (gammaY >  bestiole->detectable());
+    return detection;
 }

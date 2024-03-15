@@ -24,7 +24,7 @@ public:
     ~Nageoire();
     static void setLimites(double _NU_MAX);
     virtual shared_ptr<IBestiole> clone() override;
-    virtual bool updatePos() override;
+    virtual void updatePos() override;
 };
 
 #endif

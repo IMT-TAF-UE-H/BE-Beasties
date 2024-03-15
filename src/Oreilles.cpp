@@ -43,7 +43,9 @@ shared_ptr<IBestiole> Oreilles::clone() {
 }
 
 bool Oreilles::detecter(shared_ptr<IBestiole> b) {
-    bool detection; // TODO : Y mettre le résultat de la détection
-    // TODO ...
-    return detection || bestiole->detecter(b);
+    bool detection;
+    bool inDistance = bestiole->getDistance(b) < deltaO;
+    // detecte si la bestiole est dans la distance de detection et si elle est detectable
+    detection = inDistance && (gammaO > bestiole->detectable());
+    return detection;
 }

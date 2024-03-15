@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "IBestiole.h"
+#include "Milieu.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ protected:
 
 public:
     virtual shared_ptr<IBestiole> clone() override = 0;
-    virtual bool updatePos() override {
+    virtual void updatePos() override {
         return bestiole->updatePos();
     }
     virtual bool detectable() override {
@@ -27,6 +28,9 @@ public:
     }
     virtual bool collision(shared_ptr<IBestiole> b) override {
         return bestiole->collision(b);
+    }
+    virtual void draw(UImg &support) override {
+        return bestiole->draw(support);
     }
     virtual double getVitesse() override {
         return bestiole->getVitesse();
@@ -45,6 +49,24 @@ public:
     }
     virtual void setDiscretion(double psi) override {
         return bestiole->setDiscretion(psi);
+    }
+    virtual double getX() const override {
+        return bestiole->getX();
+    }
+    virtual double getY() const override {
+        return bestiole->getY();
+    }
+    virtual double getDistance(shared_ptr<IBestiole> b) const override {
+        return bestiole->getDistance(b);
+    }
+    virtual double getDirection() const override {
+        return bestiole->getDirection();
+    }
+    virtual double getDirectionTo(shared_ptr<IBestiole> b) const override {
+        return bestiole->getDirectionTo(b);
+    }
+    virtual int getId() const override {
+        return bestiole->getId();
     }
     inline friend ostream& operator<<(ostream& os, const Decorateur& dt);
 };
