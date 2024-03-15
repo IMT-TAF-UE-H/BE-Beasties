@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <cstdlib>
+#include "CompKamikaze.h"
 
 const double Bestiole::MAX_VITESSE = 10.;
 
@@ -15,6 +16,7 @@ Bestiole::Bestiole(Milieu *_milieu) {
 
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
+    comportement = ComportementKamikaze::getInstance();
     milieu = _milieu;
     vieRestante = 1000;
     taille = 8.;
@@ -52,15 +54,20 @@ Bestiole::~Bestiole(void) {
     cout << "dest Bestiole" << endl;
 }
 
-shared_ptr<IBestiole> Bestiole::clone() {
-    return make_shared<Bestiole>(this);
+IBestiole* Bestiole::clone() {
+    return this;
 }
 
 void Bestiole::updatePos() {
 
     double nx, ny;
 
-    auto delta = comportement->deplacement(*this, *milieu);
+    // IMPORTANT : cette ligne empêche l'emploi des smart pointers pour les bestioles
+    // On ne peut pas distribuer les responsabilités à la fois 
+    // à partir du milieu et de la bestiole elle-même.
+    // Donc pas de responsabilité c'est mieux.
+    // (Justification à clarifier)
+    auto delta = comportement->getDeplacement(this, *milieu);
 
     nx = x + get<0>(delta);
     ny = y + get<1>(delta);
@@ -81,7 +88,8 @@ void Bestiole::updatePos() {
         ny = 2 * Milieu::height - ny;
     }
 
-    x, y = nx, ny;
+    x = nx;
+    y = ny;
     vieRestante--;
 }
 
@@ -89,12 +97,36 @@ bool Bestiole::detectable() {
     return rand() < discretion * RAND_MAX;
 }
 
-bool Bestiole::detecter(shared_ptr<IBestiole> b) {
+bool Bestiole::detecter(IBestiole* b) {
     return false;
 }
 
-bool Bestiole::collision(shared_ptr<IBestiole> b) {
+bool Bestiole::collision(IBestiole* b) {
     return rand() * resistance > RAND_MAX;
+}
+
+double Bestiole::getVitesse() {
+    return vitesse;
+}
+
+void Bestiole::setVitesse(double _vitesse) {
+    vitesse = _vitesse;
+}
+
+double Bestiole::getResistance() {
+    return resistance;
+}
+
+void Bestiole::setResistance(double _resistance) {
+    resistance = _resistance;
+}
+
+double Bestiole::getDiscretion() {
+    return discretion;
+}
+
+void Bestiole::setDiscretion(double _discretion) {
+    discretion = _discretion;
 }
 
 void Bestiole::draw(UImg &support) {
@@ -119,7 +151,7 @@ double Bestiole::getY() const {
     return y;
 }
 
-double Bestiole::getDistance(shared_ptr<IBestiole> b) const {
+double Bestiole::getDistance(IBestiole* b) const {
     return sqrt((x - b->getX()) * (x - b->getX()) + (y - b->getY()) * (y - b->getY()));
 }
 
@@ -127,7 +159,7 @@ double Bestiole::getDirection() const {
     return direction;
 }
 
-double Bestiole::getDirectionTo(shared_ptr<IBestiole> b) const {
+double Bestiole::getDirectionTo(IBestiole* b) const {
     return atan2(b->getY() - y, b->getX() - x);
 }
 

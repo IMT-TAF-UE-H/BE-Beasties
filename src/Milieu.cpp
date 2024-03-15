@@ -10,7 +10,8 @@ double Milieu::height = 480.;
 
 Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 )
 {
-   width, height = _width, _height;
+   width = _width;
+   height = _height;
 
    cout << "const Milieu" << endl;
 
@@ -33,18 +34,18 @@ void Milieu::step( void )
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
    for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      it->updatePos();
+      (*it)->updatePos();
    }
    auto vaMourir = getVaMourir();
 
-   for ( int id = vaMourir.begin() ; id != vaMourir.end() ; ++id )
+   for ( auto id = vaMourir.begin() ; id != vaMourir.end() ; ++id )
    {
-      tuer(id);
+      tuer(*id);
    }
 
    for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      it->draw( *this );
+      (*it)->draw( *this );
    }
 
 }
@@ -52,17 +53,25 @@ void Milieu::step( void )
 void Milieu::tuer(int idBestiole) {
    for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
-      if (it->getId() == idBestiole) {
+      if ((*it)->getId() == idBestiole) {
          // TODO tuer la bibitte
          break;
       }
    }
 }
 
-std::vector<IBestiole> Milieu::getVoisins(const IBestiole& b) {
-   std::vector<IBestiole> voisins;
-   for ( std::vector<IBestiole>::const_iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b.getId() == it->getId()) && b.detecter(*it) )
+std::vector<IBestiole*> Milieu::getVoisins(IBestiole* b) {
+   std::vector<IBestiole*> voisins;
+   for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
+      if ( !(b->getId() == (*it)->getId()) && b->detecter(*it) )
          voisins.push_back(*it);
    return voisins;
+}
+
+void Milieu::addBestiole(IBestiole *bestiole) {
+   listeBestioles.push_back(bestiole);
+}
+
+std::vector<int> Milieu::getVaMourir() {
+    return std::vector<int>(); // TODO implem
 }

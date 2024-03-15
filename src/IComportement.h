@@ -9,7 +9,7 @@ class IComportement {
 
 public:
 // sortie : DeltaX, DeltaY
-virtual tuple<double, double> deplacement(IBestiole & b, const Milieu & monMilieu) = 0;
+virtual tuple<double, double> getDeplacement(IBestiole* b, Milieu & monMilieu) = 0;
 };
 
 # endif

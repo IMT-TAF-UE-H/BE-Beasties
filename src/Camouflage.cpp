@@ -8,7 +8,7 @@ using namespace std;
 double Camouflage::PSI_MIN = 0;
 double Camouflage::PSI_MAX = 1;
 
-Camouflage::Camouflage(shared_ptr<IBestiole> b) {
+Camouflage::Camouflage(IBestiole* b) {
     bestiole = b;
     psi = (PSI_MAX - PSI_MIN) * ((double)rand() / (double)RAND_MAX) + PSI_MIN;
     cout << "const Camouflage par defaut sur bestiole " << bestiole << endl;
@@ -30,8 +30,8 @@ void Camouflage::setLimites(double _PSI_MIN, double _PSI_MAX) {
     PSI_MAX = _PSI_MAX;
 }
 
-shared_ptr<IBestiole> Camouflage::clone() {
-    return make_shared<Camouflage>(*this);
+IBestiole* Camouflage::clone() {
+    return new Camouflage(*this);
 }
 
 bool Camouflage::detectable() {

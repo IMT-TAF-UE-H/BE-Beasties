@@ -7,7 +7,7 @@ using namespace std;
 
 double Nageoire::NU_MAX = 100.;
 
-Nageoire::Nageoire(shared_ptr<IBestiole> b) {
+Nageoire::Nageoire(IBestiole* b) {
     bestiole = b;
     nu = (NU_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
 }
@@ -27,8 +27,8 @@ void Nageoire::setLimites(double _NU_MAX) {
     NU_MAX = _NU_MAX;
 }
 
-shared_ptr<IBestiole> Nageoire::clone() {
-    return make_shared<Nageoire>(*this);
+IBestiole* Nageoire::clone() {
+    return new Nageoire(*this);
     cout << "const Nageoire par copie sur bestiole " << bestiole << endl;
 }
 

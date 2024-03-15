@@ -26,14 +26,14 @@ private:
     static double ETA_MAX;
 
 public:
-    Carapace(shared_ptr<IBestiole> b);
+    Carapace(IBestiole* b);
     Carapace(Carapace &c);
     ~Carapace();
     static void setLimites(double _OMEGA_MAX,
                            double _ETA_MAX);
-    virtual shared_ptr<IBestiole> clone() override;
+    virtual IBestiole* clone() override;
     virtual void updatePos() override;
-    virtual bool collision(shared_ptr<IBestiole> b) override;
+    virtual bool collision(IBestiole* b) override;
 };
 
 #endif

@@ -10,7 +10,7 @@ double Yeux::DELTA_Y_MAX = INFINITY;
 double Yeux::GAMMA_Y_MIN = 0;
 double Yeux::GAMMA_Y_MAX = 1;
 
-Yeux::Yeux(shared_ptr<IBestiole> b) {
+Yeux::Yeux(IBestiole* b) {
     bestiole = b;
     alpha = (ALPHA_MAX - ALPHA_MIN) * ((double)rand() / (double)RAND_MAX) + ALPHA_MIN;
     deltaY = (DELTA_Y_MAX - DELTA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_Y_MIN;
@@ -47,11 +47,11 @@ void Yeux::setLimites(double _ALPHA_MIN,
     GAMMA_Y_MAX = _GAMMA_Y_MAX;
 }
 
-shared_ptr<IBestiole> Yeux::clone() {
-    return make_shared<Yeux>(*this);
+IBestiole* Yeux::clone() {
+    return new Yeux(*this);
 }
 
-bool Yeux::detecter(shared_ptr<IBestiole> b) {
+bool Yeux::detecter(IBestiole* b) {
     bool detection; 
     double distance = bestiole->getDistance(b);
     double directionTo = bestiole->getDirectionTo(b);

@@ -34,7 +34,7 @@ private:
     static double GAMMA_Y_MAX;
 
 public:
-    Yeux(shared_ptr<IBestiole> b);
+    Yeux(IBestiole* b);
     Yeux(Yeux &y);
     ~Yeux();
     static void setLimites(double _ALPHA_MIN,
@@ -43,8 +43,8 @@ public:
                            double _DELTA_Y_MAX,
                            double _GAMMA_Y_MIN,
                            double _GAMMA_Y_MAX);
-    virtual shared_ptr<IBestiole> clone() override;
-    virtual bool detecter(shared_ptr<IBestiole> b) override;
+    virtual IBestiole* clone() override;
+    virtual bool detecter(IBestiole* b) override;
 };
 
 #endif

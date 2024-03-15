@@ -5,11 +5,13 @@
 
 #include <IBestiole.h>
 #include <iostream>
+
+#include "Milieu.h"
 #include "IComportement.h"
 
 using namespace std;
 
-class Milieu;
+class IComportement;
 
 class Bestiole : public IBestiole {
 
@@ -18,7 +20,7 @@ private:
     int identite;
 
     Milieu *milieu;
-    IComportement *comportement;
+    shared_ptr<IComportement> comportement;
 
     int vieRestante;
 
@@ -45,29 +47,26 @@ private:
 
     static const double MAX_VITESSE;
 
-private:
-    void bouge(int xLim, int yLim);
-
 public:
     Bestiole(Milieu *milieu);
     Bestiole(const Bestiole &b);
     ~Bestiole(void);
-    shared_ptr<IBestiole> clone() override;
+    IBestiole* clone() override;
     void updatePos() override;
     bool detectable() override;
-    bool detecter(shared_ptr<IBestiole> b) override;
-    bool collision(shared_ptr<IBestiole> b) override;
+    bool detecter(IBestiole* b) override;
+    bool collision(IBestiole* b) override;
     double getVitesse() override;
     void setVitesse(double vitesse) override;
     double getResistance() override;
-    void setResistance(double omega) override;
+    void setResistance(double resistance) override;
     double getDiscretion() override;
-    void setDiscretion(double psi) override;
+    void setDiscretion(double discretion) override;
     double getX() const override;
     double getY() const override;
-    double getDistance(shared_ptr<IBestiole> b) const override;
+    double getDistance(IBestiole* b) const override;
     double getDirection() const override;
-    double getDirectionTo(shared_ptr<IBestiole> b) const override;
+    double getDirectionTo(IBestiole* b) const override;
     int getId() const override;
 
     void draw(UImg &support);

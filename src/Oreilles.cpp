@@ -8,7 +8,7 @@ double Oreilles::DELTA_O_MAX = INFINITY;
 double Oreilles::GAMMA_O_MIN = 0;
 double Oreilles::GAMMA_O_MAX = 1;
 
-Oreilles::Oreilles(shared_ptr<IBestiole> b) {
+Oreilles::Oreilles(IBestiole* b) {
     bestiole = b;
     deltaO = (DELTA_O_MAX - DELTA_O_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_O_MIN;
     gammaO = (GAMMA_O_MAX - GAMMA_O_MIN) * ((double)rand() / (double)RAND_MAX) + GAMMA_O_MIN;
@@ -38,11 +38,11 @@ void Oreilles::setLimites(double _DELTA_O_MIN,
     GAMMA_O_MAX = _GAMMA_O_MAX;
 }
 
-shared_ptr<IBestiole> Oreilles::clone() {
-    return make_shared<Oreilles>(*this);
+IBestiole* Oreilles::clone() {
+    return new Oreilles(*this);
 }
 
-bool Oreilles::detecter(shared_ptr<IBestiole> b) {
+bool Oreilles::detecter(IBestiole* b) {
     bool detection;
     bool inDistance = bestiole->getDistance(b) < deltaO;
     // detecte si la bestiole est dans la distance de detection et si elle est detectable

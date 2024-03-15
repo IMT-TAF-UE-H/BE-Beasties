@@ -14,7 +14,7 @@ class Milieu : public UImg {
 private:
     static const T white[];
 
-    std::vector<IBestiole> listeBestioles;
+    std::vector<IBestiole*> listeBestioles;
 
 public:
     static double width, height;
@@ -26,7 +26,8 @@ public:
     void step();
     void tuer(int idBestiole);
 
-    std::vector<IBestiole> getVoisins(const IBestiole &b);
+    std::vector<IBestiole*> getVoisins(IBestiole* b);
+    void addBestiole(IBestiole* bestiole);
 
 private:
     std::vector<int> getVaMourir();

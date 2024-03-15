@@ -20,11 +20,11 @@ private:
     static double PSI_MAX;
 
 public:
-    Camouflage(shared_ptr<IBestiole> b);
+    Camouflage(IBestiole* b);
     Camouflage(Camouflage &c);
     ~Camouflage();
     static void setLimites(double _PSI_MIN, double _PSI_MAX);
-    virtual shared_ptr<IBestiole> clone() override;
+    virtual IBestiole* clone() override;
     virtual bool detectable() override;
 };
 

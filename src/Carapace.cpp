@@ -5,7 +5,7 @@
 double Carapace::ETA_MAX = 100.;
 double Carapace::OMEGA_MAX = 100.;
 
-Carapace::Carapace(shared_ptr<IBestiole> b) {
+Carapace::Carapace(IBestiole* b) {
     bestiole = b;
     eta = (ETA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
     omega = (OMEGA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
@@ -30,8 +30,8 @@ void Carapace::setLimites(double _OMEGA_MAX, double _ETA_MAX) {
     ETA_MAX = _ETA_MAX;
 }
 
-shared_ptr<IBestiole> Carapace::clone() {
-    return make_shared<Carapace>(*this);
+IBestiole* Carapace::clone() {
+    return new Carapace(*this);
 }
 
 void Carapace::updatePos() {
@@ -44,7 +44,7 @@ void Carapace::updatePos() {
     bestiole->setVitesse(vitesse);
 }
 
-bool Carapace::collision(shared_ptr<IBestiole> b) {
+bool Carapace::collision(IBestiole* b) {
     double resistance = bestiole->getResistance();
     bestiole->setResistance(omega * resistance); // les résistances se multiplient
     bool mort = bestiole->collision(b);

@@ -13,42 +13,42 @@ using namespace std;
  */
 class Decorateur : public IBestiole {
 protected:
-    std::shared_ptr<IBestiole> bestiole;
+    IBestiole* bestiole;
 
 public:
-    virtual shared_ptr<IBestiole> clone() override = 0;
+    virtual IBestiole* clone() override = 0;
     virtual void updatePos() override {
-        return bestiole->updatePos();
+        bestiole->updatePos();
     }
     virtual bool detectable() override {
         return bestiole->detectable();
     }
-    virtual bool detecter(shared_ptr<IBestiole> b) override {
+    virtual bool detecter(IBestiole* b) override {
         return bestiole->detecter(b);
     }
-    virtual bool collision(shared_ptr<IBestiole> b) override {
+    virtual bool collision(IBestiole* b) override {
         return bestiole->collision(b);
     }
     virtual void draw(UImg &support) override {
-        return bestiole->draw(support);
+        bestiole->draw(support);
     }
     virtual double getVitesse() override {
         return bestiole->getVitesse();
     }
     virtual void setVitesse(double vitesse) override {
-        return bestiole->setVitesse(vitesse);
+        bestiole->setVitesse(vitesse);
     }
     virtual double getResistance() override {
         return bestiole->getResistance();
     }
-    virtual void setResistance(double omega) override {
-        return bestiole->setResistance(omega);
+    virtual void setResistance(double resistance) override {
+        bestiole->setResistance(resistance);
     }
     virtual double getDiscretion() override {
         return bestiole->getDiscretion();
     }
-    virtual void setDiscretion(double psi) override {
-        return bestiole->setDiscretion(psi);
+    virtual void setDiscretion(double discretion) override {
+        bestiole->setDiscretion(discretion);
     }
     virtual double getX() const override {
         return bestiole->getX();
@@ -56,13 +56,13 @@ public:
     virtual double getY() const override {
         return bestiole->getY();
     }
-    virtual double getDistance(shared_ptr<IBestiole> b) const override {
+    virtual double getDistance(IBestiole* b) const override {
         return bestiole->getDistance(b);
     }
     virtual double getDirection() const override {
         return bestiole->getDirection();
     }
-    virtual double getDirectionTo(shared_ptr<IBestiole> b) const override {
+    virtual double getDirectionTo(IBestiole* b) const override {
         return bestiole->getDirectionTo(b);
     }
     virtual int getId() const override {
