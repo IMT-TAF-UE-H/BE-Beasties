@@ -1,5 +1,7 @@
-#ifndef DECORATEUR
-#define DECORATEUR
+#ifndef _DECORATEUR_H_
+#define _DECORATEUR_H_
+
+#include <iostream>
 
 #include "IBestiole.h"
 
@@ -44,6 +46,14 @@ public:
     virtual void setDiscretion(double psi) override {
         return bestiole->setDiscretion(psi);
     }
+    inline friend ostream& operator<<(ostream& os, const Decorateur& dt);
 };
+
+inline ostream& operator<<(ostream& os, const Decorateur& dt)
+{
+    // os << dt.bestiole;
+    os << "[TODO : operator<< de la bestiole]";
+    return os;
+}
 
 #endif

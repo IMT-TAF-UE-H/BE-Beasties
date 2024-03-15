@@ -16,12 +16,13 @@ private:
      * 1 < nu < NU_MAX
      */
     double nu;
-    static const double NU_MAX;
+    static double NU_MAX;
 
 public:
     Nageoire(shared_ptr<IBestiole> b);
     Nageoire(Nageoire &n);
     ~Nageoire();
+    static void setLimites(double _NU_MAX);
     virtual shared_ptr<IBestiole> clone() override;
     virtual bool updatePos() override;
 };

@@ -26,17 +26,23 @@ private:
      * 0 < GAMMA_Y_MIN < gammaY < GAMMA_Y_MAX < 1
      */
     double gammaY;
-    static const double ALPHA_MIN;
-    static const double ALPHA_MAX;
-    static const double DELTA_Y_MIN;
-    static const double DELTA_Y_MAX;
-    static const double GAMMA_Y_MIN;
-    static const double GAMMA_Y_MAX;
+    static double ALPHA_MIN;
+    static double ALPHA_MAX;
+    static double DELTA_Y_MIN;
+    static double DELTA_Y_MAX;
+    static double GAMMA_Y_MIN;
+    static double GAMMA_Y_MAX;
 
 public:
     Yeux(shared_ptr<IBestiole> b);
     Yeux(Yeux &y);
     ~Yeux();
+    static void setLimites(double _ALPHA_MIN,
+                           double _ALPHA_MAX,
+                           double _DELTA_Y_MIN,
+                           double _DELTA_Y_MAX,
+                           double _GAMMA_Y_MIN,
+                           double _GAMMA_Y_MAX);
     virtual shared_ptr<IBestiole> clone() override;
     virtual bool detecter(shared_ptr<IBestiole> b) override;
 };

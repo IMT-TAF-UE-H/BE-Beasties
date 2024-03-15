@@ -21,15 +21,19 @@ private:
      * 0 < GAMMA_O_MIN < gammaO < GAMMA_O_MAX < 1
      */
     double gammaO;
-    static const double DELTA_O_MIN;
-    static const double DELTA_O_MAX;
-    static const double GAMMA_O_MIN;
-    static const double GAMMA_O_MAX;
+    static double DELTA_O_MIN;
+    static double DELTA_O_MAX;
+    static double GAMMA_O_MIN;
+    static double GAMMA_O_MAX;
 
 public:
     Oreilles(shared_ptr<IBestiole> b);
     Oreilles(Oreilles &o);
     ~Oreilles();
+    static void setLimites(double _DELTA_O_MIN,
+                           double _DELTA_O_MAX,
+                           double _GAMMA_O_MIN,
+                           double _GAMMA_O_MAX);
     virtual shared_ptr<IBestiole> clone() override;
     virtual bool detecter(shared_ptr<IBestiole> b) override;
 };

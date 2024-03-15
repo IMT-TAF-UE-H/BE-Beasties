@@ -1,8 +1,11 @@
 #include "Nageoire.h"
 #include "IBestiole.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
+
+double Nageoire::NU_MAX = 100.;
 
 Nageoire::Nageoire(shared_ptr<IBestiole> b) {
     bestiole = b;
@@ -19,8 +22,13 @@ Nageoire::~Nageoire() {
     cout << "dest Nageoire" << endl;
 }
 
+void Nageoire::setLimites(double _NU_MAX) {
+    assert(_NU_MAX > 1);
+    NU_MAX = _NU_MAX;
+}
+
 shared_ptr<IBestiole> Nageoire::clone() {
-    return make_shared<Nageoire>(this);
+    return make_shared<Nageoire>(*this);
     cout << "const Nageoire par copie sur bestiole " << bestiole << endl;
 }
 

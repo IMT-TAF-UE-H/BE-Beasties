@@ -1,8 +1,12 @@
 #include "Camouflage.h"
 #include "IBestiole.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
+
+double Camouflage::PSI_MIN = 0;
+double Camouflage::PSI_MAX = 1;
 
 Camouflage::Camouflage(shared_ptr<IBestiole> b) {
     bestiole = b;
@@ -20,8 +24,14 @@ Camouflage::~Camouflage() {
     cout << "dest Camouflage" << endl;
 }
 
+void Camouflage::setLimites(double _PSI_MIN, double _PSI_MAX) {
+    assert(_PSI_MIN > 0 && _PSI_MAX > _PSI_MIN && 1 > _PSI_MAX);
+    PSI_MIN = _PSI_MIN;
+    PSI_MAX = _PSI_MAX;
+}
+
 shared_ptr<IBestiole> Camouflage::clone() {
-    return make_shared<Camouflage>(this);
+    return make_shared<Camouflage>(*this);
 }
 
 bool Camouflage::detectable() {
