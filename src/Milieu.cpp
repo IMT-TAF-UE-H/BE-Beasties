@@ -24,6 +24,7 @@ Milieu::~Milieu( void )
 {
 
    cout << "dest Milieu" << endl;
+   // TODO tuer toutes les bestioles
 
 }
 
