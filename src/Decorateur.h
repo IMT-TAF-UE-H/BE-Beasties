@@ -16,6 +16,7 @@ protected:
     IBestiole* bestiole;
 
 public:
+    virtual ~Decorateur() = default;
     virtual IBestiole* clone() override = 0;
     virtual void updatePos() override {
         bestiole->updatePos();

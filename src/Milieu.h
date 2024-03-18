@@ -5,7 +5,7 @@
 #include "UImg.h"
 
 #include <iostream>
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -13,8 +13,9 @@ class Milieu : public UImg {
 
 private:
     static const T white[];
+    static const double DIST_MAX_VOISINS;
 
-    std::vector<IBestiole*> listeBestioles;
+    std::map<int, IBestiole*> listeBestioles;
 
 public:
     static double width, height;
@@ -26,11 +27,11 @@ public:
     void step();
     void tuer(int idBestiole);
 
-    std::vector<IBestiole*> getVoisins(IBestiole* b);
+    std::map<int, IBestiole*> getVoisins(IBestiole* b);
     void addBestiole(IBestiole* bestiole);
 
 private:
-    std::vector<int> getVaMourir();
+    std::map<int, IBestiole*> getVaMourir();
 };
 
 #endif

@@ -29,7 +29,7 @@ private:
 public:
     Oreilles(IBestiole* b);
     Oreilles(Oreilles &o);
-    ~Oreilles();
+    ~Oreilles() override;
     static void setLimites(double _DELTA_O_MIN,
                            double _DELTA_O_MAX,
                            double _GAMMA_O_MIN,

@@ -22,7 +22,7 @@ private:
 public:
     Camouflage(IBestiole* b);
     Camouflage(Camouflage &c);
-    ~Camouflage();
+    ~Camouflage() override;
     static void setLimites(double _PSI_MIN, double _PSI_MAX);
     virtual IBestiole* clone() override;
     virtual bool detectable() override;

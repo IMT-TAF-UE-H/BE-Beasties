@@ -50,7 +50,7 @@ private:
 public:
     Bestiole(Milieu *milieu);
     Bestiole(const Bestiole &b);
-    ~Bestiole(void);
+    ~Bestiole(void) override;
     IBestiole* clone() override;
     void updatePos() override;
     bool detectable() override;

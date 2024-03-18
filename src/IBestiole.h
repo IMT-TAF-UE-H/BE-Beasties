@@ -11,6 +11,7 @@ using namespace std;
  */
 class IBestiole {
 public:
+    virtual ~IBestiole() = default;
     /**
      * Renvoie un clone de la bestiole, avec les mêmes caractéristiques, décorateurs et comportement.
      */

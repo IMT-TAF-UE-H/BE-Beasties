@@ -36,7 +36,7 @@ private:
 public:
     Yeux(IBestiole* b);
     Yeux(Yeux &y);
-    ~Yeux();
+    ~Yeux() override;
     static void setLimites(double _ALPHA_MIN,
                            double _ALPHA_MAX,
                            double _DELTA_Y_MIN,

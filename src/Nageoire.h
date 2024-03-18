@@ -21,7 +21,7 @@ private:
 public:
     Nageoire(IBestiole* b);
     Nageoire(Nageoire &n);
-    ~Nageoire();
+    ~Nageoire() override;
     static void setLimites(double _NU_MAX);
     virtual IBestiole* clone() override;
     virtual void updatePos() override;

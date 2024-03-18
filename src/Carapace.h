@@ -28,7 +28,7 @@ private:
 public:
     Carapace(IBestiole* b);
     Carapace(Carapace &c);
-    ~Carapace();
+    ~Carapace() override;
     static void setLimites(double _OMEGA_MAX,
                            double _ETA_MAX);
     virtual IBestiole* clone() override;

@@ -21,12 +21,12 @@ tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu 
     double distanceMin = 1000000;
 
     for (auto it = monMilieu.getVoisins(b).begin(); it != monMilieu.getVoisins(b).end(); ++it) {
-        if (!(b->getId() == (*it)->getId()) && b->detecter(*it) && (*it)->detectable()) {
+        if (!(b->getId() == it->first) && b->detecter(it->second) && (it->second)->detectable()) {
             double distance = b->getDistance(b);
             if (distance < distanceMin) {
                 distanceMin = distance;
-                deltaX = (*it)->getX() - b->getX();
-                deltaY = (*it)->getY() - b->getY();
+                deltaX = it->second->getX() - b->getX();
+                deltaY = it->second->getY() - b->getY();
             }
         }
     }
