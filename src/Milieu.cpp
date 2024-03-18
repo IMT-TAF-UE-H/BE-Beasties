@@ -69,9 +69,12 @@ map<int, IBestiole*> Milieu::getVoisins(IBestiole* b) {
    return voisins;
 }
 
+/**
+ * Temporaire dans l'attente de la factory
+ * TODO à dégager
+*/
 void Milieu::addBestiole(IBestiole *bestiole) {
-   listeBestioles.insert(std::pair<int, IBestiole*>(bestiole->getId(), bestiole));
-   cout << "taille du dictionaire : " << listeBestioles.size() << endl;
+   listeBestioles[bestiole->getId()] = bestiole;
 }
 
 std::map<int, IBestiole*> Milieu::getVaMourir() {
