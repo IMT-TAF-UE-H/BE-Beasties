@@ -49,9 +49,9 @@ Bestiole::Bestiole(const Bestiole &b) {
 
 Bestiole::~Bestiole(void) {
 
-    delete[] couleur;
+    cout << "dest Bestiole (" << getId() << ')' << endl;
 
-    cout << "dest Bestiole" << endl;
+    delete[] couleur;
 }
 
 IBestiole* Bestiole::clone() {
