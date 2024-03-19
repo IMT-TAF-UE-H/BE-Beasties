@@ -8,12 +8,14 @@ using namespace std;
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 double Milieu::width = 640.;
 double Milieu::height = 480.;
-const double Milieu::DIST_MAX_VOISINS = height/10.;
+double Milieu::DIST_MAX_VOISINS = height/10.;
 
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 )
+Milieu::Milieu( int _width = width, int _height = height ) : UImg( _width, _height, 1, 3 )
 {
    width = _width;
    height = _height;
+   DIST_MAX_VOISINS = height/10.;
+   listeBestioles = std::map<int, IBestiole*>();
 
    cout << "const Milieu" << endl;
 

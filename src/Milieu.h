@@ -13,7 +13,7 @@ class Milieu : public UImg {
 
 private:
     static const T white[];
-    static const double DIST_MAX_VOISINS;
+    static double DIST_MAX_VOISINS;
 
     std::map<int, IBestiole*> listeBestioles;
 
