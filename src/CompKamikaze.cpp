@@ -12,7 +12,7 @@ std::shared_ptr<IComportement> ComportementKamikaze::getInstance() {
     return instance;
 }
 
-tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu &monMilieu) {
+tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;
 
@@ -20,7 +20,8 @@ tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu 
 
     double distanceMin = 1000000;
 
-    for (auto it = monMilieu.getVoisins(b).begin(); it != monMilieu.getVoisins(b).end(); ++it) {
+    auto voisins = monMilieu->getVoisins(b);
+    for (auto it = voisins->begin(); it != voisins->end(); ++it) {
         if (!(b->getId() == it->first) && b->detecter(it->second) && (it->second)->detectable()) {
             double distance = b->getDistance(b);
             if (distance < distanceMin) {

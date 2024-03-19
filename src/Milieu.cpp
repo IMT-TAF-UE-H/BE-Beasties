@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include<memory.h>
 
 using namespace std;
 
@@ -63,11 +64,11 @@ void Milieu::tuer(int idBestiole) {
    listeBestioles.erase(idBestiole);
 }
 
-map<int, IBestiole*> Milieu::getVoisins(IBestiole* b) {
-   std::map<int, IBestiole*> voisins;
+unique_ptr<std::map<int, IBestiole*>> Milieu::getVoisins(IBestiole* b) {
+   auto voisins = make_unique<std::map<int, IBestiole*>>();
    for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
       if ( !(b->getId() == it->first) && b->getDistance(it->second) < DIST_MAX_VOISINS )
-         voisins.insert(std::pair<int, IBestiole*>(it->first, it->second));
+         (*voisins)[it->first] = it->second;
    return voisins;
 }
 

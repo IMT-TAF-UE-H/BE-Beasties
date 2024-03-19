@@ -21,9 +21,9 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 Aquarium::~Aquarium( void )
 {
 
-   delete flotte;
-
    cout << "dest Aquarium" << endl;
+
+   delete flotte;
 
 }
 

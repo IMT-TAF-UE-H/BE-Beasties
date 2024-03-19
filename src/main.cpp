@@ -9,11 +9,11 @@ using namespace std;
 int main() {
 
     Aquarium ecosysteme(640, 480, 30);
-    Milieu milieu = ecosysteme.getMilieu();
+    Milieu* milieu = ecosysteme.getMilieu();
 
-    for (int i = 1; i <= 20; ++i) {
-      IBestiole* b = new Bestiole(&milieu);
-      milieu.addBestiole(b);
+    for (int i = 1; i <= 30; ++i) {
+      IBestiole* b = new Bestiole(milieu);
+      milieu->addBestiole(b);
     }
     ecosysteme.run();
 

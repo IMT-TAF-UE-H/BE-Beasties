@@ -67,7 +67,7 @@ void Bestiole::updatePos() {
     // à partir du milieu et de la bestiole elle-même.
     // Donc pas de responsabilité c'est mieux.
     // (Justification à clarifier)
-    auto delta = comportement->getDeplacement(this, *milieu);
+    auto delta = comportement->getDeplacement(this, milieu);
 
     nx = x + get<0>(delta);
     ny = y + get<1>(delta);
