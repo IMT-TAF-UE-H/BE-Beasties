@@ -19,6 +19,7 @@ tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu 
     // trouve le voisin le plus proche et se dirige vers lui
 
     double distanceMin = 1000000;
+    bool voisinDetecte = false;
 
     auto voisins = monMilieu->getVoisins(b);
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
@@ -26,15 +27,19 @@ tuple<double, double> ComportementKamikaze::getDeplacement(IBestiole *b, Milieu 
             double distance = b->getDistance(b);
             if (distance < distanceMin) {
                 distanceMin = distance;
+                voisinDetecte = true;
                 deltaX = it->second->getX() - b->getX();
                 deltaY = it->second->getY() - b->getY();
             }
         }
     }
-    /*
-    double dx = cos(direction) * vitesse;
-     double dy = -sin(direction) * vitesse;
-    */
+    
+    if (!voisinDetecte) {
+        double direction = b->getDirection();
+        double vitesse = b->getVitesse();
+        deltaX = cos(direction) * vitesse;
+        deltaY = -sin(direction) * vitesse;
+    }
 
     return make_tuple(deltaX, deltaY);
 }

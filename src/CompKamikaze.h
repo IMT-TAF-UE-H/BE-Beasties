@@ -1,6 +1,15 @@
 #include "IComportement.h"
 #include <memory>
 
+/**
+ * Kamikaze : 
+ * 
+ * Une bestiole dite kamikaze est attirée par la bestiole la plus proche.
+ * Elle tente de l’attaquer en cherchant à provoquer une collision.
+ * 
+ * Si aucune bestiole n’est détectée, elle se déplace dans sa direction courante, avec la vitesse courante.
+ */
+
 class ComportementKamikaze : public IComportement {
     // Protection du constructeur car Singleton
 protected:
