@@ -2,6 +2,8 @@
 #include "Bestiole.h"
 #include "Milieu.h"
 #include "Oreilles.h"
+#include "Nageoire.h"
+#include "Carapace.h"
 
 #include <iostream>
 
@@ -13,7 +15,7 @@ int main() {
     Milieu* milieu = ecosysteme.getMilieu();
 
     for (int i = 1; i <= 100; ++i) {
-      IBestiole* b = new Oreilles(new Bestiole(milieu));
+      IBestiole* b = new Carapace(new Nageoire(new Oreilles(new Bestiole(milieu))));
       milieu->addBestiole(b);
     }
     ecosysteme.run();

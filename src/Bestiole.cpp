@@ -7,7 +7,7 @@
 #include "CompGregaire.h"
 #include "CompKamikaze.h"
 
-const double Bestiole::MAX_VITESSE = 10.;
+const double Bestiole::MAX_VITESSE = 8.;
 
 int Bestiole::next = 0;
 
@@ -17,7 +17,7 @@ Bestiole::Bestiole(Milieu *_milieu) {
 
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
-    //comportement = ComportementKamikaze::getInstance();
+    // comportement = ComportementKamikaze::getInstance();
     comportement = ComportementGregaire::getInstance();
     milieu = _milieu;
     vieRestante = 1000;
