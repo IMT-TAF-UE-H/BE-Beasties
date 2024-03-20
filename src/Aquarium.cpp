@@ -5,6 +5,7 @@
 #include "Oreilles.h"
 #include "Yeux.h"
 #include <math.h>
+#include <chrono>
 
 
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
@@ -56,12 +57,14 @@ void Aquarium::run( void )
          cout << " (" << key() << ")" << endl;
          if ( is_keyESC() ) close();
       }
-
+      auto t0 = chrono::high_resolution_clock::now();
       flotte->step();
       display( *flotte );
+      auto t1 = chrono::high_resolution_clock::now();
 
-      wait( delay );
+      int waitTime = delay - chrono::duration_cast<chrono::milliseconds>(t1-t0).count();
+      if (waitTime>0) wait(waitTime);
 
-   } // while
+   }
 
 }

@@ -12,7 +12,7 @@ int main() {
     Aquarium ecosysteme(640, 480, 30);
     Milieu* milieu = ecosysteme.getMilieu();
 
-    for (int i = 1; i <= 30; ++i) {
+    for (int i = 1; i <= 100; ++i) {
       IBestiole* b = new Oreilles(new Bestiole(milieu));
       milieu->addBestiole(b);
     }
