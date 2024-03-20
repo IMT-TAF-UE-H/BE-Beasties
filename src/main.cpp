@@ -14,9 +14,7 @@ int main() {
 
     for (int i = 1; i <= 30; ++i) {
       IBestiole* b = new Oreilles(new Bestiole(milieu));
-      cout << b->getId() << endl;
       milieu->addBestiole(b);
-      cout << "aaaaaaaaa" << endl;
     }
     ecosysteme.run();
 
