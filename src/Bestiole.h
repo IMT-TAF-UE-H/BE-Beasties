@@ -54,8 +54,8 @@ public:
     IBestiole* clone() override;
     void updatePos() override;
     bool detectable() override;
-    bool detecter(IBestiole* b) override;
-    bool collision(IBestiole* b) override;
+    bool detecter(int idBestiole) override;
+    bool collision(int idBestiole) override;
     double getVitesse() override;
     void setVitesse(double vitesse) override;
     double getResistance() override;
@@ -64,9 +64,10 @@ public:
     void setDiscretion(double discretion) override;
     double getX() const override;
     double getY() const override;
-    double getDistance(IBestiole* b) const override;
+    double getDistance(int idBestiole) const override;
     double getDirection() const override;
-    double getDirectionTo(IBestiole* b) const override;
+    void setDirection(double direction) override;
+    double getDirectionTo(int idBestiole) const override;
     int getId() const override;
 
     void draw(UImg &support);

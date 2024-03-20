@@ -64,12 +64,16 @@ void Milieu::tuer(int idBestiole) {
    listeBestioles.erase(idBestiole);
 }
 
-unique_ptr<std::map<int, IBestiole*>> Milieu::getVoisins(IBestiole* b) {
+unique_ptr<std::map<int, IBestiole*>> Milieu::getVoisins(int idBestiole) {
    auto voisins = make_unique<std::map<int, IBestiole*>>();
    for ( auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
-      if ( !(b->getId() == it->first) && b->getDistance(it->second) < DIST_MAX_VOISINS )
+      if ( !(idBestiole == it->first) && it->second->getDistance(idBestiole) < DIST_MAX_VOISINS )
          (*voisins)[it->first] = it->second;
    return voisins;
+}
+
+IBestiole *Milieu::getBestiole(int idBestiole) {
+    return listeBestioles[idBestiole];
 }
 
 /**
@@ -77,6 +81,10 @@ unique_ptr<std::map<int, IBestiole*>> Milieu::getVoisins(IBestiole* b) {
  * TODO à dégager
 */
 void Milieu::addBestiole(IBestiole *bestiole) {
+   // ERROR : gros problème ici depuis que j'ai ajouté la fonction setDirection
+   // C'est pas forcément lié directement, mais là on tient qqch de sombre.
+   // TODO fix avant de dégager cette fonction
+   cout << "print pour éviter un segfault" << endl;
    listeBestioles[bestiole->getId()] = bestiole;
 }
 

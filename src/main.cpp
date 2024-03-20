@@ -1,6 +1,7 @@
 #include "Aquarium.h"
 #include "Bestiole.h"
 #include "Milieu.h"
+#include "Oreilles.h"
 
 #include <iostream>
 
@@ -12,8 +13,10 @@ int main() {
     Milieu* milieu = ecosysteme.getMilieu();
 
     for (int i = 1; i <= 30; ++i) {
-      IBestiole* b = new Bestiole(milieu);
+      IBestiole* b = new Oreilles(new Bestiole(milieu));
+      cout << b->getId() << endl;
       milieu->addBestiole(b);
+      cout << "aaaaaaaaa" << endl;
     }
     ecosysteme.run();
 

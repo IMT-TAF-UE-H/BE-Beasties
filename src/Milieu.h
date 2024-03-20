@@ -27,7 +27,8 @@ public:
     void step();
     void tuer(int idBestiole);
 
-    unique_ptr<std::map<int, IBestiole*>> getVoisins(IBestiole* b);
+    unique_ptr<std::map<int, IBestiole*>> getVoisins(int idBestiole);
+    IBestiole* getBestiole(int idBestiole);
     void addBestiole(IBestiole* bestiole);
 
 private:

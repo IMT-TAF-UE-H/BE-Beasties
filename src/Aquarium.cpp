@@ -1,4 +1,10 @@
 #include "Aquarium.h"
+#include "Camouflage.h"
+#include "Carapace.h"
+#include "Nageoire.h"
+#include "Oreilles.h"
+#include "Yeux.h"
+#include <math.h>
 
 
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
@@ -14,6 +20,13 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
+
+   // Limites des attributs des décorateurs
+   Camouflage::setLimites(0.3, 0.9);
+   Carapace::setLimites(5., 5.);
+   Nageoire::setLimites(5.);
+   Oreilles::setLimites(2.,30., 0.8, 0.9);
+   Yeux::setLimites(M_PI/6., 3.*M_PI/2., 5., 100., 0.8, 0.9);
 
 }
 

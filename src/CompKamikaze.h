@@ -26,5 +26,5 @@ public:
 
     static std::shared_ptr<IComportement> getInstance();
 
-    tuple<double, double> getDeplacement(IBestiole *b, Milieu *monMilieu) override;
+    tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
 };

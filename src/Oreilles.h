@@ -35,7 +35,7 @@ public:
                            double _GAMMA_O_MIN,
                            double _GAMMA_O_MAX);
     virtual IBestiole* clone() override;
-    virtual bool detecter(IBestiole* b) override;
+    virtual bool detecter(int idBestiole) override;
 };
 
 #endif

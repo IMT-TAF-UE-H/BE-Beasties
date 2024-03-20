@@ -15,7 +15,7 @@ Nageoire::Nageoire(IBestiole* b) {
 Nageoire::Nageoire(Nageoire &n) {
     bestiole = n.bestiole->clone();
     nu = n.nu;
-    cout << "const Nageoire par defaut sur bestiole " << bestiole << endl;
+    cout << "const Nageoire par defaut sur bestiole " << bestiole->getId() << endl;
 }
 
 Nageoire::~Nageoire() {
@@ -29,7 +29,7 @@ void Nageoire::setLimites(double _NU_MAX) {
 
 IBestiole* Nageoire::clone() {
     return new Nageoire(*this);
-    cout << "const Nageoire par copie sur bestiole " << bestiole << endl;
+    cout << "const Nageoire par copie sur bestiole " << bestiole->getId() << endl;
 }
 
 void Nageoire::updatePos() {

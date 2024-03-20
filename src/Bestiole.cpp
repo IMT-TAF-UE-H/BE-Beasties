@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "CompGregaire.h"
+#include "CompKamikaze.h"
 
 const double Bestiole::MAX_VITESSE = 10.;
 
@@ -30,6 +31,9 @@ Bestiole::Bestiole(Milieu *_milieu) {
     couleur[0] = static_cast<int>(static_cast<double>(rand()) / RAND_MAX * 255.);
     couleur[1] = static_cast<int>(static_cast<double>(rand()) / RAND_MAX * 255.);
     couleur[2] = static_cast<int>(static_cast<double>(rand()) / RAND_MAX * 255.);
+
+    discretion = 0.; // TODO mettre du random ?
+    resistance = 1.;
 }
 
 Bestiole::Bestiole(const Bestiole &b) {
@@ -63,12 +67,7 @@ void Bestiole::updatePos() {
 
     double nx, ny;
 
-    // IMPORTANT : cette ligne empêche l'emploi des smart pointers pour les bestioles
-    // On ne peut pas distribuer les responsabilités à la fois 
-    // à partir du milieu et de la bestiole elle-même.
-    // Donc pas de responsabilité c'est mieux.
-    // (Justification à clarifier)
-    auto delta = comportement->getDeplacement(this, milieu);
+    auto delta = comportement->getDeplacement(getId(), milieu);
 
     nx = x + get<0>(delta);
     ny = y + get<1>(delta);
@@ -95,14 +94,15 @@ void Bestiole::updatePos() {
 }
 
 bool Bestiole::detectable() {
-    return rand() < discretion * RAND_MAX;
+    bool res = rand() > discretion * RAND_MAX;
+    return res;
 }
 
-bool Bestiole::detecter(IBestiole* b) {
+bool Bestiole::detecter(int idBestiole) {
     return false;
 }
 
-bool Bestiole::collision(IBestiole* b) {
+bool Bestiole::collision(int idBestiole) {
     return rand() * resistance > RAND_MAX;
 }
 
@@ -152,7 +152,8 @@ double Bestiole::getY() const {
     return y;
 }
 
-double Bestiole::getDistance(IBestiole* b) const {
+double Bestiole::getDistance(int idBestiole) const {
+    IBestiole* b = milieu->getBestiole(idBestiole);
     return sqrt((x - b->getX()) * (x - b->getX()) + (y - b->getY()) * (y - b->getY()));
 }
 
@@ -160,7 +161,12 @@ double Bestiole::getDirection() const {
     return direction;
 }
 
-double Bestiole::getDirectionTo(IBestiole* b) const {
+void Bestiole::setDirection(double _direction) {
+    direction = _direction;
+}
+
+double Bestiole::getDirectionTo(int idBestiole) const {
+    auto b = milieu->getBestiole(idBestiole);
     return atan2(b->getY() - y, b->getX() - x);
 }
 

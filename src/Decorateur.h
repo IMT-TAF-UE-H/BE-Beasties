@@ -16,7 +16,9 @@ protected:
     IBestiole* bestiole;
 
 public:
-    virtual ~Decorateur() = default;
+    virtual ~Decorateur() {
+        delete bestiole;
+    };
     virtual IBestiole* clone() override = 0;
     virtual void updatePos() override {
         bestiole->updatePos();
@@ -24,11 +26,11 @@ public:
     virtual bool detectable() override {
         return bestiole->detectable();
     }
-    virtual bool detecter(IBestiole* b) override {
-        return bestiole->detecter(b);
+    virtual bool detecter(int idBestiole) override {
+        return bestiole->detecter(idBestiole);
     }
-    virtual bool collision(IBestiole* b) override {
-        return bestiole->collision(b);
+    virtual bool collision(int idBestiole) override {
+        return bestiole->collision(idBestiole);
     }
     virtual void draw(UImg &support) override {
         bestiole->draw(support);
@@ -57,26 +59,21 @@ public:
     virtual double getY() const override {
         return bestiole->getY();
     }
-    virtual double getDistance(IBestiole* b) const override {
-        return bestiole->getDistance(b);
+    virtual double getDistance(int idBestiole) const override {
+        return bestiole->getDistance(idBestiole);
     }
     virtual double getDirection() const override {
         return bestiole->getDirection();
     }
-    virtual double getDirectionTo(IBestiole* b) const override {
-        return bestiole->getDirectionTo(b);
+    virtual void setDirection(double direction) override {
+        return bestiole->setDirection(direction);
+    }
+    virtual double getDirectionTo(int idBestiole) const override {
+        return bestiole->getDirectionTo(idBestiole);
     }
     virtual int getId() const override {
         return bestiole->getId();
     }
-    inline friend ostream& operator<<(ostream& os, const Decorateur& dt);
 };
-
-inline ostream& operator<<(ostream& os, const Decorateur& dt)
-{
-    // os << dt.bestiole;
-    os << "[TODO : operator<< de la bestiole]";
-    return os;
-}
 
 #endif

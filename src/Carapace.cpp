@@ -9,14 +9,14 @@ Carapace::Carapace(IBestiole* b) {
     bestiole = b;
     eta = (ETA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
     omega = (OMEGA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
-    cout << "const Carapace par defaut sur bestiole " << bestiole << endl;
+    cout << "const Carapace par defaut sur bestiole " << bestiole->getId() << endl;
 }
 
 Carapace::Carapace(Carapace &c) {
     bestiole = c.bestiole->clone();
     eta = c.eta;
     omega = c.omega;
-    cout << "const Carapace par copie sur bestiole " << bestiole << endl;
+    cout << "const Carapace par copie sur bestiole " << bestiole->getId() << endl;
 }
 
 Carapace::~Carapace() {
@@ -44,10 +44,10 @@ void Carapace::updatePos() {
     bestiole->setVitesse(vitesse);
 }
 
-bool Carapace::collision(IBestiole* b) {
+bool Carapace::collision(int idBestiole) {
     double resistance = bestiole->getResistance();
     bestiole->setResistance(omega * resistance); // les résistances se multiplient
-    bool mort = bestiole->collision(b);
+    bool mort = bestiole->collision(idBestiole);
     bestiole->setResistance(resistance); // retour à la normale
     return mort;
 }

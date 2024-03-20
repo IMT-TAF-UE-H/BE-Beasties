@@ -44,7 +44,7 @@ public:
                            double _GAMMA_Y_MIN,
                            double _GAMMA_Y_MAX);
     virtual IBestiole* clone() override;
-    virtual bool detecter(IBestiole* b) override;
+    virtual bool detecter(int idBestiole) override;
 };
 
 #endif

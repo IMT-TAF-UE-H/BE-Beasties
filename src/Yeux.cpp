@@ -15,7 +15,7 @@ Yeux::Yeux(IBestiole* b) {
     alpha = (ALPHA_MAX - ALPHA_MIN) * ((double)rand() / (double)RAND_MAX) + ALPHA_MIN;
     deltaY = (DELTA_Y_MAX - DELTA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_Y_MIN;
     gammaY = (GAMMA_Y_MAX - GAMMA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + GAMMA_Y_MIN;
-    cout << "const Yeux par defaut sur bestiole " << bestiole << endl;
+    cout << "const Yeux par defaut sur bestiole " << bestiole->getId() << endl;
 }
 
 Yeux::Yeux(Yeux &y) {
@@ -23,7 +23,7 @@ Yeux::Yeux(Yeux &y) {
     alpha = y.alpha;
     deltaY = y.deltaY;
     gammaY = y.gammaY;
-    cout << "const Yeux par copie sur bestiole " << bestiole << endl;
+    cout << "const Yeux par copie sur bestiole " << bestiole->getId() << endl;
 }
 
 Yeux::~Yeux() {
@@ -51,10 +51,10 @@ IBestiole* Yeux::clone() {
     return new Yeux(*this);
 }
 
-bool Yeux::detecter(IBestiole* b) {
+bool Yeux::detecter(int idBestiole) {
     bool detection; 
-    double distance = bestiole->getDistance(b);
-    double directionTo = bestiole->getDirectionTo(b);
+    double distance = bestiole->getDistance(idBestiole);
+    double directionTo = bestiole->getDirectionTo(idBestiole);
     double direction = bestiole->getDirection();
     double angle = directionTo - direction;
     bool inField = (angle > alpha - M_PI / 2 && angle < alpha + M_PI / 2);

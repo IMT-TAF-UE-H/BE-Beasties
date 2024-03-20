@@ -12,20 +12,22 @@ std::shared_ptr<IComportement> ComportementGregaire::getInstance() {
     return instance;
 }
 
-tuple<double, double> ComportementGregaire::getDeplacement(IBestiole *b, Milieu *monMilieu) {
+tuple<double, double> ComportementGregaire::getDeplacement(int idBestiole, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;
+
+    IBestiole* b = monMilieu->getBestiole(idBestiole);
 
     // Calcul de la direction moyenne des voisins
 
     bool voisinDetecte = false;
-    auto voisins = monMilieu->getVoisins(b);
+    auto voisins = monMilieu->getVoisins(idBestiole);
 
     double direction = 0;
     int count = 0;
 
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
-        if (!(b->getId() == it->first) && b->detecter(it->second) && (it->second)->detectable()) {
+        if (b->detecter(it->first) && (it->second)->detectable()) {
             voisinDetecte = true;
             direction += it->second->getDirection();
             count++;
@@ -35,6 +37,7 @@ tuple<double, double> ComportementGregaire::getDeplacement(IBestiole *b, Milieu 
 
     if (voisinDetecte) {
         direction /= count;
+        b->setDirection(direction);
     } else {
         direction = b->getDirection();
     }

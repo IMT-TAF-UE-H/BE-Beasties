@@ -28,11 +28,11 @@ public:
     /**
      * Détermine si une autre bestiole voisine peut être détectée.
      */
-    virtual bool detecter(IBestiole* b) = 0;
+    virtual bool detecter(int idBestiole) = 0;
     /**
      * Détermine si une collision avec une autre bestiole voisine est mortelle.
      */
-    virtual bool collision(IBestiole* b) = 0;
+    virtual bool collision(int idBestiole) = 0;
     virtual void draw(UImg &support) = 0;
     virtual double getVitesse() = 0;
     virtual void setVitesse(double vitesse) = 0;
@@ -42,9 +42,10 @@ public:
     virtual void setDiscretion(double discretion) = 0;
     virtual double getX() const = 0;
     virtual double getY() const = 0;
-    virtual double getDistance(IBestiole* b) const = 0;
+    virtual double getDistance(int idBestiole) const = 0;
     virtual double getDirection() const = 0;
-    virtual double getDirectionTo(IBestiole* b) const = 0;
+    virtual void setDirection(double direction) = 0;
+    virtual double getDirectionTo(int idBestiole) const = 0;
     virtual int getId() const = 0;
 };
 
