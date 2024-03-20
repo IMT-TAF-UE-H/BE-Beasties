@@ -44,10 +44,10 @@ void Carapace::updatePos() {
     bestiole->setVitesse(vitesse);
 }
 
-bool Carapace::collision(int idBestiole) {
+bool Carapace::collision() {
     double resistance = bestiole->getResistance();
     bestiole->setResistance(omega * resistance); // les résistances se multiplient
-    bool mort = bestiole->collision(idBestiole);
+    bool mort = bestiole->collision();
     bestiole->setResistance(resistance); // retour à la normale
     return mort;
 }

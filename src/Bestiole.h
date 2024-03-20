@@ -55,7 +55,7 @@ public:
     void updatePos() override;
     bool detectable() override;
     bool detecter(int idBestiole) override;
-    bool collision(int idBestiole) override;
+    bool collision() override;
     double getVitesse() override;
     void setVitesse(double vitesse) override;
     double getResistance() override;

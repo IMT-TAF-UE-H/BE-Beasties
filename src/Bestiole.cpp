@@ -102,8 +102,8 @@ bool Bestiole::detecter(int idBestiole) {
     return false;
 }
 
-bool Bestiole::collision(int idBestiole) {
-    return rand() * resistance > RAND_MAX;
+bool Bestiole::collision() {
+    return (double)rand()/(double)RAND_MAX < 1./resistance;
 }
 
 double Bestiole::getVitesse() {

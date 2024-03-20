@@ -33,7 +33,7 @@ public:
                            double _ETA_MAX);
     virtual IBestiole* clone() override;
     virtual void updatePos() override;
-    virtual bool collision(int idBestiole) override;
+    virtual bool collision() override;
 };
 
 #endif

@@ -9,13 +9,13 @@ using namespace std;
 const T Milieu::white[] = {(T)255, (T)255, (T)255};
 double Milieu::width = 640.;
 double Milieu::height = 480.;
-double Milieu::DIST_MAX_VOISINS = height / 10.;
+double Milieu::DIST_MAX_VOISINS = 100.;
+double Milieu::DIST_COLLISION = 3.;
 
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           listeBestioles() {
     width = _width;
     height = _height;
-    DIST_MAX_VOISINS = height / 10.;
 
     cout << "const Milieu" << endl;
 
@@ -38,8 +38,8 @@ void Milieu::step(void) {
     }
     auto vaMourir = getVaMourir();
 
-    for (auto it = vaMourir.begin(); it != vaMourir.end();) {
-        tuer((it++)->first);
+    for (int it : vaMourir) {
+        tuer(it);
     }
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
@@ -76,8 +76,18 @@ void Milieu::addBestiole(IBestiole *bestiole) {
     listeBestioles[bestiole->getId()] = bestiole;
 }
 
-std::map<int, IBestiole *> Milieu::getVaMourir() {
-    std::map<int, IBestiole *> vaMourir;
-    // TODO implem
+/**
+ * TODO optimiser, c'est dégueulasse.
+ */
+std::vector<int> Milieu::getVaMourir() {
+    std::vector<int> vaMourir;
+    for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
+        for (auto it2 = listeBestioles.begin(); it2 != listeBestioles.end(); ++it2) {
+            if (it->first != it2->first && it->second->getDistance(it2->first) < DIST_COLLISION && it->second->collision()) {
+                vaMourir.push_back(it->first);
+                break;
+            }
+        }
+    }
     return vaMourir;
 }

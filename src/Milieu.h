@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Milieu : public UImg {
 private:
     static const T white[];
     static double DIST_MAX_VOISINS;
+    static double DIST_COLLISION;
 
     std::map<int, IBestiole*> listeBestioles;
 
@@ -32,7 +34,7 @@ public:
     void addBestiole(IBestiole* bestiole);
 
 private:
-    std::map<int, IBestiole*> getVaMourir();
+    std::vector<int> getVaMourir();
 };
 
 #endif

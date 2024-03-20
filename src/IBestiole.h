@@ -32,7 +32,7 @@ public:
     /**
      * Détermine si une collision avec une autre bestiole voisine est mortelle.
      */
-    virtual bool collision(int idBestiole) = 0;
+    virtual bool collision() = 0;
     virtual void draw(UImg &support) = 0;
     virtual double getVitesse() = 0;
     virtual void setVitesse(double vitesse) = 0;

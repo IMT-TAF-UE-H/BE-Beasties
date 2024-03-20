@@ -29,8 +29,8 @@ public:
     virtual bool detecter(int idBestiole) override {
         return bestiole->detecter(idBestiole);
     }
-    virtual bool collision(int idBestiole) override {
-        return bestiole->collision(idBestiole);
+    virtual bool collision() override {
+        return bestiole->collision();
     }
     virtual void draw(UImg &support) override {
         bestiole->draw(support);
