@@ -7,14 +7,14 @@
 #include "CompGregaire.h"
 #include "CompKamikaze.h"
 
-const double Bestiole::MAX_VITESSE = 8.;
+const double Bestiole::MAX_VITESSE = 8.; // vitesse maximale
 
-int Bestiole::next = 0;
+int Bestiole::next = 0; // initialisation du compteur d'identifiant
 
 Bestiole::Bestiole(Milieu *_milieu) {
 
-    identite = ++next;
-
+    identite = ++next; // incrémentation du compteur d'identifiant
+    
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
     // comportement = ComportementKamikaze::getInstance();

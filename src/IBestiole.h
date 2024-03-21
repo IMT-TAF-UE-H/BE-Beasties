@@ -34,6 +34,8 @@ public:
      */
     virtual bool collision() = 0;
     virtual void draw(UImg &support) = 0;
+
+    // Getters et setters
     virtual double getVitesse() = 0;
     virtual void setVitesse(double vitesse) = 0;
     virtual double getResistance() = 0;

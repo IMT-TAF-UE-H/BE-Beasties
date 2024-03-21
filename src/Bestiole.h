@@ -13,6 +13,10 @@ using namespace std;
 
 class IComportement;
 
+/**
+ * Classe Bestiole qui implémente l'interface IBestiole. 
+ */
+
 class Bestiole : public IBestiole {
 
 private:
@@ -24,7 +28,7 @@ private:
 
     int vieRestante;
 
-    double x, y;
+    double x, y; // position de la bestiole
     double direction;
     /**
      * doit être inférieure à la longueur et à la largeur du milieu
@@ -48,12 +52,12 @@ private:
     static const double MAX_VITESSE;
 
 public:
-    Bestiole(Milieu *milieu);
-    Bestiole(const Bestiole &b);
-    ~Bestiole(void) override;
-    IBestiole* clone() override;
-    void updatePos() override;
-    bool detectable() override;
+    Bestiole(Milieu *milieu); // constructeur par défaut
+    Bestiole(const Bestiole &b); // constructeur par copie
+    ~Bestiole(void) override; // destructeur
+    IBestiole* clone() override; // clone
+    void updatePos() override; // mise à jour de la position
+    bool detectable() override; // détection
     bool detecter(int idBestiole) override;
     bool collision() override;
     double getVitesse() override;
