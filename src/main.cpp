@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
     // Création de l'écosystème
-    Aquarium ecosysteme(640, 480, 30); // 640x480 pixels, 30 bestioles
+    Aquarium ecosysteme(640, 480, 30); // 640x480 pixels, 30ms de délai 
 
     // Récupération du milieu
     Milieu* milieu = ecosysteme.getMilieu();
