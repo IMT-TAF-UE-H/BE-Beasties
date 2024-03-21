@@ -19,6 +19,9 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
 
     cout << "const Milieu" << endl;
 
+    // Initialisation de la factorie
+    bestioleFactory = new BestioleFactory(this, 0.1, 0.1, 0.1, 0.1);
+
     srand(time(NULL));
 }
 
@@ -28,6 +31,8 @@ Milieu::~Milieu(void) {
     for (auto it = listeBestioles.cbegin(); it != listeBestioles.cend();) {
         tuer((it++)->first);
     }
+    // destruction de la factorie
+    delete bestioleFactory;
 }
 
 void Milieu::step(void) {
@@ -68,11 +73,12 @@ IBestiole *Milieu::getBestiole(int idBestiole) {
  * Temporaire dans l'attente de la factory
  * TODO à dégager
  */
-void Milieu::addBestiole(IBestiole *bestiole) {
+void Milieu::addBestiole() {
     // ERROR : gros problème ici depuis que j'ai ajouté la fonction setDirection
     // C'est pas forcément lié directement, mais là on tient qqch de sombre.
     // TODO fix avant de dégager cette fonction
     // cout << "print pour éviter un segfault" << endl;
+    IBestiole *bestiole = bestioleFactory->naissance();
     listeBestioles[bestiole->getId()] = bestiole;
 }
 

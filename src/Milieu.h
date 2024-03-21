@@ -3,12 +3,15 @@
 
 #include "IBestiole.h"
 #include "UImg.h"
+#include "BestioleFactory.h"
 
 #include <iostream>
 #include <map>
 #include <vector>
 
 using namespace std;
+
+class BestioleFactory;
 
 class Milieu : public UImg {
 
@@ -31,10 +34,11 @@ public:
 
     unique_ptr<std::map<int, IBestiole*>> getVoisins(int idBestiole);
     IBestiole* getBestiole(int idBestiole);
-    void addBestiole(IBestiole* bestiole);
+    void addBestiole();
 
 private:
     std::vector<int> getVaMourir();
+    BestioleFactory* bestioleFactory;
 };
 
 #endif

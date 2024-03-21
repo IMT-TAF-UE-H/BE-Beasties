@@ -18,8 +18,7 @@ int main() {
 
     // Ajout de 100 bestioles
     for (int i = 1; i <= 100; ++i) {
-      IBestiole* b = new Carapace(new Nageoire(new Oreilles(new Bestiole(milieu)))); // Ajout de décorateurs à la bestiole
-      milieu->addBestiole(b); // Ajout de la bestiole au milieu
+      milieu->addBestiole();
     }
     ecosysteme.run(); // Lancement de la simulation
 

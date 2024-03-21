@@ -13,7 +13,7 @@ build: main
 	rm -rf $(OBJ_DIR)/*.o
 
 
-main: $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(DECORATEURS) $(COMPORTEMENTS)
+main: $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(OBJ_DIR)/BestioleFactory.o $(DECORATEURS) $(COMPORTEMENTS) 
 	g++ -Wall -std=$(VERSION) -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
 
@@ -29,6 +29,8 @@ $(OBJ_DIR)/Bestiole.o : $(SRC_DIR)/Bestiole.h $(SRC_DIR)/Bestiole.cpp $(SRC_DIR)
 $(OBJ_DIR)/Milieu.o : $(SRC_DIR)/Milieu.h $(SRC_DIR)/Milieu.cpp
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/Milieu.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
+$(OBJ_DIR)/BestioleFactory.o : $(SRC_DIR)/BestioleFactory.h $(SRC_DIR)/BestioleFactory.cpp $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
+	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/BestioleFactory.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 $(OBJ_DIR)/Camouflage.o : $(SRC_DIR)/Camouflage.h $(SRC_DIR)/Camouflage.cpp $(SRC_DIR)/Decorateur.h $(SRC_DIR)/IBestiole.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/Camouflage.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
