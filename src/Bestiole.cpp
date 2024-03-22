@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include "CompGregaire.h"
 #include "CompKamikaze.h"
+#include "CompPeureuse.h"
 
 const double Bestiole::MAX_VITESSE = 8.; // vitesse maximale
 
@@ -18,7 +19,8 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
     cout << "const Bestiole (" << identite << ") par defaut" << endl;
 
     // comportement = ComportementKamikaze::getInstance();
-    comportement = ComportementGregaire::getInstance();
+    // comportement = ComportementGregaire::getInstance();
+    comportement = ComportementPeureuse::getInstance();
     milieu = _milieu;
     vieRestante = 1000;
     taille = 8.;

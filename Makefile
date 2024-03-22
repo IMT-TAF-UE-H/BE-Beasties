@@ -4,7 +4,7 @@ SRC_DIR = src
 TEST_DIR = tests
 OBJ_DIR = .
 DECORATEURS = $(OBJ_DIR)/Camouflage.o $(OBJ_DIR)/Carapace.o $(OBJ_DIR)/Nageoire.o $(OBJ_DIR)/Oreilles.o $(OBJ_DIR)/Yeux.o
-COMPORTEMENTS = $(OBJ_DIR)/CompKamikaze.o $(OBJ_DIR)/CompGregaire.o
+COMPORTEMENTS = $(OBJ_DIR)/CompKamikaze.o $(OBJ_DIR)/CompGregaire.o $(OBJ_DIR)/CompPeureuse.o
 VERSION = c++14
 
 
@@ -53,6 +53,9 @@ $(OBJ_DIR)/CompKamikaze.o : $(SRC_DIR)/CompKamikaze.h $(SRC_DIR)/CompKamikaze.cp
 
 $(OBJ_DIR)/CompGregaire.o : $(SRC_DIR)/CompGregaire.h $(SRC_DIR)/CompGregaire.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompGregaire.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
+$(OBJ_DIR)/CompPeureuse.o : $(SRC_DIR)/CompPeureuse.h $(SRC_DIR)/CompPeureuse.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
+	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompPeureuse.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 # test
 test: testDecorateurs

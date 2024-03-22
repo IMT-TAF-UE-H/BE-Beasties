@@ -35,13 +35,13 @@ IBestiole* BestioleFactory::naissance() {
 IBestiole* BestioleFactory::naissance(int type) {
     IBestiole *b = new Bestiole(milieu, type);
     // Ajout de décorateurs à la bestiole de façon aléatoire
-    if (rand() % 2) {
+    if (true) {
         b = new Carapace(b);
     }
-    if (rand() % 2) {
+    if (true) {
         b = new Nageoire(b);
     }
-    if (rand() % 2) {
+    if (true) {
         b = new Oreilles(b);
     }
     return b;
