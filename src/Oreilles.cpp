@@ -3,9 +3,9 @@
 #include <iostream>
 #include <math.h>
 
-double Oreilles::DELTA_O_MIN = 0;
-double Oreilles::DELTA_O_MAX = INFINITY;
-double Oreilles::GAMMA_O_MIN = 0;
+double Oreilles::DELTA_O_MIN = 100;
+double Oreilles::DELTA_O_MAX = 200;
+double Oreilles::GAMMA_O_MIN = 1;
 double Oreilles::GAMMA_O_MAX = 1;
 
 Oreilles::Oreilles(IBestiole *b) {
@@ -46,6 +46,7 @@ bool Oreilles::detecter(int idBestiole) {
     bool detection;
     bool inDistance = bestiole->getDistance(idBestiole) < deltaO;
     // detecte si la bestiole est dans la distance de detection et si elle est detectable
-    detection = inDistance && (gammaO * RAND_MAX > rand());
+    IBestiole *b = bestiole->getMilieu()->getBestiole(idBestiole);
+    detection = inDistance && (gammaO > b->getDiscretion());
     return detection;
 }

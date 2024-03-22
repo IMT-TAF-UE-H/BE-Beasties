@@ -21,8 +21,8 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
 
     // comportement = ComportementKamikaze::getInstance();
     // comportement = ComportementGregaire::getInstance();
-    // comportement = ComportementPeureuse::getInstance();
-    comportement = ComportementPrevoyante::getInstance(); 
+    comportement = ComportementPeureuse::getInstance();
+    //comportement = ComportementPrevoyante::getInstance(); 
 
     milieu = _milieu;
     vieRestante = 1000;
@@ -98,11 +98,6 @@ void Bestiole::updatePos() {
     vieRestante--;
 }
 
-bool Bestiole::detectable() {
-    bool res = rand() > discretion * RAND_MAX;
-    return res;
-}
-
 bool Bestiole::detecter(int idBestiole) {
     return false;
 }
@@ -127,7 +122,7 @@ void Bestiole::setResistance(double _resistance) {
     resistance = _resistance;
 }
 
-double Bestiole::getDiscretion() {
+double Bestiole::getDiscretion() const {
     return discretion;
 }
 
@@ -177,4 +172,8 @@ double Bestiole::getDirectionTo(int idBestiole) const {
 
 int Bestiole::getId() const {
     return identite;
+}
+
+Milieu* Bestiole::getMilieu() {
+    return milieu;
 }

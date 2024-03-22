@@ -27,11 +27,10 @@ tuple<double, double> ComportementGregaire::getDeplacement(int idBestiole, Milie
     int count = 0;
 
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
-        if (b->detecter(it->first) && (it->second)->detectable()) {
+        if (b->detecter(it->first)) {
             voisinDetecte = true;
             direction += it->second->getDirection();
             count++;
-            break;
         }
     }
 
