@@ -25,7 +25,7 @@ tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milie
 
     auto voisins = monMilieu->getVoisins(idBestiole);
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
-        if (b->detecter(it->first) && (it->second)->detectable()) {
+        if (b->detecter(it->first)) {
             double distance = it->second->getDistance(idBestiole);
             if (distance < distanceMin) {
                 distanceMin = distance;
