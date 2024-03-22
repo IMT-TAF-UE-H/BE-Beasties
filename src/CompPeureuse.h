@@ -6,7 +6,6 @@
  *  lorsque le nombre de bestioles autour d’une bestiole dite peureuse devient trop important, celle-ci fuit `a vive allure dans la direction opposée avant de reprendre sa vitesse de croisière
  */
 
-const int MAX_COUNT = 3;
 
 class ComportementPeureuse : public IComportement {
     // Protection du constructeur car Singleton

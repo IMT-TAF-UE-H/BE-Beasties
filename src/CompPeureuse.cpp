@@ -2,6 +2,8 @@
 #include "Milieu.h"
 #include <vector>
 
+int MAX_COUNT = 1;
+
 std::shared_ptr<ComportementPeureuse> ComportementPeureuse::instance = nullptr;
 
 std::shared_ptr<IComportement> ComportementPeureuse::getInstance() {
@@ -30,7 +32,6 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
         if (b->detecter(it->first)) {
             direction += it->second->getDirection();
             count++;
-            break;
         }
     }
     // Lorsqu'il y a trop de voisins, la bestiole fuit
