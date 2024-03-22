@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class Milieu;
+
 /**
  * Interface qui peut représenter une bestiole avec ou sans accessoires et capteurs.
  */
@@ -22,10 +24,6 @@ public:
      * Renvoie l'état de décès de la bestiole (true=mort).
      */
     virtual void updatePos() = 0;
-    /**
-     * Détermine si la bestiole peut être détectée à cette itération.
-     */
-    virtual bool detectable() = 0;
     /**
      * Détermine si une autre bestiole voisine peut être détectée.
      */

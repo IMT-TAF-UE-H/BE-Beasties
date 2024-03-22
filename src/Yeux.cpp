@@ -6,8 +6,8 @@
 double Yeux::ALPHA_MIN = 0.;
 double Yeux::ALPHA_MAX = 2. * M_PI;
 double Yeux::DELTA_Y_MIN = 0.;
-double Yeux::DELTA_Y_MAX = INFINITY;
-double Yeux::GAMMA_Y_MIN = 0;
+double Yeux::DELTA_Y_MAX = 100.; 
+double Yeux::GAMMA_Y_MIN = 1;
 double Yeux::GAMMA_Y_MAX = 1;
 
 Yeux::Yeux(IBestiole* b) {
@@ -61,6 +61,7 @@ bool Yeux::detecter(int idBestiole) {
     bool inDistance = (distance < deltaY);
     bool inVision = (inField && inDistance);
     // détection si dans le champ de vision et dans la distance
-    detection = inVision && (gammaY >  bestiole->detectable());
+    IBestiole* bestioleDetectee = bestiole->getMilieu()->getBestiole(idBestiole);
+    detection = inVision && (gammaY > bestioleDetectee->getDiscretion()); 
     return detection;
 }

@@ -95,11 +95,6 @@ void Bestiole::updatePos() {
     vieRestante--;
 }
 
-bool Bestiole::detectable() {
-    bool res = rand() > discretion * RAND_MAX;
-    return res;
-}
-
 bool Bestiole::detecter(int idBestiole) {
     return false;
 }

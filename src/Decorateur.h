@@ -23,9 +23,6 @@ public:
     virtual void updatePos() override {
         bestiole->updatePos();
     }
-    virtual bool detectable() override {
-        return bestiole->detectable();
-    }
     virtual bool detecter(int idBestiole) override {
         return bestiole->detecter(idBestiole);
     }

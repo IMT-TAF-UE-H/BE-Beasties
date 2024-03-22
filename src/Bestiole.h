@@ -57,7 +57,6 @@ public:
     ~Bestiole(void) override; // destructeur
     IBestiole* clone() override; // clone
     void updatePos() override; // mise à jour de la position
-    bool detectable() override; // détection
     bool detecter(int idBestiole) override;
     bool collision() override;
     double getVitesse() override;
