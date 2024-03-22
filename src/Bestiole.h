@@ -52,7 +52,7 @@ private:
     static const double MAX_VITESSE;
 
 public:
-    Bestiole(Milieu *milieu); // constructeur par défaut
+    Bestiole(Milieu *milieu, int type); // constructeur par défaut
     Bestiole(const Bestiole &b); // constructeur par copie
     ~Bestiole(void) override; // destructeur
     IBestiole* clone() override; // clone

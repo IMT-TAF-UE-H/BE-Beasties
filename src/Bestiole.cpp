@@ -11,7 +11,7 @@ const double Bestiole::MAX_VITESSE = 8.; // vitesse maximale
 
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
 
-Bestiole::Bestiole(Milieu *_milieu) {
+Bestiole::Bestiole(Milieu *_milieu, int type) {
 
     identite = ++next; // incrémentation du compteur d'identifiant
     
