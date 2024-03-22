@@ -175,3 +175,8 @@ double Bestiole::getDirectionTo(int idBestiole) const {
 int Bestiole::getId() const {
     return identite;
 }
+
+Milieu *Bestiole::getMilieu() const
+{
+    return milieu;
+}

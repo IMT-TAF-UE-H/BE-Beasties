@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "UImg.h"
+#include "Milieu.h"
 
 using namespace std;
 
@@ -49,6 +50,7 @@ public:
     virtual void setDirection(double direction) = 0;
     virtual double getDirectionTo(int idBestiole) const = 0;
     virtual int getId() const = 0;
+    virtual Milieu* getMilieu() const = 0;
 };
 
 #endif

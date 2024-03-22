@@ -74,6 +74,9 @@ public:
     virtual int getId() const override {
         return bestiole->getId();
     }
+    virtual Milieu* getMilieu() const override {
+        return bestiole->getMilieu();
+    }
 };
 
 #endif

@@ -73,6 +73,7 @@ public:
     void setDirection(double direction) override;
     double getDirectionTo(int idBestiole) const override;
     int getId() const override;
+    Milieu* getMilieu() const override;
 
     void draw(UImg &support);
 
