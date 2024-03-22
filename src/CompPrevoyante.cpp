@@ -18,43 +18,6 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
 
     IBestiole* b = monMilieu->getBestiole(idBestiole);
 
-<<<<<<< HEAD
-    // Estimation des trajectoires des bestioles voisines
-
-    auto voisins = monMilieu->getVoisins(idBestiole);
-
-    double direction = 0;
-    int count = 0;
-
-    double posX;
-    double posY;
-
-    for (auto it = voisins->begin(); it != voisins->end(); ++it) {
-        if (b->detecter(it->second)) {
-            direction += it->second->getDirection();
-            
-            break;
-        }
-    }
-    // Lorsqu'il y a trop de voisins, la bestiole fuit
-    if (count > MAX_COUNT) {
-        direction /= count;
-        cout << "Peureuse fuit" << endl;
-        // direction opposée
-        direction += M_PI;
-        b->setDirection(direction);
-        // doublement de la vitesse
-        vitesse = 2 * b->getVitesse();
-    } else {
-        direction = b->getDirection();
-        vitesse = b->getVitesse();
-    }
-
-    deltaX = cos(direction) * vitesse;
-    deltaY = -sin(direction) * vitesse;
-
-
-=======
     // Estimation de la nouvelle position des voisins
 
     bool voisinDetecte = false;
@@ -131,7 +94,6 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
     deltaY = -sin(direction) * b->getVitesse();
 
     b->setDirection(direction);
->>>>>>> v1
 
     return make_tuple(deltaX, deltaY);
 

@@ -98,6 +98,11 @@ void Bestiole::updatePos() {
     vieRestante--;
 }
 
+bool Bestiole::detectable() {
+    bool res = rand() > discretion * RAND_MAX;
+    return res;
+}
+
 bool Bestiole::detecter(int idBestiole) {
     return false;
 }
@@ -172,9 +177,4 @@ double Bestiole::getDirectionTo(int idBestiole) const {
 
 int Bestiole::getId() const {
     return identite;
-}
-
-Milieu *Bestiole::getMilieu() const
-{
-    return milieu;
 }

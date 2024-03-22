@@ -7,8 +7,6 @@
 
 class Milieu;
 
-class IBestiole;
-
 class BestioleFactory {
 public:
     // Constructeur 

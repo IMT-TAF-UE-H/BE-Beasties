@@ -57,6 +57,7 @@ public:
     ~Bestiole(void) override; // destructeur
     IBestiole* clone() override; // clone
     void updatePos() override; // mise à jour de la position
+    bool detectable() override; // détection
     bool detecter(int idBestiole) override;
     bool collision() override;
     double getVitesse() override;
@@ -72,7 +73,6 @@ public:
     void setDirection(double direction) override;
     double getDirectionTo(int idBestiole) const override;
     int getId() const override;
-    Milieu* getMilieu() const override;
 
     void draw(UImg &support);
 

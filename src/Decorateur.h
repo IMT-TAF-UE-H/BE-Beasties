@@ -23,6 +23,9 @@ public:
     virtual void updatePos() override {
         bestiole->updatePos();
     }
+    virtual bool detectable() override {
+        return bestiole->detectable();
+    }
     virtual bool detecter(int idBestiole) override {
         return bestiole->detecter(idBestiole);
     }
@@ -70,9 +73,6 @@ public:
     }
     virtual int getId() const override {
         return bestiole->getId();
-    }
-    virtual Milieu* getMilieu() const override {
-        return bestiole->getMilieu();
     }
 };
 

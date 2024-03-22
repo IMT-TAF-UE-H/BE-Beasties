@@ -6,7 +6,7 @@
 using namespace std;
 
 double Camouflage::PSI_MIN = 0;
-double Camouflage::PSI_MAX = 0;
+double Camouflage::PSI_MAX = 1;
 
 Camouflage::Camouflage(IBestiole* b) {
     bestiole = b;
@@ -34,13 +34,13 @@ IBestiole* Camouflage::clone() {
     return new Camouflage(*this);
 }
 
-double Camouflage::getDiscretion() {
+bool Camouflage::detectable() {
     double discretion = bestiole->getDiscretion();
     // Modification de la discrétion en cumulant les probabilités
     bestiole->setDiscretion(discretion * (1 - psi) + psi);
     // Comportement normal de la bestiole composée
-    double discretionCamouflee = bestiole->getDiscretion();
+    bool detectable = bestiole->detectable();
     // Restauration de la discrétion
     bestiole->setDiscretion(discretion);
-    return discretionCamouflee;
+    return detectable;
 }
