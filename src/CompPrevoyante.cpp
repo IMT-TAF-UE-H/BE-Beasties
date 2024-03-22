@@ -32,7 +32,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
         int idVoisin = it->first;
         IBestiole* voisin = it->second;
-        if (b->detecter(idVoisin) && voisin->detectable()) {
+        if (b->detecter(idVoisin)) {
             voisinDetecte = true;
             posX_voisin = (it->second)->getX();
             posY_voisin = (it->second)->getY();

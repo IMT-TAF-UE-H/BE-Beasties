@@ -13,6 +13,9 @@ using namespace std;
 
 class BestioleFactory;
 
+
+class IBestiole;
+
 class Milieu : public UImg {
 
 private:
