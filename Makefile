@@ -4,7 +4,7 @@ SRC_DIR = src
 TEST_DIR = tests
 OBJ_DIR = .
 DECORATEURS = $(OBJ_DIR)/Camouflage.o $(OBJ_DIR)/Carapace.o $(OBJ_DIR)/Nageoire.o $(OBJ_DIR)/Oreilles.o $(OBJ_DIR)/Yeux.o
-COMPORTEMENTS = $(OBJ_DIR)/CompKamikaze.o $(OBJ_DIR)/CompGregaire.o $(OBJ_DIR)/CompPeureuse.o $(OBJ_DIR)/CompPrevoyante.o
+COMPORTEMENTS = $(OBJ_DIR)/CompKamikaze.o $(OBJ_DIR)/CompGregaire.o $(OBJ_DIR)/CompPeureuse.o $(OBJ_DIR)/CompPrevoyante.o $(OBJ_DIR)/CompMultiple.o
 VERSION = c++14
 
 
@@ -59,6 +59,9 @@ $(OBJ_DIR)/CompPeureuse.o : $(SRC_DIR)/CompPeureuse.h $(SRC_DIR)/CompPeureuse.cp
 
 $(OBJ_DIR)/CompPrevoyante.o : $(SRC_DIR)/CompPrevoyante.h $(SRC_DIR)/CompPrevoyante.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompPrevoyante.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
+$(OBJ_DIR)/CompMultiple.o : $(SRC_DIR)/CompMultiple.h $(SRC_DIR)/CompMultiple.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
+	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompMultiple.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 # test
 test: testDecorateurs

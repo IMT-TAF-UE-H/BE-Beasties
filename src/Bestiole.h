@@ -74,7 +74,7 @@ public:
     int getId() const override;
     Milieu *getMilieu() override;
 
-    void draw(UImg &support);
+    void draw(UImg &support) override;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
 };

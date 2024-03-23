@@ -1,3 +1,6 @@
+#ifndef __COMPPEUREUSE_H__
+#define __COMPPEUREUSE_H__
+
 #include "IComportement.h"
 #include <memory>
 
@@ -26,3 +29,5 @@ public:
     tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
 };
 
+
+#endif

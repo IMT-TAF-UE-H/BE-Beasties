@@ -34,11 +34,10 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
         IBestiole* voisin = it->second;
         if (b->detecter(idVoisin)) {
             voisinDetecte = true;
-            posX_voisin = (it->second)->getX();
-            posY_voisin = (it->second)->getY();
-            direction_voisin = (it->second)->getDirection();
-            vitesse_voisin = (it->second)->getVitesse();
-
+            posX_voisin = voisin->getX();
+            posY_voisin = voisin->getY();
+            direction_voisin = voisin->getDirection();
+            vitesse_voisin = voisin->getVitesse();
             posX_voisin += cos(direction_voisin) * vitesse_voisin;
             posY_voisin -= sin(direction_voisin) * vitesse_voisin;
 

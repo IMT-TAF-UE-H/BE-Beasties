@@ -1,3 +1,6 @@
+#ifndef COMP_KAMIKAZE_H
+#define COMP_KAMIKAZE_H
+
 #include "IComportement.h"
 #include <memory>
 
@@ -28,3 +31,5 @@ public:
 
     tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
 };
+
+#endif
