@@ -28,6 +28,26 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
 Milieu::~Milieu(void) {
 
     cout << "dest Milieu" << endl;
+    // log le comportement de chaque bestiole avec la répartition des comportements
+
+    std::map<std::string, int> comportements;
+
+    for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
+        std::string comportement = it->second->getComportement();
+        if (comportements.find(comportement) == comportements.end()) {
+            comportements[comportement] = 1;
+        } else {
+            comportements[comportement]++;
+        }
+    }
+    cout << "---------------------------------" << endl;
+    cout << "Répartition des comportements : " << endl;
+
+    for (auto it = comportements.begin(); it != comportements.end(); ++it) {
+        cout << it->first << " : " << it->second << endl;
+    }
+    cout << "---------------------------------" << endl;
+
     for (auto it = listeBestioles.cbegin(); it != listeBestioles.cend();) {
         tuer((it++)->first);
     }
