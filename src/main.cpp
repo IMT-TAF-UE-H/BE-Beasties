@@ -21,7 +21,8 @@ int main() {
     Milieu* milieu = ecosysteme.getMilieu();
 
     // Ajout de 100 bestioles
-    for (int i = 1; i <= 100; ++i) {
+    int nbBestioles = std::stoi(GlobalConfig::getInstance().getConfig("nbBestioles"));
+    for (int i = 1; i <= nbBestioles; i++) { 
       milieu->addBestiole();
     }
     ecosysteme.run(); // Lancement de la simulation

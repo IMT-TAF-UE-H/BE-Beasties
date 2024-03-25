@@ -30,3 +30,4 @@ p_nageoire=.9
 p_oreilles=.9
 p_camouflage=.1
 p_yeux=.9
+nbBestioles=100
