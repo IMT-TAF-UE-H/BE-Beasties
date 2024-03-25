@@ -2,13 +2,14 @@
 #include <cassert>
 #include <iostream>
 #include <math.h>
+#include "GlobalConfig.h"
 
-double Yeux::ALPHA_MIN = 0.;
-double Yeux::ALPHA_MAX = 2. * M_PI;
-double Yeux::DELTA_Y_MIN = 100;
-double Yeux::DELTA_Y_MAX = 200;
-double Yeux::GAMMA_Y_MIN = 1;
-double Yeux::GAMMA_Y_MAX = 1;
+double Yeux::ALPHA_MIN = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MIN")); 
+double Yeux::ALPHA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MAX")); 
+double Yeux::DELTA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MIN")); 
+double Yeux::DELTA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MAX"));
+double Yeux::GAMMA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MIN")); 
+double Yeux::GAMMA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MAX")); 
 
 Yeux::Yeux(IBestiole* b) {
     bestiole = b;

@@ -4,16 +4,17 @@
 #include <ctime>
 #include <memory.h>
 #include <random>
+#include "GlobalConfig.h"
 
 using namespace std;
 
 const T Milieu::white[] = {(T)255, (T)255, (T)255};
 double Milieu::width = 640.;
 double Milieu::height = 480.;
-double Milieu::DIST_MAX_VOISINS = 100.;
-double Milieu::DIST_COLLISION = 3.;
-int Milieu::probaNaissanceSpontanee = 1; // Pourcentage
-int Milieu::probaClonage = 1;             // Pourcentage
+double Milieu::DIST_MAX_VOISINS = std::stod(GlobalConfig::getInstance().getConfig("DIST_MAX_VOISINS")); 
+double Milieu::DIST_COLLISION = std::stod(GlobalConfig::getInstance().getConfig("DIST_COLLISION"));
+int Milieu::probaNaissanceSpontanee = std::stoi(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
+int Milieu::probaClonage = std::stoi(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
 
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           listeBestioles() {
@@ -23,7 +24,11 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     cout << "const Milieu" << endl;
 
     // Initialisation de la factory
-    bestioleFactory = new BestioleFactory(this, 0.1, 0.1, 0.1, 0.1);
+    double p_kamikaze = std::stod(GlobalConfig::getInstance().getConfig("p_kamikaze"));
+    double p_peureuse = std::stod(GlobalConfig::getInstance().getConfig("p_peureuse"));
+    double p_gregaire = std::stod(GlobalConfig::getInstance().getConfig("p_gregaire"));
+    double p_prevoyante = std::stod(GlobalConfig::getInstance().getConfig("p_prevoyante"));
+    bestioleFactory = new BestioleFactory(this, p_kamikaze, p_peureuse, p_gregaire, p_prevoyante); 
 
     // Initialisation du fichier de log
     cout << "Ouverture du fichier de log" << endl;

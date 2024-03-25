@@ -23,7 +23,7 @@ protected:
         ComportementPrevoyante() {}
 
         static std::shared_ptr<ComportementPrevoyante> instance;
-        std::string description; // Change the type to const std::string
+        std::string description = "Prevoyante";
 
     public:
         ~ComportementPrevoyante() {}

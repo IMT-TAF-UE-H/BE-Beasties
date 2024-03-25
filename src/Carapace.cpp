@@ -1,9 +1,10 @@
 #include "Carapace.h"
 #include <cassert>
 #include <iostream>
+#include "GlobalConfig.h"
 
-double Carapace::ETA_MAX = 100.;
-double Carapace::OMEGA_MAX = 100.;
+double Carapace::ETA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ETA_MAX"));
+double Carapace::OMEGA_MAX = std::stod(GlobalConfig::getInstance().getConfig("OMEGA_MAX"));
 
 Carapace::Carapace(IBestiole* b) {
     bestiole = b;

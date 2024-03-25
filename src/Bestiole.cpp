@@ -9,8 +9,9 @@
 #include "CompPeureuse.h"
 #include "CompPrevoyante.h"
 #include "CompMultiple.h"
+#include "GlobalConfig.h"
 
-const double Bestiole::MAX_VITESSE = 8.; // vitesse maximale
+const double Bestiole::MAX_VITESSE = std::stod(GlobalConfig::getInstance().getConfig("MAX_VITESSE"));
 
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
 

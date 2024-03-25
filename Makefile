@@ -13,7 +13,7 @@ build: main
 	rm -rf $(OBJ_DIR)/*.o
 
 
-main: $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(OBJ_DIR)/BestioleFactory.o $(DECORATEURS) $(COMPORTEMENTS) 
+main: $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(OBJ_DIR)/BestioleFactory.o $(OBJ_DIR)/GlobalConfig.o $(DECORATEURS) $(COMPORTEMENTS) 
 	g++ -Wall -std=$(VERSION) -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
 
@@ -62,6 +62,9 @@ $(OBJ_DIR)/CompPrevoyante.o : $(SRC_DIR)/CompPrevoyante.h $(SRC_DIR)/CompPrevoya
 
 $(OBJ_DIR)/CompMultiple.o : $(SRC_DIR)/CompMultiple.h $(SRC_DIR)/CompMultiple.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompMultiple.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
+
+$(OBJ_DIR)/GlobalConfig.o : $(SRC_DIR)/GlobalConfig.h $(SRC_DIR)/GlobalConfig.cpp
+	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/GlobalConfig.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 # test
 test: testDecorateurs

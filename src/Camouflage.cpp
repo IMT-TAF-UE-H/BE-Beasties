@@ -2,11 +2,12 @@
 #include "IBestiole.h"
 #include <iostream>
 #include <cassert>
+#include "GlobalConfig.h"
 
 using namespace std;
 
-double Camouflage::PSI_MIN = 0;
-double Camouflage::PSI_MAX = 0; // pas de camouflages par défaut
+double Camouflage::PSI_MIN = std::stod(GlobalConfig::getInstance().getConfig("PSI_MIN")); 
+double Camouflage::PSI_MAX = std::stod(GlobalConfig::getInstance().getConfig("PSI_MAX")); 
 
 Camouflage::Camouflage(IBestiole* b) {
     bestiole = b;

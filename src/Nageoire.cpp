@@ -2,10 +2,11 @@
 #include "IBestiole.h"
 #include <iostream>
 #include <cassert>
+#include "GlobalConfig.h"
 
 using namespace std;
 
-double Nageoire::NU_MAX = 100.;
+double Nageoire::NU_MAX = std::stod(GlobalConfig::getInstance().getConfig("NU_MAX")); 
 
 Nageoire::Nageoire(IBestiole* b) {
     bestiole = b;
