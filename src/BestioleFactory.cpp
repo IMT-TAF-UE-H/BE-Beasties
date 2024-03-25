@@ -2,7 +2,10 @@
 #include "Carapace.h"
 #include "Nageoire.h"
 #include "Oreilles.h"
+#include "Yeux.h"
+#include "Camouflage.h"
 #include "Bestiole.h"
+#include "GlobalConfig.h"
 
 BestioleFactory::BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse, double p_gregaire, double p_prevoyante) {
     if (p_kamikaze + p_peureuse + p_gregaire + p_prevoyante > 1) {
@@ -35,14 +38,27 @@ IBestiole* BestioleFactory::naissance() {
 IBestiole* BestioleFactory::naissance(int type) {
     IBestiole *b = new Bestiole(milieu, type);
     // Ajout de décorateurs à la bestiole de façon aléatoire
-    if (true) {
+    double p_carapace = std::stod(GlobalConfig::getInstance().getConfig("p_carapace"));
+    double p_nageoire = std::stod(GlobalConfig::getInstance().getConfig("p_nageoire"));
+    double p_oreilles = std::stod(GlobalConfig::getInstance().getConfig("p_oreilles"));
+    double p_yeux = std::stod(GlobalConfig::getInstance().getConfig("p_yeux"));
+    double p_camouflage = std::stod(GlobalConfig::getInstance().getConfig("p_camouflage"));
+
+    while (rand() / (double)RAND_MAX < p_carapace) {
         b = new Carapace(b);
     }
-    if (true) {
+    while (rand() / (double)RAND_MAX < p_nageoire) {
         b = new Nageoire(b);
     }
-    if (true) {
+    while (rand() / (double)RAND_MAX < p_oreilles) {
         b = new Oreilles(b);
     }
+    while (rand() / (double)RAND_MAX < p_yeux) {
+        b = new Yeux(b);
+    }
+    while (rand() / (double)RAND_MAX < p_camouflage) {
+        b = new Camouflage(b);
+    }
+
     return b;
 }
