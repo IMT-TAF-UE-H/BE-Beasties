@@ -23,6 +23,8 @@ private:
     static const T white[];
     static double DIST_MAX_VOISINS;
     static double DIST_COLLISION;
+    static int probaNaissanceSpontanee;
+    static int probaClonage;
 
     std::map<int, IBestiole*> listeBestioles;
 

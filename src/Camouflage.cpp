@@ -34,6 +34,13 @@ IBestiole* Camouflage::clone() {
     return new Camouflage(*this);
 }
 
+IBestiole* Camouflage::cloner() {
+    cout << "cloner Camouflage" << endl;
+    Camouflage *c = new Camouflage(bestiole->clone());
+    c->psi = psi;
+    return c->clone();
+}
+
 double Camouflage::getDiscretion() const {
     double discretion = bestiole->getDiscretion();
     // Modification de la discrétion en cumulant les camouflages 

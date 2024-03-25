@@ -53,6 +53,7 @@ public:
     virtual int getId() const = 0;
     virtual Milieu* getMilieu() = 0;
     virtual string getComportement() const = 0;
+    virtual IBestiole* cloner() = 0;    
 };
 
 #endif

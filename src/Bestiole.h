@@ -77,6 +77,8 @@ public:
     void draw(UImg &support) override;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
+
+    IBestiole* cloner() override;
 };
 
 #endif

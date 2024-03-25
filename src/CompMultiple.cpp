@@ -10,7 +10,6 @@
 std::shared_ptr<ComportementMultiple> ComportementMultiple::instance = nullptr;
 
 std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
-    cout << "ComportementMultiple::getInstance()" << endl;
     if (instance == nullptr) {
         std::shared_ptr<ComportementMultiple> newShared(new ComportementMultiple());
         std::vector<std::shared_ptr<IComportement>> tous_comportements_ = {
@@ -23,7 +22,6 @@ std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
         newShared->description = "Multiple";
         instance = std::move(newShared);
     }
-    cout << "ComportementMultiple::getInstance() - end" << endl;
     return instance;
 }
 

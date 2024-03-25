@@ -24,8 +24,9 @@ public:
     Camouflage(Camouflage &c);
     ~Camouflage() override;
     static void setLimites(double _PSI_MIN, double _PSI_MAX);
-    virtual IBestiole* clone() override;
-    virtual double getDiscretion() const override;
+    IBestiole* clone() override;
+    double getDiscretion() const override;
+    IBestiole* cloner() override;
 };
 
 #endif

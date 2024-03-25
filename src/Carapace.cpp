@@ -34,6 +34,14 @@ IBestiole* Carapace::clone() {
     return new Carapace(*this);
 }
 
+IBestiole* Carapace::cloner() {
+    cout << "cloner Carapace" << endl;
+    Carapace *c = new Carapace(bestiole->cloner());
+    c->eta = eta;
+    c->omega = omega;
+    return c->clone();
+}
+
 void Carapace::updatePos() {
     double vitesse = bestiole->getVitesse();
     // Modification de la vitesse

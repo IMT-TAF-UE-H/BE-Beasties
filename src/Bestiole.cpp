@@ -24,7 +24,29 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
     // comportement = ComportementGregaire::getInstance();
     //comportement = ComportementPeureuse::getInstance();
     //comportement = ComportementPrevoyante::getInstance(); 
-    comportement = ComportementMultiple::getInstance();
+    //comportement = ComportementMultiple::getInstance();
+
+    switch (type) {
+        case 0:
+            comportement = ComportementKamikaze::getInstance();
+            break;
+        case 1:
+            comportement = ComportementPeureuse::getInstance();
+            break;
+        case 2:
+            comportement = ComportementGregaire::getInstance();
+            break;
+        case 3:
+            comportement = ComportementPrevoyante::getInstance();
+            break;
+        case 4:
+            comportement = ComportementMultiple::getInstance();
+            break;
+        default:
+            comportement = ComportementMultiple::getInstance();
+            break;
+    }
+
 
     milieu = _milieu;
     vieRestante = 1000;
@@ -182,4 +204,16 @@ Milieu* Bestiole::getMilieu() {
 
 string Bestiole::getComportement() const {
     return comportement->getDescription();
+}
+
+IBestiole* Bestiole::cloner() {
+    Bestiole* b = new Bestiole(*this); // Copie
+
+    // Inversion de la direction et déplacement d'une itération
+    b->direction = direction + M_PI; 
+    b->x = x + cos(b->direction) * vitesse; 
+    b->y = y - sin(b->direction) * vitesse; 
+
+    return b->clone();
+    
 }

@@ -43,8 +43,9 @@ public:
                            double _DELTA_Y_MAX,
                            double _GAMMA_Y_MIN,
                            double _GAMMA_Y_MAX);
-    virtual IBestiole* clone() override;
-    virtual bool detecter(int idBestiole) override;
+    IBestiole* clone() override;
+    bool detecter(int idBestiole) override;
+    IBestiole* cloner() override;
 };
 
 #endif

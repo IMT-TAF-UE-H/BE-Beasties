@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <memory.h>
+#include <random>
 
 using namespace std;
 
@@ -11,6 +12,8 @@ double Milieu::width = 640.;
 double Milieu::height = 480.;
 double Milieu::DIST_MAX_VOISINS = 100.;
 double Milieu::DIST_COLLISION = 3.;
+int Milieu::probaNaissanceSpontanee = 1; // Pourcentage
+int Milieu::probaClonage = 1;             // Pourcentage
 
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           listeBestioles() {
@@ -19,7 +22,7 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
 
     cout << "const Milieu" << endl;
 
-    // Initialisation de la factorie
+    // Initialisation de la factory
     bestioleFactory = new BestioleFactory(this, 0.1, 0.1, 0.1, 0.1);
 
     // Initialisation du fichier de log
@@ -59,16 +62,39 @@ void Milieu::step(void) {
 
     int comportements[5] = {0, 0, 0, 0, 0};
 
+    // Remplissage de l'image de fond
     cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);
+    
+    // Mise à jour des positions
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         (it->second)->updatePos();
 
     }
+
+    // Tuer les bestioles (collision et vieillesse)
     auto vaMourir = getVaMourir();
 
     for (int it : vaMourir) {
         tuer(it);
     }
+
+    // Naissance spontanée
+
+    if (int randNum = std::rand() % 100 <= probaNaissanceSpontanee) {
+        cout << "Naissance spontanée" << endl;
+        addBestiole();
+    }
+
+    // Clonage
+
+    for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
+        if (int randNum = std::rand() % 100 <= probaClonage) {
+            cout << "Clonage" << endl;
+            IBestiole *bestiole = it->second->clone();
+            listeBestioles[bestiole->getId()] = bestiole;
+        }
+    }
+
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         (it->second)->draw(*this);

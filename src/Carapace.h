@@ -31,9 +31,10 @@ public:
     ~Carapace() override;
     static void setLimites(double _OMEGA_MAX,
                            double _ETA_MAX);
-    virtual IBestiole* clone() override;
-    virtual void updatePos() override;
-    virtual bool collision() override;
+    IBestiole* clone() override;
+    void updatePos() override;
+    bool collision() override;
+    IBestiole* cloner() override;
 };
 
 #endif
