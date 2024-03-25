@@ -17,17 +17,22 @@
  */
 
 class ComportementMultiple : public IComportement {
-    // Unique comportement à ne pas être un singleton
-private:
-    std::vector<std::shared_ptr<IComportement>> tous_comportements = {
-        ComportementGregaire::getInstance(),
-        ComportementKamikaze::getInstance(),
-        ComportementPeureuse::getInstance(),
-        ComportementPrevoyante::getInstance()
-    };
-    string description;
+    // Protection du constructeur car Singleton
+protected: 
+    ComportementMultiple() {}
+
+    static std::shared_ptr<ComportementMultiple> instance;
+    string description = "Multiple"; 
+
+    std::vector<std::shared_ptr<IComportement>> tous_comportements;
+
     
 public:
+    ~ComportementMultiple() {}
+    // empecher la copie et l'affectation
+
+    ComportementMultiple(ComportementMultiple &) = delete;
+    void operator=(const ComportementMultiple &) = delete;
 
     static std::shared_ptr<IComportement> getInstance();
 

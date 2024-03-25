@@ -7,13 +7,26 @@
 #include <random>
 
 
+std::shared_ptr<ComportementMultiple> ComportementMultiple::instance = nullptr;
 
 std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
     cout << "ComportementMultiple::getInstance()" << endl;
-    static std::shared_ptr<IComportement> instance = std::make_shared<ComportementMultiple>();
+    if (instance == nullptr) {
+        std::shared_ptr<ComportementMultiple> newShared(new ComportementMultiple());
+        std::vector<std::shared_ptr<IComportement>> tous_comportements_ = {
+            ComportementGregaire::getInstance(),
+            ComportementKamikaze::getInstance(),
+            ComportementPeureuse::getInstance(),
+            ComportementPrevoyante::getInstance()
+        };
+        newShared->tous_comportements = tous_comportements_;
+        newShared->description = "Multiple";
+        instance = std::move(newShared);
+    }
     cout << "ComportementMultiple::getInstance() - end" << endl;
     return instance;
 }
+
 
 tuple<double, double> ComportementMultiple::getDeplacement(int idBestiole, Milieu *monMilieu) {
 

@@ -6,8 +6,9 @@ std::shared_ptr<ComportementKamikaze> ComportementKamikaze::instance = nullptr;
 
 std::shared_ptr<IComportement> ComportementKamikaze::getInstance() {
     if (instance == nullptr) {
-        std::shared_ptr<IComportement> intance(new ComportementKamikaze());
-        instance->description = "Kamikaze";
+        std::shared_ptr<ComportementKamikaze> newShared(new ComportementKamikaze());
+        newShared->description = "Kamikaze";
+        instance = std::move(newShared);
     }
     return instance;
 }
