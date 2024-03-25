@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -42,6 +43,7 @@ public:
 private:
     std::vector<int> getVaMourir();
     BestioleFactory* bestioleFactory;
+    ofstream logFile;
 };
 
 #endif

@@ -22,44 +22,47 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     // Initialisation de la factorie
     bestioleFactory = new BestioleFactory(this, 0.1, 0.1, 0.1, 0.1);
 
+    // Initialisation du fichier de log
+    cout << "Ouverture du fichier de log" << endl;
+    if (remove("log.csv") != 0) {
+        cout << "Erreur lors de la suppression du fichier de log" << endl;
+    }
+    // if already open, close it
+    if (logFile.is_open()) {
+        logFile.close();
+    }
+
+    logFile.open("log.csv", ios::out);
+    cout << "Fichier de log ouvert" << endl;
+    // Entête du fichier de log
+    logFile << "Peureuse,Gregaire,Kamikaze,Prevoyante,Multiple\n";
+
     srand(time(NULL));
 }
 
 Milieu::~Milieu(void) {
 
     cout << "dest Milieu" << endl;
-    // log le comportement de chaque bestiole avec la répartition des comportements
-
-    std::map<std::string, int> comportements;
-
-    for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
-        std::string comportement = it->second->getComportement();
-        if (comportements.find(comportement) == comportements.end()) {
-            comportements[comportement] = 1;
-        } else {
-            comportements[comportement]++;
-        }
-    }
-    cout << "---------------------------------" << endl;
-    cout << "Répartition des comportements : " << endl;
-
-    for (auto it = comportements.begin(); it != comportements.end(); ++it) {
-        cout << it->first << " : " << it->second << endl;
-    }
-    cout << "---------------------------------" << endl;
 
     for (auto it = listeBestioles.cbegin(); it != listeBestioles.cend();) {
         tuer((it++)->first);
     }
+    // fermeture du fichier de log
+    logFile.close();
+
     // destruction de la factorie
     delete bestioleFactory;
 }
 
 void Milieu::step(void) {
 
+
+    int comportements[5] = {0, 0, 0, 0, 0};
+
     cimg_forXY(*this, x, y) fillC(x, y, 0, white[0], white[1], white[2]);
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         (it->second)->updatePos();
+
     }
     auto vaMourir = getVaMourir();
 
@@ -69,7 +72,27 @@ void Milieu::step(void) {
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         (it->second)->draw(*this);
+
+        // log des comportements
+        std::string comportement = it->second->getComportement();
+        if (comportement == "Peureuse") {
+            comportements[0]++;
+        } else if (comportement == "Gregaire") {
+            comportements[1]++;
+        } else if (comportement == "Kamikaze") {
+            comportements[2]++;
+        } else if (comportement == "Prevoyante") {
+            comportements[3]++;
+        } else {
+            comportements[4]++;
+        }
     }
+
+    // log des comportements dans le fichier de log (CSV)
+    logFile << comportements[0] << "," << comportements[1] << "," << comportements[2] << "," << comportements[3] << ","
+            << comportements[4] << endl;
+
+
 }
 
 void Milieu::tuer(int idBestiole) {
