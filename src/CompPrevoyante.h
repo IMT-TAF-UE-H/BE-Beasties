@@ -20,20 +20,22 @@
 class ComportementPrevoyante : public IComportement {
     // Protection du constructeur car Singleton
 protected:
-    ComportementPrevoyante() {}
+        ComportementPrevoyante() {}
 
-    static std::shared_ptr<ComportementPrevoyante> instance;
+        static std::shared_ptr<ComportementPrevoyante> instance;
+        std::string description; // Change the type to const std::string
 
-public:
-    ~ComportementPrevoyante() {}
-    // empecher la copie et l'affectation
+    public:
+        ~ComportementPrevoyante() {}
+        // empecher la copie et l'affectation
 
-    ComportementPrevoyante(ComportementPrevoyante &) = delete;
-    void operator=(const ComportementPrevoyante &) = delete;
+        ComportementPrevoyante(ComportementPrevoyante &) = delete;
+        void operator=(const ComportementPrevoyante &) = delete;
 
-    static std::shared_ptr<IComportement> getInstance();
+        static std::shared_ptr<IComportement> getInstance();
 
-    tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
+        tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
+    std::string getDescription() const override;
 };
 
 #endif

@@ -49,3 +49,7 @@ tuple<double, double> ComportementGregaire::getDeplacement(int idBestiole, Milie
 
     return make_tuple(deltaX, deltaY);
 }
+
+std::string ComportementGregaire::getDescription() const {
+    return description;
+}

@@ -25,12 +25,14 @@ private:
         ComportementPeureuse::getInstance(),
         ComportementPrevoyante::getInstance()
     };
+    string description;
     
 public:
 
     static std::shared_ptr<IComportement> getInstance();
 
     tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
+    std::string getDescription() const override;
 };
 
 #endif

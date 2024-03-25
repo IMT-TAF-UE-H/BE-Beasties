@@ -74,6 +74,9 @@ public:
     virtual Milieu* getMilieu() override {
         return bestiole->getMilieu();
     }
+    virtual string getComportement() const override {
+        return bestiole->getComportement();
+    }
 };
 
 #endif

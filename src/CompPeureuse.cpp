@@ -56,3 +56,7 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
     return make_tuple(deltaX, deltaY);
 
 }
+
+std::string ComportementPeureuse::getDescription() const {
+    return description;
+}

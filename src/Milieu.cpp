@@ -69,22 +69,11 @@ IBestiole *Milieu::getBestiole(int idBestiole) {
     return listeBestioles[idBestiole];
 }
 
-/**
- * Temporaire dans l'attente de la factory
- * TODO à dégager
- */
 void Milieu::addBestiole() {
-    // ERROR : gros problème ici depuis que j'ai ajouté la fonction setDirection
-    // C'est pas forcément lié directement, mais là on tient qqch de sombre.
-    // TODO fix avant de dégager cette fonction
-    // cout << "print pour éviter un segfault" << endl;
     IBestiole *bestiole = bestioleFactory->naissance();
     listeBestioles[bestiole->getId()] = bestiole;
 }
 
-/**
- * TODO optimiser, c'est dégueulasse.
- */
 std::vector<int> Milieu::getVaMourir() {
     std::vector<int> vaMourir;
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {

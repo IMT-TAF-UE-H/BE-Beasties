@@ -9,7 +9,9 @@
 
 
 std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
+    cout << "ComportementMultiple::getInstance()" << endl;
     static std::shared_ptr<IComportement> instance = std::make_shared<ComportementMultiple>();
+    cout << "ComportementMultiple::getInstance() - end" << endl;
     return instance;
 }
 
@@ -23,4 +25,8 @@ tuple<double, double> ComportementMultiple::getDeplacement(int idBestiole, Milie
     IBestiole* b = monMilieu->getBestiole(idBestiole);
     return tous_comportements[comportement]->getDeplacement(idBestiole, monMilieu);
 
+}
+
+std::string ComportementMultiple::getDescription() const {
+    return description;
 }

@@ -16,6 +16,7 @@ protected:
     ComportementPeureuse() {}
 
     static std::shared_ptr<ComportementPeureuse> instance;
+    string description = "Peureuse";
 
 public:
     ~ComportementPeureuse() {}
@@ -27,6 +28,7 @@ public:
     static std::shared_ptr<IComportement> getInstance();
 
     tuple<double, double> getDeplacement(int idBestiole, Milieu *monMilieu) override;
+    std::string getDescription() const override; 
 };
 
 

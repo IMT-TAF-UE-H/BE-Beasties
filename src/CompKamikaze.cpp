@@ -6,8 +6,8 @@ std::shared_ptr<ComportementKamikaze> ComportementKamikaze::instance = nullptr;
 
 std::shared_ptr<IComportement> ComportementKamikaze::getInstance() {
     if (instance == nullptr) {
-        shared_ptr<ComportementKamikaze> newShared(new ComportementKamikaze());
-        instance = std::move(newShared);
+        std::shared_ptr<IComportement> intance(new ComportementKamikaze());
+        instance->description = "Kamikaze";
     }
     return instance;
 }
@@ -44,4 +44,8 @@ tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milie
     }
 
     return make_tuple(deltaX, deltaY);
+}
+
+std::string ComportementKamikaze::getDescription() const {
+    return description;
 }

@@ -97,3 +97,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
     return make_tuple(deltaX, deltaY);
 
 }
+
+std::string ComportementPrevoyante::getDescription() const {
+    return description;
+}

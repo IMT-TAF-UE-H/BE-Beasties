@@ -3,7 +3,7 @@
 
 #include "UImg.h"
 
-#include <IBestiole.h>
+#include "IBestiole.h"
 #include <iostream>
 
 #include "Milieu.h"
@@ -11,7 +11,6 @@
 
 using namespace std;
 
-class IComportement;
 
 /**
  * Classe Bestiole qui implémente l'interface IBestiole. 
@@ -73,6 +72,7 @@ public:
     double getDirectionTo(int idBestiole) const override;
     int getId() const override;
     Milieu *getMilieu() override;
+    string getComportement() const override;
 
     void draw(UImg &support) override;
 

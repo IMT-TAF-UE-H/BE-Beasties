@@ -4,10 +4,12 @@
 #include <memory>
 #include "UImg.h"
 #include "Milieu.h"
+#include "IComportement.h"
 
 using namespace std;
 
 class Milieu;
+class IComportement;
 
 /**
  * Interface qui peut représenter une bestiole avec ou sans accessoires et capteurs.
@@ -50,6 +52,7 @@ public:
     virtual double getDirectionTo(int idBestiole) const = 0;
     virtual int getId() const = 0;
     virtual Milieu* getMilieu() = 0;
+    virtual string getComportement() const = 0;
 };
 
 #endif

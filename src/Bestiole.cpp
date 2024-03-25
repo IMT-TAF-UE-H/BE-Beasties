@@ -179,3 +179,7 @@ int Bestiole::getId() const {
 Milieu* Bestiole::getMilieu() {
     return milieu;
 }
+
+string Bestiole::getComportement() const {
+    return comportement->getDescription();
+}

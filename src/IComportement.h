@@ -1,9 +1,12 @@
 #ifndef _I_COMPORTMENT_H_
 #define _I_COMPORTMENT_H_
 
-#include "Bestiole.h"
 using namespace std;
 #include <tuple>
+#include "Milieu.h"
+#include <string>   
+
+class Milieu;
 
 /*
 * Interface qui peut représenter un comportement de bestiole.
@@ -14,9 +17,11 @@ using namespace std;
 
 class IComportement {
 
+
 public:
 // sortie : DeltaX, DeltaY
 virtual tuple<double, double> getDeplacement(int idBestiole, Milieu * monMilieu) = 0;
+virtual std::string getDescription() const = 0;
 };
 
 # endif
