@@ -8,15 +8,16 @@ using namespace std;
 
 double Nageoire::NU_MAX = std::stod(GlobalConfig::getInstance().getConfig("NU_MAX")); 
 
-Nageoire::Nageoire(IBestiole* b) {
+Nageoire::Nageoire(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     nu = (NU_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
+    cout << "const Nageoire par defaut sur bestiole " << bestiole->getId() << endl;
 }
 
 Nageoire::Nageoire(Nageoire &n) {
     bestiole = n.bestiole->clone();
     nu = n.nu;
-    cout << "const Nageoire par defaut sur bestiole " << bestiole->getId() << endl;
+    cout << "const Nageoire par copie sur bestiole " << bestiole->getId() << endl;
 }
 
 Nageoire::~Nageoire() {
@@ -28,9 +29,8 @@ void Nageoire::setLimites(double _NU_MAX) {
     NU_MAX = _NU_MAX;
 }
 
-IBestiole* Nageoire::clone() {
-    return new Nageoire(*this);
-    cout << "const Nageoire par copie sur bestiole " << bestiole->getId() << endl;
+std::shared_ptr<IBestiole> Nageoire::clone() {
+    return make_shared<Nageoire>(*this);
 }
 
 void Nageoire::updatePos() {

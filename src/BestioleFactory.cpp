@@ -24,7 +24,7 @@ BestioleFactory::~BestioleFactory() {
     //dtor
 }
 
-IBestiole* BestioleFactory::naissance() {
+std::shared_ptr<IBestiole> BestioleFactory::naissance() {
     // Tirage aléatoire d'un type de bestiole suivant la répartition
     double r = (double)rand() / (double)RAND_MAX;
     int type = 0;
@@ -35,29 +35,35 @@ IBestiole* BestioleFactory::naissance() {
     return naissance(type);
 }
 
-IBestiole* BestioleFactory::naissance(int type) {
-    IBestiole *b = new Bestiole(milieu, type);
+std::shared_ptr<IBestiole> BestioleFactory::naissance(int type) {
+    std::shared_ptr<IBestiole> b = make_shared<Bestiole>(milieu, type);
     // Ajout de décorateurs à la bestiole de façon aléatoire
     double p_carapace = std::stod(GlobalConfig::getInstance().getConfig("p_carapace"));
     double p_nageoire = std::stod(GlobalConfig::getInstance().getConfig("p_nageoire"));
     double p_oreilles = std::stod(GlobalConfig::getInstance().getConfig("p_oreilles"));
     double p_yeux = std::stod(GlobalConfig::getInstance().getConfig("p_yeux"));
     double p_camouflage = std::stod(GlobalConfig::getInstance().getConfig("p_camouflage"));
+    int maxParDecorateur = std::stoi(GlobalConfig::getInstance().getConfig("maxParDecorateur"));
 
-    while (rand() / (double)RAND_MAX < p_carapace) {
-        b = new Carapace(b);
+    int nb = 0;
+    while (rand() / (double)RAND_MAX < p_carapace && nb++ < maxParDecorateur) {
+        b = make_shared<Carapace>(b);
     }
-    while (rand() / (double)RAND_MAX < p_nageoire) {
-        b = new Nageoire(b);
+    nb = 0;
+    while (rand() / (double)RAND_MAX < p_nageoire && nb++ < maxParDecorateur) {
+        b = make_shared<Nageoire>(b);
     }
-    while (rand() / (double)RAND_MAX < p_oreilles) {
-        b = new Oreilles(b);
+    nb = 0;
+    while (rand() / (double)RAND_MAX < p_oreilles && nb++ < maxParDecorateur) {
+        b = make_shared<Oreilles>(b);
     }
-    while (rand() / (double)RAND_MAX < p_yeux) {
-        b = new Yeux(b);
+    nb = 0;
+    while (rand() / (double)RAND_MAX < p_yeux && nb++ < maxParDecorateur) {
+        b = make_shared<Yeux>(b);
     }
-    while (rand() / (double)RAND_MAX < p_camouflage) {
-        b = new Camouflage(b);
+    nb = 0;
+    while (rand() / (double)RAND_MAX < p_camouflage && nb++ < maxParDecorateur) {
+        b = make_shared<Camouflage>(b);
     }
 
     return b;

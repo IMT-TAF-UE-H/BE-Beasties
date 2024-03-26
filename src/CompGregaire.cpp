@@ -16,7 +16,7 @@ tuple<double, double> ComportementGregaire::getDeplacement(int idBestiole, Milie
     double deltaX = 0;
     double deltaY = 0;
 
-    IBestiole* b = monMilieu->getBestiole(idBestiole);
+    auto b = monMilieu->getBestiole(idBestiole);
 
     // Calcul de la direction moyenne des voisins
 

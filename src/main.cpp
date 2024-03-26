@@ -20,7 +20,7 @@ int main() {
     // Récupération du milieu
     Milieu* milieu = ecosysteme.getMilieu();
 
-    // Ajout de 100 bestioles
+    // Ajout de bestioles
     int nbBestioles = std::stoi(GlobalConfig::getInstance().getConfig("nbBestioles"));
     for (int i = 1; i <= nbBestioles; i++) { 
       milieu->addBestiole();

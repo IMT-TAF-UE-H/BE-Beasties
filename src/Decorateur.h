@@ -13,13 +13,11 @@ using namespace std;
  */
 class Decorateur : public IBestiole {
 protected:
-    IBestiole* bestiole;
+    std::shared_ptr<IBestiole> bestiole;
 
 public:
-    virtual ~Decorateur() {
-        delete bestiole;
-    };
-    virtual IBestiole* clone() override = 0;
+    virtual ~Decorateur() {};
+    virtual std::shared_ptr<IBestiole> clone() override = 0;
     virtual void updatePos() override {
         bestiole->updatePos();
     }

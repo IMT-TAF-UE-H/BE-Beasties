@@ -11,7 +11,7 @@ double Yeux::DELTA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("DELT
 double Yeux::GAMMA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MIN")); 
 double Yeux::GAMMA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MAX")); 
 
-Yeux::Yeux(IBestiole* b) {
+Yeux::Yeux(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     alpha = (ALPHA_MAX - ALPHA_MIN) * ((double)rand() / (double)RAND_MAX) + ALPHA_MIN;
     deltaY = (DELTA_Y_MAX - DELTA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_Y_MIN;
@@ -48,8 +48,8 @@ void Yeux::setLimites(double _ALPHA_MIN,
     GAMMA_Y_MAX = _GAMMA_Y_MAX;
 }
 
-IBestiole* Yeux::clone() {
-    return new Yeux(*this);
+std::shared_ptr<IBestiole> Yeux::clone() {
+    return make_shared<Yeux>(*this);
 }
 
 bool Yeux::detecter(int idBestiole) {
@@ -62,7 +62,7 @@ bool Yeux::detecter(int idBestiole) {
     bool inDistance = (distance < deltaY);
     bool inVision = (inField && inDistance);
     // détection si dans le champ de vision et dans la distance
-    IBestiole *b = bestiole->getMilieu()->getBestiole(idBestiole);
+    auto b = bestiole->getMilieu()->getBestiole(idBestiole);
     detection = inVision && (gammaY > b->getDiscretion());
     return detection;
 }

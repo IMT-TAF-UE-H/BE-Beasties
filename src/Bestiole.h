@@ -54,7 +54,7 @@ public:
     Bestiole(Milieu *milieu, int type); // constructeur par défaut
     Bestiole(const Bestiole &b); // constructeur par copie
     ~Bestiole(void) override; // destructeur
-    IBestiole* clone() override; // clone
+    std::shared_ptr<IBestiole> clone() override; // clone
     void updatePos() override; // mise à jour de la position
     bool detecter(int idBestiole) override;
     bool collision() override;

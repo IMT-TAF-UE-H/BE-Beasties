@@ -20,11 +20,11 @@ private:
     static double PSI_MAX;
 
 public:
-    Camouflage(IBestiole* b);
+    Camouflage(std::shared_ptr<IBestiole> b);
     Camouflage(Camouflage &c);
     ~Camouflage() override;
     static void setLimites(double _PSI_MIN, double _PSI_MAX);
-    IBestiole* clone() override;
+    std::shared_ptr<IBestiole> clone() override;
     double getDiscretion() const override;
 };
 

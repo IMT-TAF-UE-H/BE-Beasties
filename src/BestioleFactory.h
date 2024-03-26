@@ -18,8 +18,8 @@ public:
 
     // Méthode pour créer une bestiole
     // Remplacez "Bestiole" par le nom de votre classe de bestiole
-    IBestiole* naissance();
-    IBestiole* naissance(int type);
+    std::shared_ptr<IBestiole> naissance();
+    std::shared_ptr<IBestiole> naissance(int type);
 
 private:
     // Configuration de la factory

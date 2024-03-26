@@ -20,7 +20,7 @@ public:
     /**
      * Renvoie un clone de la bestiole, avec les mêmes caractéristiques, décorateurs et comportement.
      */
-    virtual IBestiole* clone() = 0;
+    virtual std::shared_ptr<IBestiole> clone() = 0;
     /**
      * Calcule la nouvelle position, et la modifie en place.
      * Renvoie l'état de décès de la bestiole (true=mort).

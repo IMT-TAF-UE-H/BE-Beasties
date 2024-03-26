@@ -6,7 +6,7 @@
 double Carapace::ETA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ETA_MAX"));
 double Carapace::OMEGA_MAX = std::stod(GlobalConfig::getInstance().getConfig("OMEGA_MAX"));
 
-Carapace::Carapace(IBestiole* b) {
+Carapace::Carapace(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     eta = (ETA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
     omega = (OMEGA_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
@@ -31,8 +31,8 @@ void Carapace::setLimites(double _OMEGA_MAX, double _ETA_MAX) {
     ETA_MAX = _ETA_MAX;
 }
 
-IBestiole* Carapace::clone() {
-    return new Carapace(*this);
+std::shared_ptr<IBestiole> Carapace::clone() {
+    return make_shared<Carapace>(*this);
 }
 
 void Carapace::updatePos() {

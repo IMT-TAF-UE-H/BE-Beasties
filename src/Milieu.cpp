@@ -13,8 +13,8 @@ double Milieu::width = 640.;
 double Milieu::height = 480.;
 double Milieu::DIST_MAX_VOISINS = std::stod(GlobalConfig::getInstance().getConfig("DIST_MAX_VOISINS")); 
 double Milieu::DIST_COLLISION = std::stod(GlobalConfig::getInstance().getConfig("DIST_COLLISION"));
-int Milieu::probaNaissanceSpontanee = std::stoi(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
-int Milieu::probaClonage = std::stoi(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
+double Milieu::probaNaissanceSpontanee = std::stod(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
+double Milieu::probaClonage = std::stod(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
 
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           listeBestioles() {
@@ -85,7 +85,7 @@ void Milieu::step(void) {
 
     // Naissance spontanée
 
-    if (std::rand() % 100 <= probaNaissanceSpontanee) {
+    if ((double) std::rand() / (double)RAND_MAX <= probaNaissanceSpontanee) {
         cout << "Naissance spontanée" << endl;
         addBestiole();
     }
@@ -93,9 +93,9 @@ void Milieu::step(void) {
     // Clonage
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
-        if (std::rand() % 100 <= probaClonage) {
+        if ((double) std::rand() / (double)RAND_MAX <= probaClonage) {
             cout << "Clonage" << endl;
-            IBestiole *bestiole = it->second->clone();
+            auto bestiole = it->second->clone();
             listeBestioles[bestiole->getId()] = bestiole;
         }
     }
@@ -127,24 +127,23 @@ void Milieu::step(void) {
 }
 
 void Milieu::tuer(int idBestiole) {
-    delete listeBestioles[idBestiole];
     listeBestioles.erase(idBestiole);
 }
 
-unique_ptr<std::map<int, IBestiole *>> Milieu::getVoisins(int idBestiole) {
-    auto voisins = make_unique<std::map<int, IBestiole *>>();
+unique_ptr<std::map<int, std::shared_ptr<IBestiole>>> Milieu::getVoisins(int idBestiole) {
+    auto voisins = make_unique<std::map<int, std::shared_ptr<IBestiole>>>();
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it)
         if (!(idBestiole == it->first) && it->second->getDistance(idBestiole) < DIST_MAX_VOISINS)
             (*voisins)[it->first] = it->second;
     return voisins;
 }
 
-IBestiole *Milieu::getBestiole(int idBestiole) {
+std::shared_ptr<IBestiole> Milieu::getBestiole(int idBestiole) {
     return listeBestioles[idBestiole];
 }
 
 void Milieu::addBestiole() {
-    IBestiole *bestiole = bestioleFactory->naissance();
+    auto bestiole = bestioleFactory->naissance();
     listeBestioles[bestiole->getId()] = bestiole;
 }
 

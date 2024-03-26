@@ -9,7 +9,7 @@ using namespace std;
 double Camouflage::PSI_MIN = std::stod(GlobalConfig::getInstance().getConfig("PSI_MIN")); 
 double Camouflage::PSI_MAX = std::stod(GlobalConfig::getInstance().getConfig("PSI_MAX")); 
 
-Camouflage::Camouflage(IBestiole* b) {
+Camouflage::Camouflage(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     psi = (PSI_MAX - PSI_MIN) * ((double)rand() / (double)RAND_MAX) + PSI_MIN;
     cout << "const Camouflage par defaut sur bestiole " << bestiole->getId() << endl;
@@ -31,8 +31,8 @@ void Camouflage::setLimites(double _PSI_MIN, double _PSI_MAX) {
     PSI_MAX = _PSI_MAX;
 }
 
-IBestiole* Camouflage::clone() {
-    return new Camouflage(*this);
+std::shared_ptr<IBestiole> Camouflage::clone() {
+    return make_shared<Camouflage>(*this);
 }
 
 double Camouflage::getDiscretion() const {

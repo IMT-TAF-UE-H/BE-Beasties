@@ -19,11 +19,11 @@ private:
     static double NU_MAX;
 
 public:
-    Nageoire(IBestiole* b);
+    Nageoire(std::shared_ptr<IBestiole> b);
     Nageoire(Nageoire &n);
     ~Nageoire() override;
     static void setLimites(double _NU_MAX);
-    IBestiole* clone() override;
+    std::shared_ptr<IBestiole> clone() override;
     void updatePos() override;
 };
 

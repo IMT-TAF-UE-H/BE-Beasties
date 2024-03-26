@@ -23,10 +23,10 @@ private:
     static const T white[];
     static double DIST_MAX_VOISINS;
     static double DIST_COLLISION;
-    static int probaNaissanceSpontanee;
-    static int probaClonage;
+    static double probaNaissanceSpontanee;
+    static double probaClonage;
 
-    std::map<int, IBestiole*> listeBestioles;
+    std::map<int, std::shared_ptr<IBestiole>> listeBestioles;
 
 public:
     static double width, height;
@@ -38,8 +38,8 @@ public:
     void step();
     void tuer(int idBestiole);
 
-    unique_ptr<std::map<int, IBestiole*>> getVoisins(int idBestiole);
-    IBestiole* getBestiole(int idBestiole);
+    unique_ptr<std::map<int, std::shared_ptr<IBestiole>>> getVoisins(int idBestiole);
+    std::shared_ptr<IBestiole> getBestiole(int idBestiole);
     void addBestiole();
 
 private:

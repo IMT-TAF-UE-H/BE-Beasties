@@ -27,14 +27,14 @@ private:
     static double GAMMA_O_MAX;
 
 public:
-    Oreilles(IBestiole* b);
+    Oreilles(std::shared_ptr<IBestiole> b);
     Oreilles(Oreilles &o);
     ~Oreilles() override;
     static void setLimites(double _DELTA_O_MIN,
                            double _DELTA_O_MAX,
                            double _GAMMA_O_MIN,
                            double _GAMMA_O_MAX);
-    IBestiole* clone() override;
+    std::shared_ptr<IBestiole> clone() override;
     bool detecter(int idBestiole) override;
 };
 

@@ -50,7 +50,7 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
 
 
     milieu = _milieu;
-    vieRestante = 1000;
+    vieRestante = 1000; // TODO mettre en paramètre ou random
     taille = 8.;
     x = Milieu::width * (rand() / (double)RAND_MAX);
     y = Milieu::height * (rand() / (double)RAND_MAX);
@@ -95,8 +95,8 @@ Bestiole::~Bestiole(void) {
     delete[] couleur;
 }
 
-IBestiole* Bestiole::clone() {
-    return new Bestiole(*this);
+std::shared_ptr<IBestiole> Bestiole::clone() {
+    return make_shared<Bestiole>(*this);
 }
 
 void Bestiole::updatePos() {
@@ -184,7 +184,7 @@ double Bestiole::getY() const {
 }
 
 double Bestiole::getDistance(int idBestiole) const {
-    IBestiole* b = milieu->getBestiole(idBestiole);
+    auto b = milieu->getBestiole(idBestiole);
     return sqrt((x - b->getX()) * (x - b->getX()) + (y - b->getY()) * (y - b->getY()));
 }
 

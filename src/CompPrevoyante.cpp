@@ -16,7 +16,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
     double deltaX = 0;
     double deltaY = 0;
 
-    IBestiole* b = monMilieu->getBestiole(idBestiole);
+    auto b = monMilieu->getBestiole(idBestiole);
 
     // Estimation de la nouvelle position des voisins
 
@@ -31,7 +31,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
 
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
         int idVoisin = it->first;
-        IBestiole* voisin = it->second;
+        auto voisin = it->second;
         if (b->detecter(idVoisin)) {
             voisinDetecte = true;
             posX_voisin = voisin->getX();

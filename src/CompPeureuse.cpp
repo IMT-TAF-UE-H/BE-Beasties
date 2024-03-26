@@ -18,7 +18,7 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
     double deltaX = 0;
     double deltaY = 0;
 
-    IBestiole* b = monMilieu->getBestiole(idBestiole);
+    auto b = monMilieu->getBestiole(idBestiole);
 
     // Calcul de la direction moyenne des voisins
 
@@ -37,7 +37,6 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
     // Lorsqu'il y a trop de voisins, la bestiole fuit
     if (count > MAX_COUNT) {
         direction /= count;
-        cout << "Peureuse fuit" << endl;
         // direction opposée
         direction += M_PI;
         b->setDirection(direction);

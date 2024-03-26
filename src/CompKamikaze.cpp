@@ -17,7 +17,7 @@ tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milie
     double deltaX = 0;
     double deltaY = 0;
 
-    IBestiole* b = monMilieu->getBestiole(idBestiole);
+    auto b = monMilieu->getBestiole(idBestiole);
 
     // trouve le voisin le plus proche et se dirige vers lui
 
