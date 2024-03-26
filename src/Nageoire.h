@@ -25,7 +25,6 @@ public:
     static void setLimites(double _NU_MAX);
     IBestiole* clone() override;
     void updatePos() override;
-    IBestiole* cloner() override;
 };
 
 #endif

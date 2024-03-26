@@ -26,7 +26,6 @@ public:
     static void setLimites(double _PSI_MIN, double _PSI_MAX);
     IBestiole* clone() override;
     double getDiscretion() const override;
-    IBestiole* cloner() override;
 };
 
 #endif

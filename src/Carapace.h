@@ -34,7 +34,6 @@ public:
     IBestiole* clone() override;
     void updatePos() override;
     bool collision() override;
-    IBestiole* cloner() override;
 };
 
 #endif

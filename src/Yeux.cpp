@@ -52,15 +52,6 @@ IBestiole* Yeux::clone() {
     return new Yeux(*this);
 }
 
-IBestiole* Yeux::cloner() {
-    cout << "cloner Yeux" << endl;
-    Yeux *y = new Yeux(bestiole->cloner());
-    y->alpha = alpha;
-    y->deltaY = deltaY;
-    y->gammaY = gammaY;
-    return y->clone();
-}
-
 bool Yeux::detecter(int idBestiole) {
     bool detection; 
     double distance = bestiole->getDistance(idBestiole);

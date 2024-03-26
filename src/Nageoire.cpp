@@ -33,13 +33,6 @@ IBestiole* Nageoire::clone() {
     cout << "const Nageoire par copie sur bestiole " << bestiole->getId() << endl;
 }
 
-IBestiole* Nageoire::cloner() {
-    cout << "cloner Nageoire" << endl;
-    Nageoire *n = new Nageoire(bestiole->cloner()); // Copie
-    n->nu = nu; // Recopie des attributs
-    return n->clone();
-}
-
 void Nageoire::updatePos() {
     double vitesse = bestiole->getVitesse();
     // Modification de la vitesse

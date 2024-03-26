@@ -45,7 +45,6 @@ public:
                            double _GAMMA_Y_MAX);
     IBestiole* clone() override;
     bool detecter(int idBestiole) override;
-    IBestiole* cloner() override;
 };
 
 #endif

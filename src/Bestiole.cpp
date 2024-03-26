@@ -52,8 +52,8 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
     milieu = _milieu;
     vieRestante = 1000;
     taille = 8.;
-    x = Milieu::width * rand() / (double)RAND_MAX;
-    y = Milieu::height * rand() / (double)RAND_MAX;
+    x = Milieu::width * (rand() / (double)RAND_MAX);
+    y = Milieu::height * (rand() / (double)RAND_MAX);
     direction = static_cast<double>(rand()) / RAND_MAX * 2. * M_PI;
     vitesse = static_cast<double>(rand()) / RAND_MAX * MAX_VITESSE;
 
@@ -72,14 +72,20 @@ Bestiole::Bestiole(const Bestiole &b) {
 
     cout << "const Bestiole (" << identite << ") par copie" << endl;
 
-    x = b.x;
-    y = b.y;
+    // nouveaux attributs
+    x = Milieu::width * (rand() / (double)RAND_MAX);
+    y = Milieu::height * (rand() / (double)RAND_MAX);
+    vieRestante = 1000;
+    // attributs conservés
     taille = b.taille;
     direction = b.direction;
     vitesse = b.vitesse;
     couleur = new T[3];
     memcpy(couleur, b.couleur, 3 * sizeof(T));
     milieu = b.milieu;
+    comportement = b.comportement;
+    discretion = b.discretion;
+    resistance = b.resistance;
 }
 
 Bestiole::~Bestiole(void) {
@@ -90,7 +96,7 @@ Bestiole::~Bestiole(void) {
 }
 
 IBestiole* Bestiole::clone() {
-    return this;
+    return new Bestiole(*this);
 }
 
 void Bestiole::updatePos() {
@@ -205,16 +211,4 @@ Milieu* Bestiole::getMilieu() {
 
 string Bestiole::getComportement() const {
     return comportement->getDescription();
-}
-
-IBestiole* Bestiole::cloner() {
-    Bestiole* b = new Bestiole(*this); // Copie
-
-    // Inversion de la direction et déplacement d'une itération
-    b->direction = direction + M_PI; 
-    b->x = x + cos(b->direction) * vitesse; 
-    b->y = y - sin(b->direction) * vitesse; 
-
-    return b->clone();
-    
 }

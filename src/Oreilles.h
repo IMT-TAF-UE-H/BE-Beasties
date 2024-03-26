@@ -36,7 +36,6 @@ public:
                            double _GAMMA_O_MAX);
     IBestiole* clone() override;
     bool detecter(int idBestiole) override;
-    IBestiole* cloner() override;
 };
 
 #endif

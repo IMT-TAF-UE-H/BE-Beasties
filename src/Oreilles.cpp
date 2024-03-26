@@ -43,14 +43,6 @@ IBestiole *Oreilles::clone() {
     return new Oreilles(*this);
 }
 
-IBestiole *Oreilles::cloner() {
-    cout << "cloner Oreilles" << endl;
-    Oreilles *o = new Oreilles(bestiole->cloner());
-    o->deltaO = deltaO;
-    o->gammaO = gammaO;
-    return o->clone();
-}
-
 bool Oreilles::detecter(int idBestiole) {
     bool detection;
     bool inDistance = bestiole->getDistance(idBestiole) < deltaO;
