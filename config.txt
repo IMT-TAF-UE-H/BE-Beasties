@@ -8,8 +8,13 @@ ETA_MAX=100.
 OMEGA_MAX=100.
 DIST_MAX_VOISINS=100.
 DIST_COLLISION=3.
+<<<<<<< HEAD
 probaNaissanceSpontanee=.001
 probaClonage=.001
+=======
+probaNaissanceSpontanee=0.
+probaClonage=0.001
+>>>>>>> 3e07055024abd245139f2f95bfd591fb40ef8302
 NU_MAX=100.
 DELTA_O_MIN=100.
 DELTA_O_MAX=200.

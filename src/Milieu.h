@@ -41,6 +41,7 @@ public:
     unique_ptr<std::map<int, std::shared_ptr<IBestiole>>> getVoisins(int idBestiole);
     std::shared_ptr<IBestiole> getBestiole(int idBestiole);
     void addBestiole();
+    void peupler(int nbBestioles);
 
 private:
     std::vector<int> getVaMourir();
