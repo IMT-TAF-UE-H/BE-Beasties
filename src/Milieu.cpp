@@ -15,8 +15,6 @@ double Milieu::DIST_MAX_VOISINS = std::stod(GlobalConfig::getInstance().getConfi
 double Milieu::DIST_COLLISION = std::stod(GlobalConfig::getInstance().getConfig("DIST_COLLISION"));
 double Milieu::probaNaissanceSpontanee = std::stod(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
 double Milieu::probaClonage = std::stod(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
-double Milieu::probaNaissanceSpontanee = std::stod(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
-double Milieu::probaClonage = std::stod(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
 
 Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
                                           listeBestioles() {
