@@ -85,7 +85,7 @@ void Milieu::step(void) {
 
     // Naissance spontanée
 
-    if (int randNum = std::rand() % 100 <= probaNaissanceSpontanee) {
+    if (std::rand() % 100 <= probaNaissanceSpontanee) {
         cout << "Naissance spontanée" << endl;
         addBestiole();
     }
@@ -93,7 +93,7 @@ void Milieu::step(void) {
     // Clonage
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
-        if (int randNum = std::rand() % 100 <= probaClonage) {
+        if (std::rand() % 100 <= probaClonage) {
             cout << "Clonage" << endl;
             IBestiole *bestiole = it->second->clone();
             listeBestioles[bestiole->getId()] = bestiole;

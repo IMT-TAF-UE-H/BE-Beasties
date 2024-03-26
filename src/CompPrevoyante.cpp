@@ -62,7 +62,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
         
         // Générer les intervalles
         
-        for (int i = 0; i < directions.size() - 1; i++) {
+        for (int i = 0; i < (int)directions.size() - 1; i++) {
             interval = directions[i + 1] - directions[i];
             if (interval < 0) {
                 interval += 2 * M_PI;
@@ -75,7 +75,7 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
 
         // Aller dans la direction qui correspond au centre de l'intervalle le plus grand
 
-        for (int i = 0; i < intervalles.size(); i++) {
+        for (int i = 0; i < (int)intervalles.size(); i++) {
             if (intervalles[i] > maxInterval) {
                 maxInterval = intervalles[i];
                 indexMaxInterval = i;

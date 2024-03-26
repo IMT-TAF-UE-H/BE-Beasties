@@ -32,8 +32,6 @@ tuple<double, double> ComportementMultiple::getDeplacement(int idBestiole, Milie
     // Choisir un comportement aléatoire (possible de logger le comportement choisi)
     int comportement = rand() % tous_comportements.size();
 
-
-    IBestiole* b = monMilieu->getBestiole(idBestiole);
     return tous_comportements[comportement]->getDeplacement(idBestiole, monMilieu);
 
 }
