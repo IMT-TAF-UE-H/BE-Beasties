@@ -98,7 +98,6 @@ void Milieu::step(void) {
 
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         if ((double) std::rand() / (double)RAND_MAX <= probaClonage) {
-            cout << "Clonage" << endl;
             auto bestiole = it->second->clone();
             listeBestioles[bestiole->getId()] = bestiole;
         }
