@@ -23,8 +23,8 @@ private:
     static const T white[];
     static double DIST_MAX_VOISINS;
     static double DIST_COLLISION;
-    static int probaNaissanceSpontanee;
-    static int probaClonage;
+    static double probaNaissanceSpontanee;
+    static double probaClonage;
 
     std::map<int, IBestiole*> listeBestioles;
 
@@ -41,6 +41,7 @@ public:
     unique_ptr<std::map<int, IBestiole*>> getVoisins(int idBestiole);
     IBestiole* getBestiole(int idBestiole);
     void addBestiole();
+    void peupler(int nbBestioles);
 
 private:
     std::vector<int> getVaMourir();

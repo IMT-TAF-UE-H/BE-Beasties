@@ -16,15 +16,6 @@ int main() {
     int height = std::stoi(GlobalConfig::getInstance().getConfig("height"));
     int delay = std::stoi(GlobalConfig::getInstance().getConfig("delay"));
     Aquarium ecosysteme(width, height, delay);
-
-    // Récupération du milieu
-    Milieu* milieu = ecosysteme.getMilieu();
-
-    // Ajout de 100 bestioles
-    int nbBestioles = std::stoi(GlobalConfig::getInstance().getConfig("nbBestioles"));
-    for (int i = 1; i <= nbBestioles; i++) { 
-      milieu->addBestiole();
-    }
     ecosysteme.run(); // Lancement de la simulation
 
     return 0;
