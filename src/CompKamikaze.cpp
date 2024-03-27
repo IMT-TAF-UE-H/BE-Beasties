@@ -4,6 +4,11 @@
 
 std::shared_ptr<ComportementKamikaze> ComportementKamikaze::instance = nullptr;
 
+/**
+ * @brief Construction de l'objet Comportement Kamikaze (Singleton)
+ * 
+ * @return std::shared_ptr<IComportement> 
+ */
 std::shared_ptr<IComportement> ComportementKamikaze::getInstance() {
     if (instance == nullptr) {
         std::shared_ptr<ComportementKamikaze> newShared(new ComportementKamikaze());
@@ -13,6 +18,15 @@ std::shared_ptr<IComportement> ComportementKamikaze::getInstance() {
     return instance;
 }
 
+/**
+ * @brief Calcul du déplacement de la bestiole selon le comportement kamikaze
+ * 
+ * Dans le cas où la bestiole ne détecte pas de voisins, elle se déplace dans la direction actuelle.
+ * 
+ * @param idBestiole 
+ * @param monMilieu 
+ * @return tuple<double, double> 
+ */
 tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;

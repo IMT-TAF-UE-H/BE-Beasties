@@ -75,6 +75,10 @@ public:
     virtual string getComportement() const override {
         return bestiole->getComportement();
     }
+
+    virtual int getVieRestante() const override {
+        return bestiole->getVieRestante();
+    }
 };
 
 #endif

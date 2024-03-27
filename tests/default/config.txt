@@ -32,3 +32,5 @@ p_camouflage=.1
 p_yeux=.7
 nbBestioles=100
 maxParDecorateur=2
+vieMax=10000
+vieMin=500

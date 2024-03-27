@@ -7,6 +7,11 @@ GlobalConfig::GlobalConfig()
     loadConfigFromFile("config.txt");
 }
 
+/**
+ * @brief Charge la configuration depuis un fichier
+ * 
+ * @param filename 
+ */
 void GlobalConfig::loadConfigFromFile(const std::string &filename)
 {
     std::ifstream configFile(filename);

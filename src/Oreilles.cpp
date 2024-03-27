@@ -9,24 +9,46 @@ double Oreilles::DELTA_O_MAX = std::stod(GlobalConfig::getInstance().getConfig("
 double Oreilles::GAMMA_O_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_O_MIN")); 
 double Oreilles::GAMMA_O_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_O_MAX"));
 
+/**
+ * @brief Constructeur par défaut de la classe Oreilles
+ * 
+ * @param b 
+ */
 Oreilles::Oreilles(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     deltaO = (DELTA_O_MAX - DELTA_O_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_O_MIN;
     gammaO = (GAMMA_O_MAX - GAMMA_O_MIN) * ((double)rand() / (double)RAND_MAX) + GAMMA_O_MIN;
-    cout << "const Oreilles par defaut sur bestiole " << bestiole->getId() << endl;
+    cout << "(" << bestiole->getId() << "): const. par defaut Oreilles" << endl;
 }
 
+/**
+ * @brief Constructeur par copie de la classe Oreilles
+ * 
+ * @param o 
+ */
 Oreilles::Oreilles(Oreilles &o) {
     bestiole = o.bestiole->clone();
     deltaO = o.deltaO;
     gammaO = o.gammaO;
-    cout << "const Oreilles par copie sur bestiole " << bestiole->getId() << endl;
+    cout << "(" << bestiole->getId() << "): const. par copie Oreilles" << endl;
 }
 
+/**
+ * @brief Destructeur de la classe Oreilles
+ * 
+ */
 Oreilles::~Oreilles() {
-    cout << "dest Oreilles" << endl;
+    cout << "(" << bestiole->getId() << "): dest Oreilles" << endl;
 }
 
+/**
+ * @brief Setter des limites
+ * 
+ * @param _DELTA_O_MIN 
+ * @param _DELTA_O_MAX 
+ * @param _GAMMA_O_MIN 
+ * @param _GAMMA_O_MAX 
+ */
 void Oreilles::setLimites(double _DELTA_O_MIN,
                           double _DELTA_O_MAX,
                           double _GAMMA_O_MIN,
@@ -39,10 +61,22 @@ void Oreilles::setLimites(double _DELTA_O_MIN,
     GAMMA_O_MAX = _GAMMA_O_MAX;
 }
 
+/**
+ * @brief Clone une oreille
+ * 
+ * @return std::shared_ptr<IBestiole> 
+ */
 std::shared_ptr<IBestiole> Oreilles::clone() {
     return make_shared<Oreilles>(*this);
 }
 
+/**
+ * @brief Méthode qui détecte une bestiole
+ * 
+ * @param idBestiole 
+ * @return true 
+ * @return false 
+ */
 bool Oreilles::detecter(int idBestiole) {
     bool detection;
     bool inDistance = bestiole->getDistance(idBestiole) < deltaO;

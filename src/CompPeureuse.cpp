@@ -6,6 +6,11 @@ int MAX_COUNT = 1;
 
 std::shared_ptr<ComportementPeureuse> ComportementPeureuse::instance = nullptr;
 
+/**
+ * @brief Construction de l'objet Comportement Peureuse (Singleton)
+ * 
+ * @return std::shared_ptr<IComportement> 
+ */
 std::shared_ptr<IComportement> ComportementPeureuse::getInstance() {
     if (instance == nullptr) {
         shared_ptr<ComportementPeureuse> newShared(new ComportementPeureuse());
@@ -14,6 +19,15 @@ std::shared_ptr<IComportement> ComportementPeureuse::getInstance() {
     return instance;
 }
 
+/**
+ * @brief Calcul du déplacement de la bestiole selon le comportement peureuse
+ * 
+ * Dans le cas où la bestiole ne détecte pas de voisins, elle se déplace dans la direction actuelle.
+ * 
+ * @param idBestiole 
+ * @param monMilieu 
+ * @return tuple<double, double> 
+ */
 tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;
@@ -42,6 +56,7 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
         b->setDirection(direction);
         // doublement de la vitesse
         vitesse = 2 * b->getVitesse();
+        cout << "(" << idBestiole << "): je fuis" << endl;
     } else {
         direction = b->getDirection();
         vitesse = b->getVitesse();
