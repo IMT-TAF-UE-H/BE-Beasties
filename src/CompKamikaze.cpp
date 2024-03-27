@@ -37,6 +37,7 @@ tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milie
 
     double distanceMin = 1000000;
     bool voisinDetecte = false;
+    double dir = 0;
 
     auto voisins = monMilieu->getVoisins(idBestiole);
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
@@ -45,17 +46,22 @@ tuple<double, double> ComportementKamikaze::getDeplacement(int idBestiole, Milie
             if (distance < distanceMin) {
                 distanceMin = distance;
                 voisinDetecte = true;
-                deltaX = it->second->getX() - b->getX();
-                deltaY = it->second->getY() - b->getY();
+                dir = atan2(it->second->getY() - b->getY(), it->second->getX() - b->getX());
             }
         }
     }
     
+    double vitesse = b->getVitesse();
     if (!voisinDetecte) {
         double direction = b->getDirection();
-        double vitesse = b->getVitesse();
         deltaX = cos(direction) * vitesse;
         deltaY = -sin(direction) * vitesse;
+    }
+    else {
+        cout << "(" << b->getId() << ") Kamikaze! " << endl;
+        deltaX = cos(dir) * vitesse;
+        deltaY = -sin(dir) * vitesse;
+        b->setDirection(dir);
     }
 
     return make_tuple(deltaX, deltaY);
