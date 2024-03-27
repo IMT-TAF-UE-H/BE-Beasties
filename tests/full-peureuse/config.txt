@@ -2,6 +2,7 @@ width=640
 height=480
 delay=30
 MAX_VITESSE=5.
+MIN_VITESSE=3.
 PSI_MIN=0.
 PSI_MAX=0.
 ETA_MAX=2.

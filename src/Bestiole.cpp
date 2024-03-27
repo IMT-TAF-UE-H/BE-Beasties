@@ -12,6 +12,7 @@
 #include "GlobalConfig.h"
 
 const double Bestiole::MAX_VITESSE = std::stod(GlobalConfig::getInstance().getConfig("MAX_VITESSE"));
+const double Bestiole::MIN_VITESSE = std::stod(GlobalConfig::getInstance().getConfig("MIN_VITESSE"));
 
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
 
@@ -55,7 +56,7 @@ Bestiole::Bestiole(Milieu *_milieu, int type) {
     x = Milieu::width * (rand() / (double)RAND_MAX);
     y = Milieu::height * (rand() / (double)RAND_MAX);
     direction = static_cast<double>(rand()) / RAND_MAX * 2. * M_PI;
-    vitesse = static_cast<double>(rand()) / RAND_MAX * MAX_VITESSE;
+    vitesse = MIN_VITESSE + (MAX_VITESSE - MIN_VITESSE) * (rand() / (double)RAND_MAX);
 
     couleur = new T[3];
     couleur[0] = static_cast<int>(static_cast<double>(rand()) / RAND_MAX * 255.);

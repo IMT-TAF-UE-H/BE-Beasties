@@ -49,6 +49,7 @@ private:
     T *couleur;
 
     static const double MAX_VITESSE;
+    static const double MIN_VITESSE;
 
 public:
     Bestiole(Milieu *milieu, int type); // constructeur par défaut
