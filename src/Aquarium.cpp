@@ -13,7 +13,7 @@ int Aquarium::width = 640;
 int Aquarium::height = 480;
 
 
-Aquarium::Aquarium() : CImgDisplay()
+Aquarium::Aquarium( ofstream &logFile ) : CImgDisplay()
 {
 
    int         screenWidth = 1280; //screen_width();

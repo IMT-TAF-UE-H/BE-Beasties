@@ -22,7 +22,7 @@ private :
    static int height;
 
 public :
-   Aquarium();
+   Aquarium( ofstream &logFile );
    ~Aquarium( void );
 
    static void setLimites( int _width, int _height, int _delay );
