@@ -18,15 +18,11 @@ de l'école d'ingénieur IMT Atlantique. Les exigences du livrable sont spécifi
 Un [guide de déploiement et d'utilisation](./docs/DEPLOYING.md), expliquant comment compiler et utiliser l'application,
 est disponible dans la section [documentation](./docs).
 
-## Metadata
+## Informations relatives
 
-- **Timestamp**: 2024-03-08
-- **Dernière mise à jour**: 2024-03-27
-- **Statut**: Terminé et fonctionnel
-- **Version courante**: 0.1.1
 - **Plateformes supportées**: Linux (Ubuntu 22.04 LTS),  Windows (WSL requis)
 - **Langages de programmation**:
-    - C++ 11
+    - C++ 14
 - **Librairies / Frameworks / Plateformes**:
     - C++ STL
 
