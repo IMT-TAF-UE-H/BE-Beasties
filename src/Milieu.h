@@ -32,7 +32,7 @@ public:
     static double width, height;
 
 public:
-    Milieu(int _width, int _height);
+    Milieu(int _width, int _height, ofstream &logFile);
     ~Milieu(void);
 
     void step();
@@ -46,7 +46,7 @@ public:
 private:
     std::vector<int> getVaMourir();
     BestioleFactory* bestioleFactory;
-    ofstream logFile;
+    ofstream& logFile;
 };
 
 #endif

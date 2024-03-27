@@ -20,7 +20,7 @@ private :
    int            delay;
 
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( int width, int height, int _delay , ofstream &logFile);
    ~Aquarium( void );
 
    Milieu* getMilieu( void ) { return flotte; }

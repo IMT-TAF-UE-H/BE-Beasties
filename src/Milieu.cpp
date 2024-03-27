@@ -25,8 +25,8 @@ double Milieu::probaClonage = std::stod(GlobalConfig::getInstance().getConfig("p
  * @param _width 
  * @param _height 
  */
-Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
-                                          listeBestioles() {
+Milieu::Milieu(int _width, int _height, ofstream &_logFile) : UImg(_width, _height, 1, 3),
+                                          listeBestioles(), logFile(_logFile) {
     width = _width;
     height = _height;
 
@@ -38,21 +38,6 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     double p_gregaire = std::stod(GlobalConfig::getInstance().getConfig("p_gregaire"));
     double p_prevoyante = std::stod(GlobalConfig::getInstance().getConfig("p_prevoyante"));
     bestioleFactory = new BestioleFactory(this, p_kamikaze, p_peureuse, p_gregaire, p_prevoyante); 
-
-    // Initialisation du fichier de log
-    cout << "Ouverture du fichier de log" << endl;
-    if (remove("log.csv") != 0) {
-        cout << "Erreur lors de la suppression du fichier de log" << endl;
-    }
-    // if already open, close it
-    if (logFile.is_open()) {
-        logFile.close();
-    }
-
-    logFile.open("log.csv", ios::out);
-    cout << "Fichier de log ouvert" << endl;
-    // Entête du fichier de log
-    logFile << "Peureuse,Gregaire,Kamikaze,Prevoyante,Multiple\n";
 
     srand(time(NULL));
 
@@ -72,8 +57,6 @@ Milieu::~Milieu(void) {
     for (auto it = listeBestioles.cbegin(); it != listeBestioles.cend();) {
         tuer((it++)->first);
     }
-    // fermeture du fichier de log
-    logFile.close();
 
     // destruction de la factorie
     delete bestioleFactory;
