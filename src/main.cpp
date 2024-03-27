@@ -20,9 +20,7 @@ void initLogger(ofstream &logFile, string conf_name) {
     // Initialisation du fichier de log
     const char* log_addr = ("logs/"+conf_name+".csv").c_str();
     cout << "Ouverture du fichier de log" << endl;
-    if (remove(log_addr) != 0) {
-        cout << "Erreur lors de la suppression du fichier de log" << endl;
-    }
+    remove(log_addr);
 
     logFile.open(log_addr, ios::out);
     cout << "Fichier de log ouvert" << endl;
