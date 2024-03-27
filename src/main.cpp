@@ -12,15 +12,16 @@ using namespace std;
 
 void initLogger(ofstream &logFile, string conf_name) {
 
+    // if already open, close it
+    if (logFile.is_open()) {
+        logFile.close();
+    }
+
     // Initialisation du fichier de log
     const char* log_addr = ("logs/"+conf_name+".csv").c_str();
     cout << "Ouverture du fichier de log" << endl;
     if (remove(log_addr) != 0) {
         cout << "Erreur lors de la suppression du fichier de log" << endl;
-    }
-    // if already open, close it
-    if (logFile.is_open()) {
-        logFile.close();
     }
 
     logFile.open(log_addr, ios::out);
@@ -48,6 +49,7 @@ int main(int argc, char *argv[]) {
     GlobalConfig::setLimites();
     Aquarium ecosysteme(logger);
     ecosysteme.run(); // Lancement de la simulation
+    logger.close();
 
     return 0;
 }

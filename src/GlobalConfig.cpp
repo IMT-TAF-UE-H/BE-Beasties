@@ -16,10 +16,6 @@
 
 std::map<std::string, std::string> GlobalConfig::configMap;
 
-GlobalConfig::GlobalConfig() {
-    loadConfigFromFile("config/default.conf");
-}
-
 /**
  * @brief Charge la configuration depuis un fichier
  * 

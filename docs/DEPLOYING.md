@@ -20,7 +20,7 @@ After [compiling the project](#compile-the-project), you can run the executable 
 ```bash
 ./main [config]
 ```
-`config` argument is optional, and must correspond to the name of a `.conf` file in the folder `config/`. It overrides configuration from `default.conf` Any unspecified parameters will be picked from the default config, which can be changed using the `DEFAULT_CONFIG_FILE` parameter. </br>
+`config` argument is optional, and must correspond to the name of a `.conf` file in the folder `config/`. It overrides configuration from `default.conf` Any unspecified parameters will be picked from the default config that has to be set in the `DEFAULT_CONFIG_FILE` parameter. </br>
 For instance, this command will use the `config/default.conf` config file :
 ```bash
 ./main default
