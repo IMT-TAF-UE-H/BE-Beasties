@@ -327,7 +327,7 @@ void Bestiole::setDirection(double _direction) {
  */
 double Bestiole::getDirectionTo(int idBestiole) const {
     auto b = milieu->getBestiole(idBestiole);
-    return atan2(b->getY() - y, b->getX() - x);
+    return fmod(-atan2((b->getY() - y), b->getX() - x), 2 * M_PI);
 }
 
 /**
