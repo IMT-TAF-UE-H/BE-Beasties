@@ -26,6 +26,10 @@ void GlobalConfig::loadConfigFromFile(const std::string &filename)
             {
                 std::string key = line.substr(0, delimiterPos);
                 std::string value = line.substr(delimiterPos + 1);
+                if(key == "DEFAULT_CONFIG_FILE")
+                {
+                    loadConfigFromFile(value);
+                }
                 configMap[key] = value;
             }
         }
