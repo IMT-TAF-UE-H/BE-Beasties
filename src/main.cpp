@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     // C40x480 pixels, 30ms de délai Création de l'écosystème
     GlobalConfig::loadConfigFromFile("config/"+conf_name+".conf");
     GlobalConfig::setLimites();
-    Aquarium ecosysteme;
+    Aquarium ecosysteme();
     ecosysteme.run(); // Lancement de la simulation
 
     return 0;
