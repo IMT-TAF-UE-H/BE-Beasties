@@ -57,7 +57,11 @@ tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Mil
 
             // Calcul de la direction du voisin (vers sa position estimée)
 
-            directions.push_back(atan2(posY_voisin - posY, posX_voisin - posX));
+            double dir = atan2(posY_voisin - posY, posX_voisin - posX);
+            if (dir < 0) {
+                dir += 2 * M_PI;
+            }
+            directions.push_back(dir);
 
         }
     }
