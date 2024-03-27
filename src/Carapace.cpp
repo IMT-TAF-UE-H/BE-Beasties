@@ -3,8 +3,9 @@
 #include <iostream>
 #include "GlobalConfig.h"
 
-double Carapace::ETA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ETA_MAX"));
-double Carapace::OMEGA_MAX = std::stod(GlobalConfig::getInstance().getConfig("OMEGA_MAX"));
+double Carapace::OMEGA_MAX = 0.9;
+double Carapace::ETA_MAX = 0.9;
+
 
 /**
  * @brief Constructeur de la classe Carapace

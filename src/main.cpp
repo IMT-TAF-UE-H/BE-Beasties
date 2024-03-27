@@ -44,10 +44,9 @@ int main(int argc, char *argv[]) {
     initLogger(logger, conf_name);
 
     // C40x480 pixels, 30ms de délai Création de l'écosystème
-    int width = std::stoi(GlobalConfig::getInstance().getConfig("width"));
-    int height = std::stoi(GlobalConfig::getInstance().getConfig("height"));
-    int delay = std::stoi(GlobalConfig::getInstance().getConfig("delay"));
-    Aquarium ecosysteme(width, height, delay, logger);
+    GlobalConfig::loadConfigFromFile("default.conf");
+    GlobalConfig::setLimites();
+    Aquarium ecosysteme;
     ecosysteme.run(); // Lancement de la simulation
 
     return 0;

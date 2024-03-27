@@ -11,10 +11,12 @@ class IBestiole;
 class BestioleFactory {
 public:
     // Constructeur 
-    BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse, double p_gregaire, double p_prevoyante); 
+    BestioleFactory(Milieu *m);
 
     // Destructeur
     ~BestioleFactory(); 
+
+    static void setLimites(double _p_kamikaze, double _p_peureuse, double _p_gregaire, double _p_prevoyante, double _p_carapace, double _p_nageoire, double _p_oreilles, double _p_yeux, double _p_camouflage, int _maxParDecorateur); 
 
     // Méthode pour créer une bestiole
     // Remplacez "Bestiole" par le nom de votre classe de bestiole
@@ -23,8 +25,15 @@ public:
 
 private:
     // Configuration de la factory
-    double repartition[5]; // Proportion de bestioles de chaque type
+    static double repartition[5]; // Proportion de bestioles de chaque type
     Milieu *milieu; // Milieu dans lequel les bestioles évoluent
+
+    static double p_carapace;
+    static double p_nageoire;
+    static double p_oreilles;
+    static double p_yeux;
+    static double p_camouflage;
+    static int maxParDecorateur;
 
 
 };

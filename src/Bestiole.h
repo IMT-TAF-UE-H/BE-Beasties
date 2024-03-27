@@ -48,10 +48,10 @@ private:
     double taille;
     T *couleur;
 
-    static const double MAX_VITESSE;
-    static const double MIN_VITESSE;
-    static const int vieMax;
-    static const int vieMin;
+    static double MAX_VITESSE;
+    static double MIN_VITESSE;
+    static int vieMax;
+    static int vieMin;
 
 public:
     Bestiole(Milieu *milieu, int type); // constructeur par défaut
@@ -61,6 +61,7 @@ public:
     void updatePos() override; // mise à jour de la position
     bool detecter(int idBestiole) override;
     bool collision() override;
+    static void setLimites(double _MAX_VITESSE, double _MIN_VITESSE, int _vieMax, int _vieMin);
     double getVitesse() override;
     void setVitesse(double vitesse) override;
     double getResistance() override;

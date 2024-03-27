@@ -4,12 +4,14 @@
 #include <math.h>
 #include "GlobalConfig.h"
 
-double Yeux::ALPHA_MIN = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MIN")); 
-double Yeux::ALPHA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MAX")); 
-double Yeux::DELTA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MIN")); 
-double Yeux::DELTA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MAX"));
-double Yeux::GAMMA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MIN")); 
-double Yeux::GAMMA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MAX")); 
+
+double Yeux::ALPHA_MIN = 0.1;
+double Yeux::ALPHA_MAX = 0.9;
+double Yeux::DELTA_Y_MIN = 1;
+double Yeux::DELTA_Y_MAX = 10;
+double Yeux::GAMMA_Y_MIN = 0.1;
+double Yeux::GAMMA_Y_MAX = 0.9;
+
 
 /**
  * @brief Constructeur par défaut de la classe Yeux
