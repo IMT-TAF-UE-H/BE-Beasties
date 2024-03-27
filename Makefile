@@ -1,4 +1,4 @@
-MAC_FLAGS = -I/opt/X11/include
+MAC_FLAGS = -I/opt/X14/include
 
 SRC_DIR = src
 OBJ_DIR = .
