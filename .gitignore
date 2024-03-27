@@ -23,4 +23,6 @@ main
 testDecorateurs
 out/
 target/
-log.csv
+logs/*
+config/*
+!config/default.conf
