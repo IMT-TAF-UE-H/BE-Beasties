@@ -57,12 +57,28 @@ bool Yeux::detecter(int idBestiole) {
     double distance = bestiole->getDistance(idBestiole);
     double directionTo = bestiole->getDirectionTo(idBestiole);
     double direction = bestiole->getDirection();
-    double angle = directionTo - direction;
-    bool inField = (angle > alpha - M_PI / 2 && angle < alpha + M_PI / 2);
+    
+    if (direction < 0) {
+        direction += 2 * M_PI;
+    }
+    if (directionTo < 0) {
+        directionTo += 2 * M_PI;
+    }
+    direction = fmod(direction, 2 * M_PI);
+    directionTo = fmod(directionTo, 2 * M_PI);
+    double angle = fabs(direction - directionTo); 
+
+    if (angle > M_PI) {
+        angle = 2 * M_PI - angle;
+    }
+    bool inField = (angle < alpha / 2);
     bool inDistance = (distance < deltaY);
     bool inVision = (inField && inDistance);
     // détection si dans le champ de vision et dans la distance
     auto b = bestiole->getMilieu()->getBestiole(idBestiole);
     detection = inVision && (gammaY > b->getDiscretion());
+    if (detection) {
+        cout << direction << " " << directionTo << " " << angle << " " << alpha << " " << distance << endl; 
+    }
     return detection;
 }
