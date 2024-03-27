@@ -12,16 +12,15 @@ using namespace std;
 
 void initLogger(ofstream &logFile, string conf_name) {
 
-    // Initialisation du fichier de log
-    const char* log_addr = ("logs/"+conf_name+".csv").c_str();
-    cout << "Ouverture du fichier de log" << endl;
-    if (remove(log_addr) != 0) {
-        cout << "Erreur lors de la suppression du fichier de log" << endl;
-    }
     // if already open, close it
     if (logFile.is_open()) {
         logFile.close();
     }
+
+    // Initialisation du fichier de log
+    const char* log_addr = ("logs/"+conf_name+".csv").c_str();
+    cout << "Ouverture du fichier de log" << endl;
+    remove(log_addr);
 
     logFile.open(log_addr, ios::out);
     cout << "Fichier de log ouvert" << endl;
@@ -44,11 +43,11 @@ int main(int argc, char *argv[]) {
     initLogger(logger, conf_name);
 
     // C40x480 pixels, 30ms de délai Création de l'écosystème
-    int width = std::stoi(GlobalConfig::getInstance().getConfig("width"));
-    int height = std::stoi(GlobalConfig::getInstance().getConfig("height"));
-    int delay = std::stoi(GlobalConfig::getInstance().getConfig("delay"));
-    Aquarium ecosysteme(width, height, delay, logger);
+    GlobalConfig::loadConfigFromFile("config/"+conf_name+".conf");
+    GlobalConfig::setLimites();
+    Aquarium ecosysteme(logger);
     ecosysteme.run(); // Lancement de la simulation
+    logger.close();
 
     return 0;
 }

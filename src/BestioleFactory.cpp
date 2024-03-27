@@ -5,7 +5,14 @@
 #include "Yeux.h"
 #include "Camouflage.h"
 #include "Bestiole.h"
-#include "GlobalConfig.h"
+
+double BestioleFactory::repartition[5];
+double BestioleFactory::p_carapace;
+double BestioleFactory::p_nageoire;
+double BestioleFactory::p_oreilles;
+double BestioleFactory::p_yeux;
+double BestioleFactory::p_camouflage;
+int BestioleFactory::maxParDecorateur;
 
 /**
  * @brief Constructeur de la classe BestioleFactory
@@ -13,22 +20,8 @@
  * Les probabilités de répartition des types de bestioles sont passées en paramètre.
  * La probabilité de la dernière classe (Multiple) est calculée automatiquement.
  * 
- * @param m 
- * @param p_kamikaze 
- * @param p_peureuse 
- * @param p_gregaire 
- * @param p_prevoyante 
  */
-BestioleFactory::BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse, double p_gregaire, double p_prevoyante) {
-    if (p_kamikaze + p_peureuse + p_gregaire + p_prevoyante > 1) {
-        throw std::invalid_argument("La somme des probabilités doit être inférieure à 1");
-    }
-    repartition[0] = p_kamikaze;
-    repartition[1] = p_peureuse;
-    repartition[2] = p_gregaire;
-    repartition[3] = p_prevoyante;
-    repartition[4] = 1 - (p_kamikaze + p_peureuse + p_gregaire + p_prevoyante);
-
+BestioleFactory::BestioleFactory(Milieu *m) { 
     milieu = m;
 }
 
@@ -38,6 +31,29 @@ BestioleFactory::BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse
  */
 BestioleFactory::~BestioleFactory() {
     //dtor
+}
+
+/**
+ * @brief Définit les probabilités de répartition des types de bestioles
+ * 
+ * @param _p_kamikaze 
+ * @param _p_peureuse 
+ * @param _p_gregaire 
+ * @param _p_prevoyante 
+ */
+
+void BestioleFactory::setLimites(double _p_kamikaze, double _p_peureuse, double _p_gregaire, double _p_prevoyante, double _p_carapace, double _p_nageoire, double _p_oreilles, double _p_yeux, double _p_camouflage, int _maxParDecorateur) {
+    repartition[0] = _p_kamikaze;
+    repartition[1] = _p_peureuse;
+    repartition[2] = _p_gregaire;
+    repartition[3] = _p_prevoyante;
+    repartition[4] = 1 - _p_kamikaze - _p_peureuse - _p_gregaire - _p_prevoyante;
+    p_carapace = _p_carapace;
+    p_nageoire = _p_nageoire;
+    p_oreilles = _p_oreilles;
+    p_yeux = _p_yeux;
+    p_camouflage = _p_camouflage;
+    maxParDecorateur = _maxParDecorateur;
 }
 
 /**
@@ -69,12 +85,6 @@ std::shared_ptr<IBestiole> BestioleFactory::naissance() {
 std::shared_ptr<IBestiole> BestioleFactory::naissance(int type) {
     std::shared_ptr<IBestiole> b = make_shared<Bestiole>(milieu, type);
     // Ajout de décorateurs à la bestiole de façon aléatoire
-    double p_carapace = std::stod(GlobalConfig::getInstance().getConfig("p_carapace"));
-    double p_nageoire = std::stod(GlobalConfig::getInstance().getConfig("p_nageoire"));
-    double p_oreilles = std::stod(GlobalConfig::getInstance().getConfig("p_oreilles"));
-    double p_yeux = std::stod(GlobalConfig::getInstance().getConfig("p_yeux"));
-    double p_camouflage = std::stod(GlobalConfig::getInstance().getConfig("p_camouflage"));
-    int maxParDecorateur = std::stoi(GlobalConfig::getInstance().getConfig("maxParDecorateur"));
 
     int nb = 0;
     while (rand() / (double)RAND_MAX < p_carapace && nb++ < maxParDecorateur) {

@@ -1,4 +1,4 @@
-MAC_FLAGS = -I/opt/X11/include
+MAC_FLAGS = -I/opt/X14/include
 
 SRC_DIR = src
 OBJ_DIR = .
@@ -59,10 +59,10 @@ $(OBJ_DIR)/CompPeureuse.o : $(SRC_DIR)/CompPeureuse.h $(SRC_DIR)/CompPeureuse.cp
 $(OBJ_DIR)/CompPrevoyante.o : $(SRC_DIR)/CompPrevoyante.h $(SRC_DIR)/CompPrevoyante.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompPrevoyante.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
-$(OBJ_DIR)/CompMultiple.o : $(SRC_DIR)/CompMultiple.h $(SRC_DIR)/CompMultiple.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
+$(OBJ_DIR)/CompMultiple.o :  $(SRC_DIR)/CompMultiple.h $(SRC_DIR)/CompMultiple.cpp $(SRC_DIR)/IComportement.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/CompMultiple.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
-$(OBJ_DIR)/GlobalConfig.o : $(SRC_DIR)/GlobalConfig.h $(SRC_DIR)/GlobalConfig.cpp
+$(OBJ_DIR)/GlobalConfig.o : $(SRC_DIR)/GlobalConfig.h $(SRC_DIR)/GlobalConfig.cpp $(SRC_DIR)/Camouflage.h $(SRC_DIR)/Carapace.h $(SRC_DIR)/Nageoire.h $(SRC_DIR)/Oreilles.h $(SRC_DIR)/Yeux.h $(SRC_DIR)/Bestiole.h $(SRC_DIR)/BestioleFactory.h $(SRC_DIR)/Aquarium.h 
 	g++ -Wall -std=$(VERSION) -c $(SRC_DIR)/GlobalConfig.cpp -o $@ -I $(SRC_DIR) $(MAC_FLAGS)
 
 

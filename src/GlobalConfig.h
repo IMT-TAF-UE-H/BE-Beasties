@@ -7,16 +7,13 @@
 class GlobalConfig
 {
 private:
-    std::map<std::string, std::string> configMap;
-
-    GlobalConfig(); // private constructor
-
-    void loadConfigFromFile(const std::string &filename);
+    static std::map<std::string, std::string> configMap;
 
 public:
-    static GlobalConfig &getInstance();
+    static void loadConfigFromFile(const std::string &filename);
+    static void setLimites();
+    static std::string getConfig(const std::string &key); 
 
-    std::string getConfig(const std::string &key) const;
 };
 
 #endif
