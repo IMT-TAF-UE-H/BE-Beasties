@@ -16,13 +16,16 @@
 
 std::map<std::string, std::string> GlobalConfig::configMap;
 
+GlobalConfig::GlobalConfig() {
+    loadConfigFromFile("config/default.conf");
+}
+
 /**
  * @brief Charge la configuration depuis un fichier
  * 
  * @param filename 
  */
-void GlobalConfig::loadConfigFromFile(const std::string &filename)
-{
+void GlobalConfig::loadConfigFromFile(const std::string &filename) {
     std::ifstream configFile(filename);
     if (configFile.is_open())
     {
@@ -37,7 +40,7 @@ void GlobalConfig::loadConfigFromFile(const std::string &filename)
                 std::string value = line.substr(delimiterPos + 1);
                 if(key == "DEFAULT_CONFIG_FILE")
                 {
-                    loadConfigFromFile(value);
+                    loadConfigFromFile("config/"+value+".conf");
                 }
                 configMap[key] = value;
             }
