@@ -220,11 +220,7 @@ std::vector<int> Milieu::getVaMourir() {
     std::vector<int> vaMourir;
     for (auto it = listeBestioles.begin(); it != listeBestioles.end(); ++it) {
         for (auto it2 = listeBestioles.begin(); it2 != listeBestioles.end(); ++it2) {
-            if (it->first != it2->first && it->second->getDistance(it2->first) < DIST_COLLISION && it->second->collision()) {
-                vaMourir.push_back(it->first);
-                break;
-            }
-            if (it->second->getVieRestante() <= 0) {
+            if ((it->first != it2->first && it->second->getDistance(it2->first) < DIST_COLLISION && it->second->collision()) || it->second->getVieRestante() <= 0) {
                 vaMourir.push_back(it->first);
                 break;
             }
