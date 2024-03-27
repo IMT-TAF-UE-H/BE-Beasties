@@ -113,8 +113,5 @@ bool Yeux::detecter(int idBestiole) {
     // détection si dans le champ de vision et dans la distance
     auto b = bestiole->getMilieu()->getBestiole(idBestiole);
     detection = inVision && (gammaY > b->getDiscretion());
-    if (detection) {
-        cout << direction << " " << directionTo << " " << angle << " " << alpha << " " << distance << endl; 
-    }
     return detection;
 }

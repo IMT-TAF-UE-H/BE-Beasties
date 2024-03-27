@@ -1,5 +1,5 @@
-width=300
-height=200
+width=640
+height=480
 delay=30
 MAX_VITESSE=2.
 MIN_VITESSE=2.
@@ -31,5 +31,7 @@ p_nageoire=0.
 p_oreilles=0.
 p_camouflage=0.
 p_yeux=1.
-nbBestioles=10
+nbBestioles=100
 maxParDecorateur=1
+vieMax=10000
+vieMin=500
