@@ -12,13 +12,11 @@ private:
 
     GlobalConfig(); // private constructor
 
+public: 
+
     void loadConfigFromFile(const std::string &filename);
     void setLimites();
 
-public:
-    static std::shared_ptr<GlobalConfig> getInstance();
-
-    std::string getConfig(const std::string &key) const;
 };
 
 #endif

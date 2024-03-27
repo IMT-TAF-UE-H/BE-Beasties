@@ -114,28 +114,3 @@ void GlobalConfig::setLimites()
 
 
 }
-
-std::shared_ptr<GlobalConfig> GlobalConfig::getInstance()
-{
-    if (instance == nullptr)
-    {
-        std::shared_ptr<GlobalConfig> newShared(new GlobalConfig());
-        instance = std::move(newShared);
-    }
-    return instance;
-}
-
-
-std::string GlobalConfig::getConfig(const std::string &key) const
-{
-    auto it = configMap.find(key);
-    if (it != configMap.end())
-    {
-        return it->second;
-    }
-    else
-    {
-        std::cerr << "Error: Configuration key " << key << " not found" << std::endl;
-        return "";
-    }
-}
