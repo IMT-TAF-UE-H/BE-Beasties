@@ -44,7 +44,7 @@ tuple<double, double> ComportementPeureuse::getDeplacement(int idBestiole, Milie
 
     for (auto it = voisins->begin(); it != voisins->end(); ++it) {
         if (b->detecter(it->first)) {
-            double dir = it->second->getDirection();
+            double dir = b->getDirectionTo(it->second->getId());
             if (dir < 0) {
                 dir += 2 * M_PI;
             }
