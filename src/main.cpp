@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/**
+ * @brief Main
+ * 
+ * Crée un aquarium et lance la simulation.
+ * 
+ * @return int 
+ */
 int main() {
     // C40x480 pixels, 30ms de délai Création de l'écosystème
     int width = std::stoi(GlobalConfig::getInstance().getConfig("width"));

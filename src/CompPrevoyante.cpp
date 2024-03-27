@@ -4,6 +4,11 @@
 
 std::shared_ptr<ComportementPrevoyante> ComportementPrevoyante::instance = nullptr;
 
+/**
+ * @brief Construction de l'objet Comportement Prevoyante (Singleton)
+ * 
+ * @return std::shared_ptr<IComportement> 
+ */
 std::shared_ptr<IComportement> ComportementPrevoyante::getInstance() {
     if (instance == nullptr) {
         shared_ptr<ComportementPrevoyante> newShared(new ComportementPrevoyante());
@@ -12,6 +17,15 @@ std::shared_ptr<IComportement> ComportementPrevoyante::getInstance() {
     return instance;
 }
 
+/**
+ * @brief Calcul du déplacement de la bestiole selon le comportement prevoyante
+ * 
+ * Dans le cas où la bestiole ne détecte pas de voisins, elle se déplace dans la direction actuelle.
+ * 
+ * @param idBestiole 
+ * @param monMilieu 
+ * @return tuple<double, double> 
+ */
 tuple<double, double> ComportementPrevoyante::getDeplacement(int idBestiole, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;

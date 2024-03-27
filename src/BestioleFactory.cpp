@@ -7,6 +7,18 @@
 #include "Bestiole.h"
 #include "GlobalConfig.h"
 
+/**
+ * @brief Constructeur de la classe BestioleFactory
+ * 
+ * Les probabilités de répartition des types de bestioles sont passées en paramètre.
+ * La probabilité de la dernière classe (Multiple) est calculée automatiquement.
+ * 
+ * @param m 
+ * @param p_kamikaze 
+ * @param p_peureuse 
+ * @param p_gregaire 
+ * @param p_prevoyante 
+ */
 BestioleFactory::BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse, double p_gregaire, double p_prevoyante) {
     if (p_kamikaze + p_peureuse + p_gregaire + p_prevoyante > 1) {
         throw std::invalid_argument("La somme des probabilités doit être inférieure à 1");
@@ -20,10 +32,21 @@ BestioleFactory::BestioleFactory(Milieu *m, double p_kamikaze, double p_peureuse
     milieu = m;
 }
 
+/**
+ * @brief Destructeur de la classe BestioleFactory
+ * 
+ */
 BestioleFactory::~BestioleFactory() {
     //dtor
 }
 
+/**
+ * @brief Crée une nouvelle bestiole
+ * 
+ * La méthode tire aléatoirement un type de bestiole suivant la répartition des probabilités.
+ * 
+ * @return std::shared_ptr<IBestiole> 
+ */
 std::shared_ptr<IBestiole> BestioleFactory::naissance() {
     // Tirage aléatoire d'un type de bestiole suivant la répartition
     double r = (double)rand() / (double)RAND_MAX;
@@ -35,6 +58,14 @@ std::shared_ptr<IBestiole> BestioleFactory::naissance() {
     return naissance(type);
 }
 
+/**
+ * @brief Crée une nouvelle bestiole
+ * 
+ * La méthode crée une bestiole du type passé en paramètre.
+ * 
+ * @param type 
+ * @return std::shared_ptr<IBestiole> 
+ */
 std::shared_ptr<IBestiole> BestioleFactory::naissance(int type) {
     std::shared_ptr<IBestiole> b = make_shared<Bestiole>(milieu, type);
     // Ajout de décorateurs à la bestiole de façon aléatoire

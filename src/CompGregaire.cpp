@@ -4,6 +4,11 @@
 
 std::shared_ptr<ComportementGregaire> ComportementGregaire::instance = nullptr;
 
+/**
+ * @brief Construction de l'objet Comportement Gregaire (Singleton)
+ * 
+ * @return std::shared_ptr<IComportement> 
+ */
 std::shared_ptr<IComportement> ComportementGregaire::getInstance() {
     if (instance == nullptr) {
         shared_ptr<ComportementGregaire> newShared(new ComportementGregaire());
@@ -12,6 +17,15 @@ std::shared_ptr<IComportement> ComportementGregaire::getInstance() {
     return instance;
 }
 
+/**
+ * @brief Calcul du déplacement de la bestiole selon le comportement grégaire
+ * 
+ * Dans le cas où la bestiole ne détecte pas de voisins, elle se déplace dans la direction actuelle.
+ * 
+ * @param idBestiole 
+ * @param monMilieu 
+ * @return tuple<double, double> 
+ */
 tuple<double, double> ComportementGregaire::getDeplacement(int idBestiole, Milieu *monMilieu) {
     double deltaX = 0;
     double deltaY = 0;

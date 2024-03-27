@@ -49,6 +49,9 @@ private:
     T *couleur;
 
     static const double MAX_VITESSE;
+    static const double MIN_VITESSE;
+    static const int vieMax;
+    static const int vieMin;
 
 public:
     Bestiole(Milieu *milieu, int type); // constructeur par défaut
@@ -77,6 +80,8 @@ public:
     void draw(UImg &support) override;
 
     friend bool operator==(const Bestiole &b1, const Bestiole &b2);
+
+    int getVieRestante() const override;
 };
 
 #endif

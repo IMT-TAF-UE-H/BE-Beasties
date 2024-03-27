@@ -22,13 +22,6 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
 
-   // Limites des attributs des décorateurs
-   Camouflage::setLimites(0.3, 0.9);
-   Carapace::setLimites(10., 2.);
-   Nageoire::setLimites(3.);
-   Oreilles::setLimites(5., 50., 0.8, 0.9);
-   Yeux::setLimites(M_PI/6., 3.*M_PI/2., 5., 100., 0.8, 0.9);
-
 }
 
 

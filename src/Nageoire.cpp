@@ -8,31 +8,59 @@ using namespace std;
 
 double Nageoire::NU_MAX = std::stod(GlobalConfig::getInstance().getConfig("NU_MAX")); 
 
+/**
+ * @brief Constructeur par défaut de la classe Nageoire
+ * 
+ * @param b 
+ */
 Nageoire::Nageoire(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     nu = (NU_MAX - 1) * ((double)rand() / (double)RAND_MAX) + 1;
-    cout << "const Nageoire par defaut sur bestiole " << bestiole->getId() << endl;
+    cout << "(" << bestiole->getId() << "): const. par defaut Nageoire" << endl;
 }
 
+/**
+ * @brief Constructeur par copie de la classe Nageoire
+ * 
+ * @param n 
+ */
 Nageoire::Nageoire(Nageoire &n) {
     bestiole = n.bestiole->clone();
     nu = n.nu;
-    cout << "const Nageoire par copie sur bestiole " << bestiole->getId() << endl;
+    cout << "(" << bestiole->getId() << "): const. par copie Nageoire" << endl;
 }
 
+/**
+ * @brief Destructeur de la classe Nageoire
+ * 
+ */
 Nageoire::~Nageoire() {
-    cout << "dest Nageoire" << endl;
+    cout << "(" << bestiole->getId() << "): dest Nageoire" << endl;
 }
 
+/**
+ * @brief Setter de la vitesse maximale
+ * 
+ * @param _NU_MAX 
+ */
 void Nageoire::setLimites(double _NU_MAX) {
     assert(_NU_MAX > 1);
     NU_MAX = _NU_MAX;
 }
 
+/**
+ * @brief Clone la nageoire
+ * 
+ * @return std::shared_ptr<IBestiole> 
+ */
 std::shared_ptr<IBestiole> Nageoire::clone() {
     return make_shared<Nageoire>(*this);
 }
 
+/**
+ * @brief Mise à jour de la position de la bestiole composée
+ * 
+ */
 void Nageoire::updatePos() {
     double vitesse = bestiole->getVitesse();
     // Modification de la vitesse

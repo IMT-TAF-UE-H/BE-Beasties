@@ -9,6 +9,10 @@
 
 std::shared_ptr<ComportementMultiple> ComportementMultiple::instance = nullptr;
 
+/**
+ * @brief Construction de l'objet Comportement Multiple (Singleton)
+ * @return std::shared_ptr<IComportement> 
+ */
 std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
     if (instance == nullptr) {
         std::shared_ptr<ComportementMultiple> newShared(new ComportementMultiple());
@@ -25,7 +29,17 @@ std::shared_ptr<IComportement> ComportementMultiple::getInstance() {
     return instance;
 }
 
-
+/**
+ * @brief Calcul du déplacement de la bestiole selon le comportement multiple
+ * 
+ * Le comportement multiple choisit aléatoirement un comportement parmi les comportements disponibles.
+ * Le déplacement de la bestiole est alors calculé selon le comportement choisi.
+ * Chaque appel à cette méthode peut donc donner un déplacement différent.
+ * 
+ * @param idBestiole 
+ * @param monMilieu 
+ * @return tuple<double, double> 
+ */
 tuple<double, double> ComportementMultiple::getDeplacement(int idBestiole, Milieu *monMilieu) {
 
     
