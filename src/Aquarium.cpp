@@ -1,9 +1,14 @@
 #include "Aquarium.h"
+#include "Camouflage.h"
+#include "Carapace.h"
+#include "Nageoire.h"
+#include "Oreilles.h"
+#include "Yeux.h"
+#include <math.h>
+#include <chrono>
 
-#include "Milieu.h"
 
-
-Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
+Aquarium::Aquarium( int width, int height, int _delay, ofstream &logFile) : CImgDisplay(), delay( _delay )
 {
 
    int         screenWidth = 1280; //screen_width();
@@ -12,7 +17,7 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 
    cout << "const Aquarium" << endl;
 
-   flotte = new Milieu( width, height );
+   flotte = new Milieu( width, height, logFile );
    assign( *flotte, "Simulation d'ecosysteme" );
 
    move( static_cast<int>((screenWidth-width)/2), static_cast<int>((screenHeight-height)/2) );
@@ -23,9 +28,9 @@ Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( 
 Aquarium::~Aquarium( void )
 {
 
-   delete flotte;
-
    cout << "dest Aquarium" << endl;
+
+   delete flotte;
 
 }
 
@@ -45,12 +50,14 @@ void Aquarium::run( void )
          cout << " (" << key() << ")" << endl;
          if ( is_keyESC() ) close();
       }
-
+      auto t0 = chrono::high_resolution_clock::now();
       flotte->step();
       display( *flotte );
+      auto t1 = chrono::high_resolution_clock::now();
 
-      wait( delay );
+      int waitTime = delay - chrono::duration_cast<chrono::milliseconds>(t1-t0).count();
+      if (waitTime>0) wait(waitTime);
 
-   } // while
+   }
 
 }

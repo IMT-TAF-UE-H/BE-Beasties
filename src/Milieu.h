@@ -1,38 +1,52 @@
 #ifndef _MILIEU_H_
 #define _MILIEU_H_
 
-
+#include "IBestiole.h"
 #include "UImg.h"
-#include "Bestiole.h"
+#include "BestioleFactory.h"
 
 #include <iostream>
+#include <map>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
+class BestioleFactory;
 
-class Milieu : public UImg
-{
 
-private :
-   static const T          white[];
+class IBestiole;
 
-   int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+class Milieu : public UImg {
 
-public :
-   Milieu( int _width, int _height );
-   ~Milieu( void );
+private:
+    static const T white[];
+    static double DIST_MAX_VOISINS;
+    static double DIST_COLLISION;
+    static double probaNaissanceSpontanee;
+    static double probaClonage;
 
-   int getWidth( void ) const { return width; };
-   int getHeight( void ) const { return height; };
+    std::map<int, std::shared_ptr<IBestiole>> listeBestioles;
 
-   void step( void );
+public:
+    static double width, height;
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
-   int nbVoisins( const Bestiole & b );
+public:
+    Milieu(int _width, int _height, ofstream &logFile);
+    ~Milieu(void);
 
+    void step();
+    void tuer(int idBestiole);
+
+    unique_ptr<std::map<int, std::shared_ptr<IBestiole>>> getVoisins(int idBestiole);
+    std::shared_ptr<IBestiole> getBestiole(int idBestiole);
+    void addBestiole();
+    void peupler(int nbBestioles);
+
+private:
+    std::vector<int> getVaMourir();
+    BestioleFactory* bestioleFactory;
+    ofstream& logFile;
 };
-
 
 #endif

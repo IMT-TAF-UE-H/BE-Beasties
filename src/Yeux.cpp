@@ -2,34 +2,59 @@
 #include <cassert>
 #include <iostream>
 #include <math.h>
+#include "GlobalConfig.h"
 
-double Yeux::ALPHA_MIN = 0.;
-double Yeux::ALPHA_MAX = 2. * M_PI;
-double Yeux::DELTA_Y_MIN = 0.;
-double Yeux::DELTA_Y_MAX = INFINITY;
-double Yeux::GAMMA_Y_MIN = 0;
-double Yeux::GAMMA_Y_MAX = 1;
+double Yeux::ALPHA_MIN = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MIN")); 
+double Yeux::ALPHA_MAX = std::stod(GlobalConfig::getInstance().getConfig("ALPHA_MAX")); 
+double Yeux::DELTA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MIN")); 
+double Yeux::DELTA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("DELTA_Y_MAX"));
+double Yeux::GAMMA_Y_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MIN")); 
+double Yeux::GAMMA_Y_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_Y_MAX")); 
 
-Yeux::Yeux(shared_ptr<IBestiole> b) {
+/**
+ * @brief Constructeur par défaut de la classe Yeux
+ * 
+ * @param b 
+ */
+Yeux::Yeux(std::shared_ptr<IBestiole> b) {
     bestiole = b;
     alpha = (ALPHA_MAX - ALPHA_MIN) * ((double)rand() / (double)RAND_MAX) + ALPHA_MIN;
     deltaY = (DELTA_Y_MAX - DELTA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + DELTA_Y_MIN;
     gammaY = (GAMMA_Y_MAX - GAMMA_Y_MIN) * ((double)rand() / (double)RAND_MAX) + GAMMA_Y_MIN;
-    cout << "const Yeux par defaut sur bestiole " << bestiole << endl;
+    cout << "(" << bestiole->getId() << "): const. par defaut Yeux" << endl;
 }
 
+/**
+ * @brief Constructeur par copie de la classe Yeux
+ * 
+ * @param y 
+ */
 Yeux::Yeux(Yeux &y) {
     bestiole = y.bestiole->clone();
     alpha = y.alpha;
     deltaY = y.deltaY;
     gammaY = y.gammaY;
-    cout << "const Yeux par copie sur bestiole " << bestiole << endl;
+    cout << "(" << bestiole->getId() << "): const. par copie Yeux" << endl;
 }
 
+/**
+ * @brief Destructeur de la classe Yeux
+ * 
+ */
 Yeux::~Yeux() {
-    cout << "dest Yeux" << endl;
+    cout << "(" << bestiole->getId() << "): dest Yeux" << endl;
 }
 
+/**
+ * @brief Setter des limites
+ * 
+ * @param _ALPHA_MIN 
+ * @param _ALPHA_MAX 
+ * @param _DELTA_Y_MIN 
+ * @param _DELTA_Y_MAX 
+ * @param _GAMMA_Y_MIN 
+ * @param _GAMMA_Y_MAX 
+ */
 void Yeux::setLimites(double _ALPHA_MIN,
                       double _ALPHA_MAX,
                       double _DELTA_Y_MIN,
@@ -47,12 +72,46 @@ void Yeux::setLimites(double _ALPHA_MIN,
     GAMMA_Y_MAX = _GAMMA_Y_MAX;
 }
 
-shared_ptr<IBestiole> Yeux::clone() {
+/**
+ * @brief Clone l'accessoire Yeux
+ * 
+ * @return std::shared_ptr<IBestiole> 
+ */
+std::shared_ptr<IBestiole> Yeux::clone() {
     return make_shared<Yeux>(*this);
 }
 
-bool Yeux::detecter(shared_ptr<IBestiole> b) {
-    bool detection; // TODO : y mettre le résultat de la détection
-    // TODO ...
-    return detection || bestiole->detecter(b);
+/**
+ * @brief Méthode qui détecte une bestiole
+ * 
+ * @param idBestiole 
+ * @return true 
+ * @return false 
+ */
+bool Yeux::detecter(int idBestiole) {
+    bool detection; 
+    double distance = bestiole->getDistance(idBestiole);
+    double directionTo = bestiole->getDirectionTo(idBestiole);
+    double direction = bestiole->getDirection();
+    
+    if (direction < 0) {
+        direction += 2 * M_PI;
+    }
+    if (directionTo < 0) {
+        directionTo += 2 * M_PI;
+    }
+    direction = fmod(direction, 2 * M_PI);
+    directionTo = fmod(directionTo, 2 * M_PI);
+    double angle = fabs(direction - directionTo); 
+
+    if (angle > M_PI) {
+        angle = 2 * M_PI - angle;
+    }
+    bool inField = (angle < alpha / 2);
+    bool inDistance = (distance < deltaY);
+    bool inVision = (inField && inDistance);
+    // détection si dans le champ de vision et dans la distance
+    auto b = bestiole->getMilieu()->getBestiole(idBestiole);
+    detection = inVision && (gammaY > b->getDiscretion());
+    return detection;
 }
