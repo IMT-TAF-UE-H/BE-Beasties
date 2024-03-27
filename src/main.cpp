@@ -10,11 +10,12 @@
 
 using namespace std;
 
-void initLogger(ofstream &logFile, const char *conf_name) {
+void initLogger(ofstream &logFile, string conf_name) {
 
     // Initialisation du fichier de log
+    const char* log_addr = ("logs/"+conf_name+".csv").c_str();
     cout << "Ouverture du fichier de log" << endl;
-    if (remove("log.csv") != 0) {
+    if (remove(log_addr) != 0) {
         cout << "Erreur lors de la suppression du fichier de log" << endl;
     }
     // if already open, close it
@@ -22,7 +23,7 @@ void initLogger(ofstream &logFile, const char *conf_name) {
         logFile.close();
     }
 
-    logFile.open("log.csv", ios::out);
+    logFile.open(log_addr, ios::out);
     cout << "Fichier de log ouvert" << endl;
     // Entête du fichier de log
     logFile << "Peureuse,Gregaire,Kamikaze,Prevoyante,Multiple\n";
@@ -36,8 +37,8 @@ void initLogger(ofstream &logFile, const char *conf_name) {
  * @return int
  */
 int main(int argc, char *argv[]) {
-    const char *conf_name;
-    if (argc > 1) conf_name = argv[1]; else conf_name = "default";
+    std::string conf_name = "default";
+    if (argc > 1) conf_name = argv[1];
 
     ofstream logger;
     initLogger(logger, conf_name);
