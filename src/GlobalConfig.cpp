@@ -4,7 +4,7 @@
 
 GlobalConfig::GlobalConfig()
 {
-    loadConfigFromFile("config.txt");
+    loadConfigFromFile("default.conf");
 }
 
 void GlobalConfig::loadConfigFromFile(const std::string &filename)
