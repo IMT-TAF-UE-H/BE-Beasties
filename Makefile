@@ -13,7 +13,7 @@ build: main
 
 
 main: $(OBJ_DIR)/main.o $(OBJ_DIR)/Aquarium.o $(OBJ_DIR)/Bestiole.o $(OBJ_DIR)/Milieu.o $(OBJ_DIR)/BestioleFactory.o $(OBJ_DIR)/GlobalConfig.o $(DECORATEURS) $(COMPORTEMENTS) 
-	g++ -Wall -std=$(VERSION) -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X14/lib -lX14
+	g++ -Wall -std=$(VERSION) -o $@ $^ -I $(SRC_DIR) -lpthread $(MAC_FLAGS) -L/opt/X11/lib -lX11
 
 
 $(OBJ_DIR)/main.o : $(SRC_DIR)/main.cpp $(SRC_DIR)/Aquarium.h $(SRC_DIR)/IBestiole.h $(SRC_DIR)/Milieu.h
