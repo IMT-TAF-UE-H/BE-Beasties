@@ -2,7 +2,6 @@
 #include <cassert>
 #include <iostream>
 #include <math.h>
-#include "GlobalConfig.h"
 
 
 double Oreilles::DELTA_O_MIN = 1;

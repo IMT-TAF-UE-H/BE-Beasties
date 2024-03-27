@@ -5,7 +5,6 @@
 #include "Yeux.h"
 #include "Camouflage.h"
 #include "Bestiole.h"
-#include "GlobalConfig.h"
 
 double BestioleFactory::repartition[5];
 double BestioleFactory::p_carapace;

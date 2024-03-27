@@ -2,7 +2,6 @@
 #include <cassert>
 #include <iostream>
 #include <math.h>
-#include "GlobalConfig.h"
 
 
 double Yeux::ALPHA_MIN = 0.1;

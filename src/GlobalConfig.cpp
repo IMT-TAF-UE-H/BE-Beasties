@@ -16,12 +16,6 @@
 
 std::map<std::string, std::string> GlobalConfig::configMap;
 
-GlobalConfig::GlobalConfig()
-{
-    loadConfigFromFile("default.conf");
-    setLimites();
-}
-
 /**
  * @brief Charge la configuration depuis un fichier
  * 

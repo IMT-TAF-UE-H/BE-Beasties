@@ -4,7 +4,6 @@
 #include <ctime>
 #include <memory.h>
 #include <random>
-#include "GlobalConfig.h"
 
 using namespace std;
 

@@ -2,7 +2,6 @@
 #include "IBestiole.h"
 #include <iostream>
 #include <cassert>
-#include "GlobalConfig.h"
 
 using namespace std;
 

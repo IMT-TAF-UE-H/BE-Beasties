@@ -9,7 +9,6 @@
 #include "CompPeureuse.h"
 #include "CompPrevoyante.h"
 #include "CompMultiple.h"
-#include "GlobalConfig.h"
 
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
 double Bestiole::MAX_VITESSE = 5.;
