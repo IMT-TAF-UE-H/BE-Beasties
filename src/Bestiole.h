@@ -61,6 +61,7 @@ public:
     void updatePos() override; // mise à jour de la position
     bool detecter(int idBestiole) override;
     bool collision() override;
+    static void setLimites(double _MAX_VITESSE, double _MIN_VITESSE, int _vieMax, int _vieMin);
     double getVitesse() override;
     void setVitesse(double vitesse) override;
     double getResistance() override;

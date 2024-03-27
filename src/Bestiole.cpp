@@ -11,11 +11,6 @@
 #include "CompMultiple.h"
 #include "GlobalConfig.h"
 
-const double Bestiole::MAX_VITESSE = std::stod(GlobalConfig::getInstance().getConfig("MAX_VITESSE"));
-const double Bestiole::MIN_VITESSE = std::stod(GlobalConfig::getInstance().getConfig("MIN_VITESSE"));
-const int Bestiole::vieMax = std::stoi(GlobalConfig::getInstance().getConfig("vieMax"));
-const int Bestiole::vieMin = std::stoi(GlobalConfig::getInstance().getConfig("vieMin"));
-
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
 
 /**
@@ -180,6 +175,22 @@ bool Bestiole::detecter(int idBestiole) {
  */
 bool Bestiole::collision() {
     return (double)rand()/(double)RAND_MAX < 1./resistance;
+}
+
+/**
+ * @brief Setter des limites de la Bestiole
+ * 
+ * @param _MAX_VITESSE 
+ * @param _MIN_VITESSE 
+ * @param _vieMax 
+ * @param _vieMin 
+ */
+
+void Bestiole::setLimites(double _MAX_VITESSE, double _MIN_VITESSE, int _vieMax, int _vieMin) {
+    MAX_VITESSE = _MAX_VITESSE;
+    MIN_VITESSE = _MIN_VITESSE;
+    vieMax = _vieMax;
+    vieMin = _vieMin;
 }
 
 /**

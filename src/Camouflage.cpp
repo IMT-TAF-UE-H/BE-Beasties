@@ -6,10 +6,6 @@
 
 using namespace std;
 
-// Initialisation des limites de psi par parsing du fichier de configuration
-double Camouflage::PSI_MIN = std::stod(GlobalConfig::getInstance().getConfig("PSI_MIN")); 
-double Camouflage::PSI_MAX = std::stod(GlobalConfig::getInstance().getConfig("PSI_MAX")); 
-
 /**
  * @brief Constructeur de la classe Camouflage
  * 

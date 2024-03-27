@@ -25,6 +25,7 @@ private:
     static double DIST_COLLISION;
     static double probaNaissanceSpontanee;
     static double probaClonage;
+    static int nbBestioles;
 
     std::map<int, std::shared_ptr<IBestiole>> listeBestioles;
 
@@ -42,6 +43,8 @@ public:
     std::shared_ptr<IBestiole> getBestiole(int idBestiole);
     void addBestiole();
     void peupler(int nbBestioles);
+
+    static void setLimites(double _DIST_MAX_VOISINS, double _DIST_COLLISION, double _probaNaissanceSpontanee, double _probaClonage);
 
 private:
     std::vector<int> getVaMourir();

@@ -12,10 +12,6 @@ using namespace std;
 const T Milieu::white[] = {(T)255, (T)255, (T)255};
 double Milieu::width = 640.;
 double Milieu::height = 480.;
-double Milieu::DIST_MAX_VOISINS = std::stod(GlobalConfig::getInstance().getConfig("DIST_MAX_VOISINS")); 
-double Milieu::DIST_COLLISION = std::stod(GlobalConfig::getInstance().getConfig("DIST_COLLISION"));
-double Milieu::probaNaissanceSpontanee = std::stod(GlobalConfig::getInstance().getConfig("probaNaissanceSpontanee")); // Pourcentage
-double Milieu::probaClonage = std::stod(GlobalConfig::getInstance().getConfig("probaClonage")); // Pourcentage 
 
 /**
  * @brief Constructeur de la classe Milieu
@@ -33,11 +29,7 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     cout << "const Milieu" << endl;
 
     // Initialisation de la factory
-    double p_kamikaze = std::stod(GlobalConfig::getInstance().getConfig("p_kamikaze"));
-    double p_peureuse = std::stod(GlobalConfig::getInstance().getConfig("p_peureuse"));
-    double p_gregaire = std::stod(GlobalConfig::getInstance().getConfig("p_gregaire"));
-    double p_prevoyante = std::stod(GlobalConfig::getInstance().getConfig("p_prevoyante"));
-    bestioleFactory = new BestioleFactory(this, p_kamikaze, p_peureuse, p_gregaire, p_prevoyante); 
+    bestioleFactory = new BestioleFactory(this) 
 
     // Initialisation du fichier de log
     cout << "Ouverture du fichier de log" << endl;
@@ -57,7 +49,6 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     srand(time(NULL));
 
     // peuplement du milieu
-    int nbBestioles = std::stoi(GlobalConfig::getInstance().getConfig("nbBestioles"));
     peupler(nbBestioles);
 }
 
@@ -227,4 +218,21 @@ std::vector<int> Milieu::getVaMourir() {
         }
     }
     return vaMourir;
+}
+
+/**
+ * @brief Méthode qui définit les limites du milieu
+ * 
+ * @param _DIST_MAX_VOISINS 
+ * @param _DIST_COLLISION 
+ * @param _probaNaissanceSpontanee 
+ * @param _probaClonage 
+ */
+
+void Milieu::setLimites(double _DIST_MAX_VOISINS, double _DIST_COLLISION, double _probaNaissanceSpontanee, double _probaClonage, int _nbBestioles) {
+    DIST_MAX_VOISINS = _DIST_MAX_VOISINS;
+    DIST_COLLISION = _DIST_COLLISION;
+    probaNaissanceSpontanee = _probaNaissanceSpontanee;
+    probaClonage = _probaClonage;
+    nbBestioles = _nbBestioles;
 }

@@ -4,11 +4,6 @@
 #include <math.h>
 #include "GlobalConfig.h"
 
-double Oreilles::DELTA_O_MIN = std::stod(GlobalConfig::getInstance().getConfig("DELTA_O_MIN")); 
-double Oreilles::DELTA_O_MAX = std::stod(GlobalConfig::getInstance().getConfig("DELTA_O_MAX")); 
-double Oreilles::GAMMA_O_MIN = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_O_MIN")); 
-double Oreilles::GAMMA_O_MAX = std::stod(GlobalConfig::getInstance().getConfig("GAMMA_O_MAX"));
-
 /**
  * @brief Constructeur par défaut de la classe Oreilles
  * 

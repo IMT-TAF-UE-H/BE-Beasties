@@ -6,8 +6,6 @@
 
 using namespace std;
 
-double Nageoire::NU_MAX = std::stod(GlobalConfig::getInstance().getConfig("NU_MAX")); 
-
 /**
  * @brief Constructeur par défaut de la classe Nageoire
  * 
