@@ -38,7 +38,9 @@ BE-Bestioles/                     Le dépôt de code
 │   ├── MODELING.md                    Rapport de conception de l'application
 │   ├── slides.pdf                     Slides de présentation du projet
 │   └── diagrams/                      Diagrammes UML de cas d'utilisation, de classes et de séquences
-│       └── ... 
+│       └── ...
+├── config/                            Fichiers de configuration de l'écosystème
+│   └── default.conf                   Fichier de configuration par défaut
 └── src/                               Code source du projet
     ├── main.cpp                       Point d'entrée de l'application
     ├── SomeClassFile.h                Fichier header de classe C++
