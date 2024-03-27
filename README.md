@@ -1,72 +1,52 @@
-# BE-Beasties
+# BE-Bestioles
+
+## Etudiants
+- Thibaut RUZICKA
+- Jules DECAESTECKER
+- Gabriel DUMONT
+- Ella FERNANDEZ
+- Jonathan LYS
 
 ## Description
 
-The project BE-Beasties is part of the "UE-TAF PA-DI-CPP-H-B Advanced C++ programming" teaching unit,
-of the engineering course at IMT Atlantique.
-The project assignment is available on the [teaching unit Moodle workspace](https://moodle.imt-atlantique.fr/pluginfile.php/36084/mod_resource/content/1/BE.pdf)
-(subject to the right of access to the platform), and in [assignment.pdf](./docs/assignment.pdf) file.
+Le projet BE-Bestioles fait partie de l'UE "UE-TAF PA-DI-CPP-H-B Advanced C++ programming",
+de l'école d'ingénieur IMT Atlantique. Les exigences du livrable sont spécifiées sur le [Moodle de l'IMT Atlantique](https://moodle.imt-atlantique.fr/pluginfile.php/36084/mod_resource/content/1/BE.pdf),
+(sous réserve de droits d'accès), mais aussi dans le fichier [docs/assignment.pdf](./docs/assignment.pdf).
 
-## Using / Deploying our system
+## Déploiement et utilisation
 
-You can find a [deployment guide](./docs/DEPLOYING.md) on how to compile and use our system,
-in the [documentation](./docs) section.
+Un [guide de déploiement et d'utilisation](./docs/DEPLOYING.md), expliquant comment compiler et utiliser l'application,
+est disponible dans la section [documentation](./docs).
 
 ## Metadata
 
 - **Timestamp**: 2024-03-08
-- **Last update**: 2024-03-08
-- **Status**: In development
-- **Current Version**: 0.1.1
-- **Supported Platforms**: Linux / Windows WSL
-- **Programming languages**:
+- **Dernière mise à jour**: 2024-03-27
+- **Statut**: Terminé et fonctionnel
+- **Version courante**: 0.1.1
+- **Plateformes supportées**: Linux (Ubuntu 22.04 LTS),  Windows (WSL requis)
+- **Langages de programmation**:
     - C++ 11
-- **Libraries / Frameworks / Platforms**:
+- **Librairies / Frameworks / Plateformes**:
     - C++ STL
-- **Compatibility Issues** : None known at this time
 
-## Repository architecture
+## Architecture de fichiers du dépôt
 
 ```
-BE-Beasties/                     This repository
-├── README.md                          This document
-├── LICENSE.md                         License in place for this project
-├── Makefile                           File for compiling code into executable file, using make Linux dependency
-├── .gitattributes                     Used to adjust how Git handles changes to certain files, ensuring consistent behavior for all contributors
-├── .gitignore                         Text file that tells Git which files or directories to ignore in a project
-├── .github/                           Used by GitHub review management and CI/CD workflows when available
-│   ├── configure                      File to configure GitHub Action environment settings
-│   ├── CODEOWNERS                     Detail which team-member has to review which changes
-│   └── workflows/                     All GitHub CI/CD workflows performed my GitHub Actions
-│       └── c-cpp.yml                  GitHub Action workflow that checks that code can compile correctly before approving pull requests
-├── docs/                              All GitHub and project documentation
-│   ├── assignment.pdf                 Project global assignment
-│   ├── CONTRIBUTING.md                Explains how to contribute to the project, by respecting some rules
-│   ├── DEPLOYING.md                   A comprehensive guide on how to compile and run the application
-│   └── CHANGELOG.md                   Tracked changes in the project's lifecycle
-└── src/                               All the source code of the project
-    ├── main.cpp                       Application entrypoint
-    ├── SomeClassFile.h                A C++ header file for a class (CamelCase)
-    └── SomeClassFile.cpp              A C++ source file for a class (CamelCase)
+BE-Bestioles/                     Le dépôt de code
+├── README.md                          Ce document
+├── Makefile                           Fichier permettant de compiler le code en un exécutable grâce à make
+├── docs/                              Documentation du projet
+│   ├── assignment.pdf                 Cahier des charges / Exigences du projet
+│   ├── DEPLOYING.md                   Guide expliquant le déploiement et l'utilisation de l'application
+│   ├── MODELING.md                    Rapport de conception de l'application
+│   ├── slides.pdf                     Slides de présentation du projet
+│   └── diagrams/                      Diagrammes UML de cas d'utilisation, de classes et de séquences
+│       └── ... 
+└── src/                               Code source du projet
+    ├── main.cpp                       Point d'entrée de l'application
+    ├── SomeClassFile.h                Fichier header de classe C++
+    └── SomeClassFile.cpp              Fichier source de classe C++
 ```
 
-## Contributing
 
-[CONTRIBUTING.md](docs/CONTRIBUTING.md) file explains how to contribute to the project,
-and what are the contributing rules.
-
-## License
-
-We are under the MIT License, find out more in the [License](./LICENSE.md) section.
-
-## Acknowledgements
-
-Many thanks to the different contributors for their contribution to the project.
-Find their names and missions in [Contributors](#contributors) section.
-
-## Contributors
-- BOPS38IMT
-- Jovillios
-- GabrielDum
-- Ellafnz
-- jonathanlys01

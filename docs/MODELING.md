@@ -106,4 +106,12 @@ Modifient la manière des bestioles de se déplacer par rapport à la présence 
 
 ## Diagramme de séquence
 
-_TODO_
+Pour expliquer le déroulement des actions dans l'application, 2 diagrammes de séquences sont fournis
+
+### Peuplement
+Le diagramme ci-dessous illustre la phase de peuplement de l'écosystème avec des bestioles
+![Voir fichier diagrams/modeling-sequence-diagram-populate.svg](./diagrams/modeling-sequence-diagram-populate.svg)
+
+### Etapes
+Le diagramme ci-dessous illustre les différentes étapes de la simulation de l'écosystème
+![Voir fichier diagrams/modeling-sequence-diagram-step.svg](./diagrams/modeling-sequence-diagram-step.svg)
