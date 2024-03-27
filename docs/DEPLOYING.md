@@ -1,33 +1,37 @@
-# Compile and run the main program
+# Compiler et exécuter le programme principal
 
-## Prerequisites
-- GNU Compiler Collection (GCC) or any compatible C++ compiler installed on your system.
-- `make` utility installed on your system for processing the Makefile.
+## Prérequis
+- GNU Compiler Collection (GCC) ou n'importe quel compilateur C++ installé sur le système.
+- Utilitaire `make` installé sur le système pour compiler avec le Makefile.
 
-## Compile the Project
+## Compiler le code source du projet
 
-To compile the project once downloaded, use the following steps on your bash terminal:
+Pour compiler le projet une fois téléchargé, suivez les étapes suivantes dans votre terminal bash :
 
 ```bash
 cd path/to/the/project
 make
 ```
 
-This will compile the source code using the Makefile,and produce an executable named `main`.
+Ceci compilera le code source en utilisant le Makefile, et produira un exécutable nommé `main`.
 
-## Run the executable
-After [compiling the project](#compile-the-project), you can run the executable with:
+## Démarrer le programme via l'exécutable
+Après avoir [compilé le projet](#compiler-et-exécuter-le-programme-principal), vous pouvez lancer l'exécutable avec:
 ```bash
 ./main [config]
 ```
-`config` argument is optional, and must correspond to the name of a `.conf` file in the folder `config/`. It overrides configuration from `default.conf` Any unspecified parameters will be picked from the default config that has to be set in the `DEFAULT_CONFIG_FILE` parameter. </br>
-For instance, this command will use the `config/default.conf` config file :
+L'argument `config` est optionnel, et doit correspondre à un nom de fichier `.conf` dans le répertoire `config/`.
+Cela
+Il remplace la configuration de `default.conf`. 
+Tous les paramètres non spécifiés seront pris dans la configuration par défaut, 
+qui doit être définie dans le paramètre `DEFAULT_CONFIG_FILE`.
+Par exemple, la commande suivante utilisera le fichier de configuration `config/default.conf` :
 ```bash
 ./main default
 ```
-Which is equivalent to :
+Equivalent à :
 ```bash
 ./main
 ```
 
-**_NB_**: if any permission problem appears, run `chmod +x main` to make it executable
+**_NB_**: Si un problème de permission apparaît, lancer `chmod +x main` pour rendre le fichier exécutable.
