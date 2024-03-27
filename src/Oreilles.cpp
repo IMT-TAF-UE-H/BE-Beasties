@@ -4,6 +4,13 @@
 #include <math.h>
 #include "GlobalConfig.h"
 
+
+double Oreilles::DELTA_O_MIN = 1;
+double Oreilles::DELTA_O_MAX = 10;
+double Oreilles::GAMMA_O_MIN = 0.1;
+double Oreilles::GAMMA_O_MAX = 0.9;
+
+
 /**
  * @brief Constructeur par défaut de la classe Oreilles
  * 

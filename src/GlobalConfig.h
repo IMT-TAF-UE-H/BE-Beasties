@@ -7,15 +7,16 @@
 class GlobalConfig
 {
 private:
-    std::map<std::string, std::string> configMap;
+    static std::map<std::string, std::string> configMap;
     static std::shared_ptr<GlobalConfig> instance;
 
     GlobalConfig(); // private constructor
 
 public: 
 
-    void loadConfigFromFile(const std::string &filename);
-    void setLimites();
+    static void loadConfigFromFile(const std::string &filename);
+    static void setLimites();
+    static std::string getConfig(const std::string &key); 
 
 };
 

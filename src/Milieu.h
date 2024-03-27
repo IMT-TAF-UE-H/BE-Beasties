@@ -44,7 +44,7 @@ public:
     void addBestiole();
     void peupler(int nbBestioles);
 
-    static void setLimites(double _DIST_MAX_VOISINS, double _DIST_COLLISION, double _probaNaissanceSpontanee, double _probaClonage);
+    static void setLimites(double _DIST_MAX_VOISINS, double _DIST_COLLISION, double _probaNaissanceSpontanee, double _probaClonage, int _nbBestioles);
 
 private:
     std::vector<int> getVaMourir();

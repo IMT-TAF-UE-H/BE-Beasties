@@ -4,6 +4,15 @@
 #include <math.h>
 #include "GlobalConfig.h"
 
+
+double Yeux::ALPHA_MIN = 0.1;
+double Yeux::ALPHA_MAX = 0.9;
+double Yeux::DELTA_Y_MIN = 1;
+double Yeux::DELTA_Y_MAX = 10;
+double Yeux::GAMMA_Y_MIN = 0.1;
+double Yeux::GAMMA_Y_MAX = 0.9;
+
+
 /**
  * @brief Constructeur par défaut de la classe Yeux
  * 

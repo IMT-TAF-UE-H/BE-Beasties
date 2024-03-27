@@ -48,10 +48,10 @@ private:
     double taille;
     T *couleur;
 
-    static const double MAX_VITESSE;
-    static const double MIN_VITESSE;
-    static const int vieMax;
-    static const int vieMin;
+    static double MAX_VITESSE;
+    static double MIN_VITESSE;
+    static int vieMax;
+    static int vieMin;
 
 public:
     Bestiole(Milieu *milieu, int type); // constructeur par défaut

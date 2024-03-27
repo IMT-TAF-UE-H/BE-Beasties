@@ -8,7 +8,12 @@
 #include <chrono>
 
 
-Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
+int Aquarium::delay = 30; 
+int Aquarium::width = 640;
+int Aquarium::height = 480;
+
+
+Aquarium::Aquarium() : CImgDisplay()
 {
 
    int         screenWidth = 1280; //screen_width();
@@ -34,6 +39,14 @@ Aquarium::~Aquarium( void )
 
 }
 
+void Aquarium::setLimites( int _width, int _height, int _delay )
+{
+
+   width = _width;
+   height = _height;
+   delay = _delay;
+
+}
 
 void Aquarium::run( void )
 {

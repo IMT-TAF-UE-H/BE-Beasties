@@ -11,7 +11,10 @@
 #include "Nageoire.h"
 #include "Milieu.h"
 #include "BestioleFactory.h"
+#include "Aquarium.h"
 
+
+std::map<std::string, std::string> GlobalConfig::configMap;
 
 GlobalConfig::GlobalConfig()
 {
@@ -108,9 +111,21 @@ void GlobalConfig::setLimites()
     Oreilles::setLimites(DELTA_O_MIN, DELTA_O_MAX, GAMMA_O_MIN, GAMMA_O_MAX);
     Yeux::setLimites(ALPHA_MIN, ALPHA_MAX, DELTA_Y_MIN, DELTA_Y_MAX, GAMMA_Y_MIN, GAMMA_Y_MAX);
     Bestiole::setLimites(MAX_VITESSE, MIN_VITESSE, vieMax, vieMin);
-    Milieu::setLimites(DIST_MAX_VOISINS, DIST_COLLISION, probaNaissanceSpontanee, probaClonage);
-    BestioleFactory::setLimites(p_kamikaze, p_peureuse, p_gregaire, p_prevoyante);
+    Milieu::setLimites(DIST_MAX_VOISINS, DIST_COLLISION, probaNaissanceSpontanee, probaClonage, nbBestioles);
+    BestioleFactory::setLimites(p_kamikaze, p_peureuse, p_gregaire, p_prevoyante, p_carapace, p_nageoire, p_oreilles, p_yeux, p_camouflage, maxParDecorateur);
+    Aquarium::setLimites(width, height, delay);
+}
 
-
-
+std::string GlobalConfig::getConfig(const std::string &key) 
+{
+    auto it = configMap.find(key);
+    if (it != configMap.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        std::cerr << "Error: Configuration key " << key << " not found" << std::endl;
+        return "";
+    }
 }

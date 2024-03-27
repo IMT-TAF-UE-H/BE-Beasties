@@ -11,12 +11,12 @@ class IBestiole;
 class BestioleFactory {
 public:
     // Constructeur 
-    BestioleFactory(Milieu *m,);
+    BestioleFactory(Milieu *m);
 
     // Destructeur
     ~BestioleFactory(); 
 
-    static void setLimites(double _p_kamikaze, double _p_peureuse, double _p_gregaire, double _p_prevoyante);
+    static void setLimites(double _p_kamikaze, double _p_peureuse, double _p_gregaire, double _p_prevoyante, double _p_carapace, double _p_nageoire, double _p_oreilles, double _p_yeux, double _p_camouflage, int _maxParDecorateur); 
 
     // Méthode pour créer une bestiole
     // Remplacez "Bestiole" par le nom de votre classe de bestiole

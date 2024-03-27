@@ -3,6 +3,10 @@
 #include <iostream>
 #include "GlobalConfig.h"
 
+double Carapace::OMEGA_MAX = 0.9;
+double Carapace::ETA_MAX = 0.9;
+
+
 /**
  * @brief Constructeur de la classe Carapace
  * 

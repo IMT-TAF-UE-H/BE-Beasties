@@ -12,6 +12,12 @@ using namespace std;
 const T Milieu::white[] = {(T)255, (T)255, (T)255};
 double Milieu::width = 640.;
 double Milieu::height = 480.;
+double Milieu::DIST_MAX_VOISINS = 50.;
+double Milieu::DIST_COLLISION = 10.;
+double Milieu::probaNaissanceSpontanee = 0.001;
+double Milieu::probaClonage = 0.001;
+int Milieu::nbBestioles = 100;
+
 
 /**
  * @brief Constructeur de la classe Milieu
@@ -29,7 +35,7 @@ Milieu::Milieu(int _width, int _height) : UImg(_width, _height, 1, 3),
     cout << "const Milieu" << endl;
 
     // Initialisation de la factory
-    bestioleFactory = new BestioleFactory(this) 
+    bestioleFactory = new BestioleFactory(this);
 
     // Initialisation du fichier de log
     cout << "Ouverture du fichier de log" << endl;

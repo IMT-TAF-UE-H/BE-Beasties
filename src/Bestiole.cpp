@@ -12,6 +12,10 @@
 #include "GlobalConfig.h"
 
 int Bestiole::next = 0; // initialisation du compteur d'identifiant
+double Bestiole::MAX_VITESSE = 5.;
+double Bestiole::MIN_VITESSE = 1.;
+int Bestiole::vieMax = 1000;
+int Bestiole::vieMin = 500;
 
 /**
  * @brief Constructeur par défaut de la classe Bestiole

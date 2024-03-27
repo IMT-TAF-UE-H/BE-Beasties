@@ -7,17 +7,20 @@
 #include "Bestiole.h"
 #include "GlobalConfig.h"
 
+double BestioleFactory::repartition[5];
+double BestioleFactory::p_carapace;
+double BestioleFactory::p_nageoire;
+double BestioleFactory::p_oreilles;
+double BestioleFactory::p_yeux;
+double BestioleFactory::p_camouflage;
+int BestioleFactory::maxParDecorateur;
+
 /**
  * @brief Constructeur de la classe BestioleFactory
  * 
  * Les probabilités de répartition des types de bestioles sont passées en paramètre.
  * La probabilité de la dernière classe (Multiple) est calculée automatiquement.
  * 
- * @param m 
- * @param p_kamikaze 
- * @param p_peureuse 
- * @param p_gregaire 
- * @param p_prevoyante 
  */
 BestioleFactory::BestioleFactory(Milieu *m) { 
     milieu = m;

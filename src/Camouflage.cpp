@@ -6,6 +6,9 @@
 
 using namespace std;
 
+double Camouflage::PSI_MIN = 0.1;
+double Camouflage::PSI_MAX = 0.9;
+
 /**
  * @brief Constructeur de la classe Camouflage
  * 
