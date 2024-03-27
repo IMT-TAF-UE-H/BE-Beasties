@@ -18,6 +18,15 @@ This will compile the source code using the Makefile,and produce an executable n
 ## Run the executable
 After [compiling the project](#compile-the-project), you can run the executable with:
 ```bash
+./main [config]
+```
+`config` argument is optional, and must correspond to the name of a `.conf` file in the folder `config/`. It overrides configuration from `default.conf` (Not all parameters are required). </br>
+For instance, this command will use the `config/default.conf` config file :
+```bash
+./main default
+```
+Which is equivalent to :
+```bash
 ./main
 ```
 
