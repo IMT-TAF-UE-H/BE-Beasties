@@ -2,10 +2,10 @@
 
 ## Etudiants
 - Thibaut RUZICKA
-- Jules
+- Jules DECAESTECKER
 - Gabriel DUMONT
 - Ella FERNANDEZ
-- jonathan LYS
+- Jonathan LYS
 
 ## Description
 
