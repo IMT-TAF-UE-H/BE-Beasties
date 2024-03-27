@@ -5,11 +5,10 @@
 #include <iostream>
 #include <CImg.h>
 
+#include "Milieu.h"
+
 using namespace std;
 using namespace cimg_library;
-
-
-class Milieu;
 
 
 class Aquarium : public CImgDisplay
@@ -18,13 +17,17 @@ class Aquarium : public CImgDisplay
 private :
    Milieu       * flotte;
 
-   int            delay;
+   static int delay;
+   static int width;
+   static int height;
 
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( ofstream &logFile );
    ~Aquarium( void );
 
-   Milieu & getMilieu( void ) { return *flotte; }
+   static void setLimites( int _width, int _height, int _delay );
+
+   Milieu* getMilieu( void ) { return flotte; }
 
    void run( void );
 

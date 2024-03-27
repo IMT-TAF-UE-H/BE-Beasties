@@ -2,6 +2,7 @@
 .DS_Store
 ._*
 *.tmp
+*.bkp
 
 # IDE files
 .vs/
@@ -19,5 +20,9 @@
 *.out
 *.app
 main
+testDecorateurs
 out/
 target/
+logs/*
+config/*
+!config/default.conf
